@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page matches snapshot 1`] = `
+<DocumentFragment>
+  <div
+    class="page-container"
+  >
+    <header>
+      <span
+        class="logo"
+      >
+        Hyödyntämätön
+      </span>
+    </header>
+    <main>
+      App which translates beer reviews to your language.
+      <button>
+        Log in with your Untappd account
+      </button>
+    </main>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Home page renders Welcome back when user is logged in 1`] = `
+<DocumentFragment>
+  <div
+    class="page-container"
+  >
+    Welcome back!
+    <button>
+      Show map
+    </button>
+  </div>
+</DocumentFragment>
+`;

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CLIENT_ID=`cat ../../.env | grep NEXT_PUBLIC_UNTAPPD_CLIENT_ID | awk -F= '{print $2}'`
+SECRET=`cat ../../.env.local | grep UNTAPPD_CLIENT_SECRET | awk -F= '{print $2}'`
+
+curl "https://api.untappd.com/v4/thepub/local/?lat=40.68&lng=-73.96&limit=1&client_id=$CLIENT_ID&client_secret=$SECRET"
+
