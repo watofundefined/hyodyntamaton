@@ -20,14 +20,14 @@ function Anonymous(): JSX.Element {
 }
 
 function auth(dispatch: Dispatch<any>): void {
-  if (localhost()) {
+  if (isLocalhost()) {
     dispatch({ type: 'LOG_IN', token: null })
   } else {
     window.location.assign(untappdUrl())
   }
 }
 
-function localhost(): boolean {
+function isLocalhost(): boolean {
   return window.location.href.includes('localhost')
 }
 
