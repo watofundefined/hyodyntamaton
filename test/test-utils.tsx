@@ -5,8 +5,7 @@ import {
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import { reducer, getInitialState } from '../redux/reducer'
-import { AppState } from '../redux/app-state'
+import { reducer, getInitialState, AppState } from '../redux'
 
 interface RenderOptions extends DefaultRenderOptions {
   initState?: Partial<AppState>
