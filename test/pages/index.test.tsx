@@ -1,4 +1,5 @@
 import React from 'react'
+
 import { render } from '../test-utils'
 import Home from '../../pages/index'
 
@@ -15,7 +16,7 @@ describe('Home page', () => {
 
   it('matches snapshot when user is logged in', () => {
     const { asFragment } = render(<Home />, {
-      initState: { user: { loggedIn: true, token: null } },
+      initState: { user: { loggedIn: true, token: 'fake-testing-token' } },
     })
     expect(asFragment()).toMatchSnapshot()
   })

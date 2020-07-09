@@ -1,14 +1,13 @@
-import { useDispatch } from 'react-redux'
-
-import { UserActions } from '../redux'
+import { useRouter } from 'next/router'
 
 function MainMenu() {
-  const dispatch = useDispatch()
+  const router = useRouter()
 
   return (
     <>
-      Welcome back!<button>Show map</button>
-      <button onClick={() => dispatch(UserActions.logOut())}>Log out</button>
+      <button onClick={() => router.push('/map')}>Pubs Nearby</button>
+      <button onClick={() => router.push('/account')}>Account</button>
+      <button onClick={() => router.push('/about')}>About</button>
     </>
   )
 }

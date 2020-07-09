@@ -27,28 +27,14 @@ exports[`Home page matches snapshot when user is logged in 1`] = `
   <div
     class="page-container"
   >
-    Welcome back!
     <button>
-      Show map
+      Pubs Nearby
     </button>
     <button>
-      Log out
-    </button>
-  </div>
-</DocumentFragment>
-`;
-
-exports[`Home page renders Welcome back when user is logged in 1`] = `
-<DocumentFragment>
-  <div
-    class="page-container"
-  >
-    Welcome back!
-    <button>
-      Show map
+      Account
     </button>
     <button>
-      Log out
+      About
     </button>
   </div>
 </DocumentFragment>

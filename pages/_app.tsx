@@ -6,6 +6,7 @@ import StaticHead from '../components/static-head'
 import { reducer, getInitialState } from '../redux'
 
 import '../styles/index.scss'
+import AuthValidator from '../components/auth-validator'
 
 // Logic to handle SSR, grab token from localStorage only on the client - duh.
 // This causes Next.js to throw a warning when user already has a token,
@@ -26,11 +27,15 @@ const store = createStore(
   })
 )
 
+const publicRoutes = ['/', '/auth', '/about']
+
 function App({ Component: Page, pageProps }: AppProps) {
   return (
     <Provider store={store}>
       <StaticHead />
-      <Page {...pageProps} />
+      <AuthValidator publicRoutes={publicRoutes}>
+        <Page {...pageProps} />
+      </AuthValidator>
     </Provider>
   )
 }
