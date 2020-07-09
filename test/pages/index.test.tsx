@@ -13,7 +13,7 @@ describe('Home page', () => {
     expect(() => getByText(/log in/i)).not.toThrow()
   })
 
-  it('renders Welcome back when user is logged in', () => {
+  it('matches snapshot when user is logged in', () => {
     const { asFragment } = render(<Home />, {
       initState: { user: { loggedIn: true, token: null } },
     })
