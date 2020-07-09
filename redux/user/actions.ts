@@ -8,7 +8,7 @@ function logIn(token: string) {
 }
 
 function logOut() {
-  // window.localStorage.removeItem('token')
+  window.localStorage.removeItem('token')
 
   return {
     type: 'LOG_OUT',

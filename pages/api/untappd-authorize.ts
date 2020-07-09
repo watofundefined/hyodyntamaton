@@ -20,7 +20,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const untappdRes = await axios.get(
       process.env.NEXT_PUBLIC_UNTAPPD_AUTHORIZE_URL,
       {
-        params: getRequestParams(code),
+        params: getRequestParams(req.headers.referer, code),
       }
     )
 
@@ -32,14 +32,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 }
 
-function getRequestParams(code: string | string[]): object {
+function getRequestParams(referer: string, code: string | string[]): object {
+  const url = new URL(referer)
+
   return {
     code,
     response_type: 'code',
     client_id: process.env.NEXT_PUBLIC_UNTAPPD_CLIENT_ID,
     client_secret: process.env.UNTAPPD_CLIENT_SECRET,
-    redirect_url:
-      process.env.HOST + process.env.NEXT_PUBLIC_AUTH_REDIRECT_URL_PATH,
+    redirect_url: url.origin + '/auth',
   }
 }
 

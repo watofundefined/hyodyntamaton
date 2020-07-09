@@ -1,9 +1,4 @@
-import { useDispatch } from 'react-redux'
-import { Dispatch } from 'redux'
-
 function Anonymous(): JSX.Element {
-  const dispatch = useDispatch()
-
   return (
     <>
       <header>
@@ -11,32 +6,22 @@ function Anonymous(): JSX.Element {
       </header>
       <main>
         App which translates beer reviews to your language.
-        <button onClick={() => auth(dispatch)}>
-          Log in with your Untappd account
-        </button>
+        <button onClick={auth}>Log in with your Untappd account</button>
       </main>
     </>
   )
 }
 
-function auth(dispatch: Dispatch<any>): void {
-  if (isLocalhost()) {
-    dispatch({ type: 'LOG_IN', token: null })
-  } else {
-    window.location.assign(untappdUrl())
-  }
-}
-
-function isLocalhost(): boolean {
-  return window.location.href.includes('localhost')
+function auth(): void {
+  window.location.assign(untappdUrl())
 }
 
 function untappdUrl(): string {
-  const clientId = process.env.NEXT_PUBLIC_UNTAPPD_CLIENT_ID
-  const untappdUrl = process.env.NEXT_PUBLIC_UNTAPPD_AUTHENTICATE_URL
-  const redirectUrl = window.location.origin + '/untappd-auth'
+  const cid = process.env.NEXT_PUBLIC_UNTAPPD_CLIENT_ID
+  const url = process.env.NEXT_PUBLIC_UNTAPPD_AUTHENTICATE_URL
+  const redirectUrl = window.location.origin + '/auth'
 
-  return `${untappdUrl}?client_id=${clientId}&response_type=code&redirect_url=${redirectUrl}`
+  return `${url}?client_id=${cid}&redirect_url=${redirectUrl}&response_type=code`
 }
 
 export default Anonymous

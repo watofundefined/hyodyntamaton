@@ -2,9 +2,9 @@
 
 ## Features
 
-### Untappd Authenticaton/Authorization
+### Google Maps intergration
 
-Add API endpoint that will finalize the Untappd auth process.
+### Get local pubs from Untappd
 
 ## Security
 
@@ -14,4 +14,3 @@ It has to be one of:
 
 - token == null && loggedIn == false
 - token == 'users-untappd-token' && loggedIn == true
-- token == null && loggedIn == true && localhost == true

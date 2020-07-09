@@ -11,7 +11,7 @@ Then if a beer/pub review is written in language they don't understand, it will 
 
 ## Constraints
 
-Each user in prod can make max 100 requests / hour to Untappd API.
+Each Untappd user can make max 100 requests / hour to Untappd API.
 
 **[You will need to apply for access to Untappd API to get the app up and running locally](https://untappd.com/api/register?register=new)**.
 
