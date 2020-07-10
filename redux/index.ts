@@ -6,10 +6,10 @@ export interface AppState {
   user: UserState
 }
 
-function getInitialState({ ...overrides }: Partial<AppState> = {}): AppState {
+function getInitialState(state: Partial<AppState> = {}): AppState {
   return {
     user: user.defaultState(),
-    ...overrides,
+    ...state,
   }
 }
 

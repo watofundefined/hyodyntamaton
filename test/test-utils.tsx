@@ -1,30 +1,56 @@
-import {
-  render as defaultRender,
-  RenderOptions as DefaultRenderOptions,
-} from '@testing-library/react'
-import { createStore } from 'redux'
+import { render as _render, RenderResult } from '@testing-library/react'
+import { createStore, Store } from 'redux'
 import { Provider } from 'react-redux'
+import { NextRouter } from 'next/router'
+import { RouterContext } from 'next/dist/next-server/lib/router-context'
 
-import { reducer, getInitialState, AppState } from '../redux'
+import { reducer, getInitialState } from '../redux'
+import { RenderOptions } from './test-utils.types'
 
-interface RenderOptions extends DefaultRenderOptions {
-  initState?: Partial<AppState>
+function render(ui: JSX.Element, opts: RenderOptions = {}): RenderResult {
+  const { state, router, ...options } = opts
+
+  const Wrapper = createWrapper(
+    createStore(reducer, getInitialState(state)),
+    createRouter(router)
+  )
+
+  return _render(ui, { wrapper: Wrapper, ...options })
 }
 
-function makeWrapper(store) {
+function createWrapper(store: Store, router: NextRouter) {
   return function Wrapper({ children }) {
-    return <Provider store={store}>{children}</Provider>
+    return (
+      <Provider store={store}>
+        <RouterContext.Provider value={router}>
+          {children}
+        </RouterContext.Provider>
+      </Provider>
+    )
   }
 }
 
-function render(
-  ui: JSX.Element,
-  { initState = {}, ...options }: RenderOptions = {}
-) {
-  const store = createStore(reducer, getInitialState(initState))
-  const Wrapper = makeWrapper(store)
-
-  return defaultRender(ui, { wrapper: Wrapper, ...options })
+function createRouter(overrides: Partial<NextRouter> = {}): NextRouter {
+  return {
+    route: '/',
+    pathname: '/',
+    asPath: '/',
+    push: () => Promise.resolve(true),
+    basePath: '',
+    query: {},
+    replace: () => Promise.resolve(true),
+    reload: () => {},
+    back: () => {},
+    prefetch: () => Promise.resolve(),
+    beforePopState: (_) => {},
+    isFallback: false,
+    events: {
+      on: () => {},
+      off: () => {},
+      emit: () => {},
+    },
+    ...overrides,
+  }
 }
 
 // Re-export all, and override the default render
