@@ -16,7 +16,7 @@ describe('Home page', () => {
 
   it('matches snapshot when user is logged in', () => {
     const { asFragment } = render(<Home />, {
-      initState: { user: { loggedIn: true, token: 'fake-testing-token' } },
+      state: { user: { loggedIn: true, token: 'token' } },
     })
     expect(asFragment()).toMatchSnapshot()
   })

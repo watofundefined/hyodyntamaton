@@ -7,7 +7,8 @@ describe('AuthValidator component', () => {
 
     await act(async () => {
       render(<AuthValidator publicRoutes={['/']}>Page</AuthValidator>, {
-        router: { push },
+        state: { user: { loggedIn: false, token: null } },
+        router: { push, route: '/' },
       })
     })
 
@@ -18,13 +19,10 @@ describe('AuthValidator component', () => {
     const push = jest.fn()
 
     await act(async () => {
-      render(
-        <AuthValidator publicRoutes={['/', '/about']}>Page</AuthValidator>,
-        {
-          state: { user: { loggedIn: true, token: 'fake-token' } },
-          router: { push, route: '/about' },
-        }
-      )
+      render(<AuthValidator publicRoutes={['/', '/b']}>Page</AuthValidator>, {
+        state: { user: { loggedIn: true, token: 'token' } },
+        router: { push, route: '/b' },
+      })
     })
 
     expect(push).not.toHaveBeenCalled()
@@ -35,8 +33,8 @@ describe('AuthValidator component', () => {
 
     await act(async () => {
       render(<AuthValidator publicRoutes={['/']}>Page</AuthValidator>, {
-        state: { user: { loggedIn: true, token: 'fake-token' } },
-        router: { push, route: '/map' },
+        state: { user: { loggedIn: true, token: 'token' } },
+        router: { push, route: '/c' },
       })
     })
 
@@ -48,7 +46,8 @@ describe('AuthValidator component', () => {
 
     await act(async () => {
       render(<AuthValidator publicRoutes={['/']}>Page</AuthValidator>, {
-        router: { route: '/map', push },
+        state: { user: { loggedIn: false, token: null } },
+        router: { route: '/c', push },
       })
     })
 
@@ -60,12 +59,10 @@ describe('AuthValidator component', () => {
     const push = jest.fn()
 
     await act(async () => {
-      render(
-        <AuthValidator publicRoutes={['/', '/nearby']}>Page</AuthValidator>,
-        {
-          router: { route: '/nearby', asPath: '/nearby?lat=11&lng=11', push },
-        }
-      )
+      render(<AuthValidator publicRoutes={['/', '/b']}>Page</AuthValidator>, {
+        state: { user: { loggedIn: false, token: null } },
+        router: { route: '/b', asPath: '/b?lat=11&lng=11', push },
+      })
     })
 
     expect(push).not.toHaveBeenCalled()
