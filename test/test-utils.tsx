@@ -1,11 +1,18 @@
-import { render as _render, RenderResult } from '@testing-library/react'
-import { createStore, Store } from 'redux'
-import { Provider } from 'react-redux'
-import { NextRouter } from 'next/router'
+import {
+  render as _render,
+  RenderOptions as _RenderOptions,
+  RenderResult,
+} from '@testing-library/react'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'
+import { NextRouter } from 'next/router'
+import { Provider } from 'react-redux'
+import { createStore, Store } from 'redux'
+import { AppState, getInitialState, reducer } from '../redux'
 
-import { reducer, getInitialState } from '../redux'
-import { RenderOptions } from './test-utils.types'
+interface RenderOptions extends _RenderOptions {
+  state?: Partial<AppState>
+  router?: Partial<NextRouter>
+}
 
 function render(ui: JSX.Element, opts: RenderOptions = {}): RenderResult {
   const { state, router, ...options } = opts
@@ -22,9 +29,7 @@ function createWrapper(store: Store, router: NextRouter) {
   return function Wrapper({ children }) {
     return (
       <Provider store={store}>
-        <RouterContext.Provider value={router}>
-          {children}
-        </RouterContext.Provider>
+        <RouterContext.Provider value={router}>{children}</RouterContext.Provider>
       </Provider>
     )
   }
@@ -39,15 +44,15 @@ function createRouter(overrides: Partial<NextRouter> = {}): NextRouter {
     basePath: '',
     query: {},
     replace: () => Promise.resolve(true),
-    reload: () => {},
-    back: () => {},
+    reload: () => null,
+    back: () => null,
     prefetch: () => Promise.resolve(),
-    beforePopState: (_) => {},
+    beforePopState: (_) => null,
     isFallback: false,
     events: {
-      on: () => {},
-      off: () => {},
-      emit: () => {},
+      on: () => null,
+      off: () => null,
+      emit: () => null,
     },
     ...overrides,
   }
@@ -56,3 +61,4 @@ function createRouter(overrides: Partial<NextRouter> = {}): NextRouter {
 // Re-export all, and override the default render
 export * from '@testing-library/react'
 export { render }
+export type { RenderOptions }
