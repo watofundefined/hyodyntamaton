@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 import dynamic from 'next/dynamic'
 
-import { AppState, UserState } from '../redux'
+import { AppState, UserState } from '../state'
 
 interface AuthValidatorProps extends Props<any> {
   publicRoutes: string[]

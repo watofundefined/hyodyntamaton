@@ -3,7 +3,7 @@ import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 
 import StaticHead from '../components/static-head'
-import { reducer, getInitialState } from '../redux'
+import { reducer, getInitialState } from '../state'
 
 import '../styles/index.scss'
 import AuthValidator from '../components/auth-validator'

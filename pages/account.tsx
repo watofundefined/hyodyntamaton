@@ -2,7 +2,7 @@ import Head from 'next/head'
 import { useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 
-import { UserActions } from '../redux'
+import { UserActions } from '../state'
 
 function Account(): JSX.Element {
   const dispatch = useDispatch()

@@ -5,7 +5,7 @@ import ErrorPage from 'next/error'
 import dynamic from 'next/dynamic'
 import axios from 'axios'
 
-import { UserActions } from '../redux'
+import { UserActions } from '../state'
 
 function UntappdAuth(): JSX.Element {
   const router = useRouter()

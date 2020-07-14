@@ -7,7 +7,7 @@ import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import { NextRouter } from 'next/router'
 import { Provider } from 'react-redux'
 import { createStore, Store } from 'redux'
-import { AppState, getInitialState, reducer } from '../redux'
+import { AppState, getInitialState, reducer } from '../state'
 
 export interface RenderOpts extends _RenderOptions {
   state?: Partial<AppState>
