@@ -9,12 +9,12 @@ import { Provider } from 'react-redux'
 import { createStore, Store } from 'redux'
 import { AppState, getInitialState, reducer } from '../redux'
 
-interface RenderOptions extends _RenderOptions {
+export interface RenderOpts extends _RenderOptions {
   state?: Partial<AppState>
   router?: Partial<NextRouter>
 }
 
-function render(ui: JSX.Element, opts: RenderOptions = {}): RenderResult {
+function render(ui: JSX.Element, opts: RenderOpts = {}): RenderResult {
   const { state, router, ...options } = opts
 
   const Wrapper = createWrapper(
@@ -61,4 +61,3 @@ function createRouter(overrides: Partial<NextRouter> = {}): NextRouter {
 // Re-export all, and override the default render
 export * from '@testing-library/react'
 export { render }
-export type { RenderOptions }
