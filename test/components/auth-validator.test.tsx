@@ -61,7 +61,12 @@ describe('AuthValidator component', () => {
     await act(async () => {
       render(<AuthValidator publicRoutes={['/', '/b']}>Page</AuthValidator>, {
         state: { user: { loggedIn: false, token: null } },
-        router: { route: '/b', asPath: '/b?lat=11&lng=11', push },
+        router: {
+          route: '/b',
+          asPath: '/b?lat=11&lng=11',
+          query: { lat: '11', lng: '11' },
+          push,
+        },
       })
     })
 
