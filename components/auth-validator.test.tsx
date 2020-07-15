@@ -1,5 +1,5 @@
-import AuthValidator from '../../components/auth-validator'
-import { render, act } from '../test-utils'
+import { render, act } from 'test/test-utils'
+import AuthValidator from './auth-validator'
 
 describe('AuthValidator component', () => {
   it("doesn't redirect when user is logged out and on public page", async () => {
