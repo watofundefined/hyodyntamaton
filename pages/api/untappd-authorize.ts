@@ -1,58 +1,41 @@
 import { NextApiRequest, NextApiResponse } from 'next'
-import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
+import { ApiError } from 'lib/http'
+import { authorize } from 'gateways/untappd/authorize'
 
-interface AuthorizeResponse {
-  error?: string
+export interface AuthorizeRequest {
+  code: string
+}
+
+export interface AuthorizeResponse {
   token?: string
+  error?: ApiError
 }
 
-interface UntappdResponse {
-  response: { access_token: string }
-}
-
-const handler = async (req: NextApiRequest, res: NextApiResponse<AuthorizeResponse>) => {
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse<AuthorizeResponse>
+) {
   const code = req.query.code as string
 
   if (!code) {
-    return error(res, "Couldn't complete Untappd authorization process. Missing code param.")
+    res.statusCode = 400
+    res.json({
+      error: {
+        code: 'untappd-authorize-missing-code',
+        message: "Couldn't complete Untappd authorization process. Missing code param.",
+      },
+    })
+    return
   }
 
-  let authRes: AxiosResponse<UntappdResponse>
+  const { status, error, data } = await authorize({
+    code,
+    response_type: 'code',
+    client_id: process.env.NEXT_PUBLIC_UNTAPPD_CLIENT_ID,
+    client_secret: process.env.UNTAPPD_CLIENT_SECRET,
+    redirect_url: new URL(req.headers.referer).origin + '/auth',
+  })
 
-  try {
-    authRes = await axios.get(
-      process.env.NEXT_PUBLIC_UNTAPPD_AUTHORIZE_URL,
-      reqConfig(req.headers.referer, code)
-    )
-  } catch (err) {
-    return error(res, err)
-  }
-
-  success(res, { token: authRes.data.response.access_token })
+  res.statusCode = status
+  res.json(error ? { error } : { token: data.response.access_token })
 }
-
-function success(res: NextApiResponse, data) {
-  res.statusCode = 200
-  res.json(data)
-}
-
-function error(res: NextApiResponse, message: string) {
-  res.statusCode = 400
-  res.json({ error: message })
-}
-
-function reqConfig(referer: string, code: string): AxiosRequestConfig {
-  const url = new URL(referer)
-
-  return {
-    params: {
-      code,
-      response_type: 'code',
-      client_id: process.env.NEXT_PUBLIC_UNTAPPD_CLIENT_ID,
-      client_secret: process.env.UNTAPPD_CLIENT_SECRET,
-      redirect_url: url.origin + '/auth',
-    },
-  }
-}
-
-export default handler
