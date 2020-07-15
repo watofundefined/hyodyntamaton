@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-syntax
 import { AxiosRequestConfig, AxiosResponse, AxiosInterceptorManager } from 'axios'
 
 export interface ApiReqConfig<TParams> extends AxiosRequestConfig {

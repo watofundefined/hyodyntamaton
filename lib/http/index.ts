@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-restricted-syntax
 import axios from 'axios'
 import configureInterceptors from './configure-interceptors'
 import { ApiClient } from './types'

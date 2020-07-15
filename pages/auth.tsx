@@ -1,11 +1,17 @@
+import { ApiError, client } from 'lib/http'
+import dynamic from 'next/dynamic'
+import ErrorPage from 'next/error'
+import { useRouter } from 'next/router'
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
-import ErrorPage from 'next/error'
-import dynamic from 'next/dynamic'
-import axios from 'axios'
-
 import { UserActions } from '../state'
+import { AuthorizeRequest, AuthorizeResponse } from './api/untappd-authorize'
+
+interface State {
+  loading: boolean
+  error?: ApiError
+  status?: number
+}
 
 function UntappdAuth(): JSX.Element {
   const router = useRouter()
@@ -20,35 +26,31 @@ function UntappdAuth(): JSX.Element {
     )
   }
 
-  const [state, setState] = useState({ loading: true, error: null })
+  const [state, setState] = useState<State>({ loading: true })
   const dispatch = useDispatch()
 
   useEffect(() => {
     if (code) {
-      axios.get('/api/untappd-authorize', { params: { code } }).then(
-        (res) => {
-          dispatch(UserActions.logIn(res.data.token))
-          router.push('/')
-        },
-        (err) => {
-          setState({
-            loading: false,
-            error: {
-              status: err.response.status,
-              message: err.response.data.error,
-            },
-          })
-        }
-      )
+      client
+        .get<AuthorizeRequest, AuthorizeResponse>('/api/untappd-authorize', {
+          params: { code: code as string },
+        })
+        .then(({ status, error, data }) => {
+          if (error) {
+            setState({ loading: false, error, status })
+          } else {
+            dispatch(UserActions.logIn(data.token))
+            router.push('/')
+          }
+        })
     }
   }, [])
 
-  const { loading, error } = state
+  const { status, loading, error } = state
 
   if (loading) return <>Loading</>
 
-  if (error)
-    return <ErrorPage statusCode={error.status} title={error.message} />
+  if (error) return <ErrorPage statusCode={status} title={error.message} />
 }
 
 // Prevent the warning "React has detected a change in the order of Hooks called".
