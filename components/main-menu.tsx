@@ -5,9 +5,15 @@ function MainMenu() {
 
   return (
     <>
-      <button onClick={() => router.push('/map')}>Pubs Nearby</button>
-      <button onClick={() => router.push('/account')}>Account</button>
-      <button onClick={() => router.push('/about')}>About</button>
+      <button className="btn" onClick={() => router.push('/map')}>
+        Pubs Nearby
+      </button>
+      <button className="btn" onClick={() => router.push('/account')}>
+        Account
+      </button>
+      <button className="btn" onClick={() => router.push('/about')}>
+        About
+      </button>
     </>
   )
 }

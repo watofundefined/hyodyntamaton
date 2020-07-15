@@ -16,8 +16,15 @@ function Account(): JSX.Element {
       <div className="page-container">
         <h1>Account</h1>
 
-        <button onClick={() => dispatch(UserActions.logOut())}>Log out</button>
-        <button onClick={() => router.push('/')}>Back to menu</button>
+        <button
+          className="btn btn-warning"
+          onClick={() => dispatch(UserActions.logOut())}
+        >
+          Log out
+        </button>
+        <button className="btn" onClick={() => router.push('/')}>
+          Back to menu
+        </button>
       </div>
     </>
   )

@@ -15,22 +15,20 @@ function About(): JSX.Element {
         <h2>Features</h2>
         <ul>
           <li>
-            If any content is in language that you don&apos;t understand,
-            it&apos;s automatically translated
+            If any content is in language that you don&apos;t understand, it&apos;s
+            automatically translated
           </li>
           <li>Settings are not synced between devices.</li>
           <li>Nothing is stored on the server.</li>
-          <li>
-            Browser stores Untappd access token and your language preferences.
-          </li>
+          <li>Browser stores Untappd access token and your language preferences.</li>
           <li>
             Open-source, code available at{' '}
-            <a href="https://github.com/watofundefined/hyodyntamaton">
-              GitHub repo
-            </a>
+            <a href="https://github.com/watofundefined/hyodyntamaton">GitHub repo</a>
           </li>
         </ul>
-        <button onClick={() => router.push('/')}>Back to menu</button>
+        <button className="btn" onClick={() => router.push('/')}>
+          Back to menu
+        </button>
       </div>
     </>
   )

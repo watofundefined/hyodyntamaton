@@ -14,7 +14,9 @@ exports[`Home page matches snapshot 1`] = `
     </header>
     <main>
       App which translates beer reviews to your language.
-      <button>
+      <button
+        class="btn"
+      >
         Log in with your Untappd account
       </button>
     </main>
@@ -27,13 +29,19 @@ exports[`Home page matches snapshot when user is logged in 1`] = `
   <div
     class="page-container"
   >
-    <button>
+    <button
+      class="btn"
+    >
       Pubs Nearby
     </button>
-    <button>
+    <button
+      class="btn"
+    >
       Account
     </button>
-    <button>
+    <button
+      class="btn"
+    >
       About
     </button>
   </div>

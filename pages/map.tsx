@@ -11,10 +11,12 @@ function Map(): JSX.Element {
       </Head>
       <div className="container">
         Map
-        <button onClick={() => router.push('/')}>Back to menu</button>
+        <button className="btn" onClick={() => router.push('/')}>
+          Back to menu
+        </button>
       </div>
     </>
   )
 }
 
-export default Map
+export default dynamic(() => Promise.resolve(Map), { ssr: false })

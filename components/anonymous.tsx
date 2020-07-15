@@ -6,7 +6,9 @@ function Anonymous(): JSX.Element {
       </header>
       <main>
         App which translates beer reviews to your language.
-        <button onClick={auth}>Log in with your Untappd account</button>
+        <button className="btn" onClick={auth}>
+          Log in with your Untappd account
+        </button>
       </main>
     </>
   )
