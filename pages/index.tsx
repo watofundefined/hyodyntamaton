@@ -7,7 +7,7 @@ function Home(): JSX.Element {
   const { loggedIn } = useSelector<AppState, UserState>((state) => state.user)
 
   return (
-    <div className="page-container">
+    <div className="page-container stack">
       {!loggedIn && <Anonymous />}
       {loggedIn && <MainMenu />}
     </div>

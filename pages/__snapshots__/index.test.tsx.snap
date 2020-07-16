@@ -3,7 +3,7 @@
 exports[`Home page matches snapshot 1`] = `
 <DocumentFragment>
   <div
-    class="page-container"
+    class="page-container stack"
   >
     <header>
       <span
@@ -27,7 +27,7 @@ exports[`Home page matches snapshot 1`] = `
 exports[`Home page matches snapshot when user is logged in 1`] = `
 <DocumentFragment>
   <div
-    class="page-container"
+    class="page-container stack"
   >
     <button
       class="btn"

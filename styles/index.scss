@@ -2,3 +2,16 @@
 @import './base.scss';
 @import './components-button.scss';
 @import './components-logo.scss';
+
+#__next {
+  position: relative;
+  min-height: min(100vh, 800px);
+  max-height: min(100vh, 800px);
+  padding: 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-top: calc((100vh - (min(100vh, 800px))) / 2);
+}

@@ -13,7 +13,7 @@ function Account(): JSX.Element {
       <Head>
         <title>Hyödyntämätön | Account</title>
       </Head>
-      <div className="page-container">
+      <div className="page-container stack">
         <h1>Account</h1>
 
         <button

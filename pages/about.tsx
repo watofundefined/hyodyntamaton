@@ -9,7 +9,7 @@ function About(): JSX.Element {
       <Head>
         <title>Hyödyntämätön | About</title>
       </Head>
-      <div className="page-container">
+      <div className="page-container stack stack-small">
         <h1>About</h1>
         <p>App with minimum noise.</p>
         <h2>Features</h2>
