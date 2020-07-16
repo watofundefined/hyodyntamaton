@@ -6,6 +6,8 @@
 
 ### Get local pubs from Untappd
 
+### Get users location on the server as a fallback if client-side geolocation fails
+
 ## Security
 
 ### Validate login state
