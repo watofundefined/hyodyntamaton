@@ -41,12 +41,12 @@ describe('/api/untappd-authorize handler', () => {
     expect.assertions(2)
     return client
       .get<AuthorizeRequest, AuthorizeResponse>(`http://localhost:${process.env.PORT}`, {
-        params: { code: process.env.TEST_VALID_UNTAPPD_AUTH_CODE },
+        params: { code: process.env.NEXT_PUBLIC_MOCKED_UNTAPPD_AUTH_CODE },
         headers: { referer: 'http://localhost' },
       })
       .then((r) => {
         expect(r.status).toBe(200)
-        expect(r.data.token).toBe(process.env.TEST_UNTAPPD_ACCESS_TOKEN)
+        expect(r.data.token).toBe(process.env.MOCKED_UNTAPPD_ACCESS_TOKEN)
       })
   })
 })

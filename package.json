@@ -35,6 +35,7 @@
   "dependencies": {
     "@types/react-redux": "^7.1.9",
     "axios": "^0.19.2",
+    "dotenv": "^8.2.0",
     "next": "latest",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
