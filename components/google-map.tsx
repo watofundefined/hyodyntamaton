@@ -30,7 +30,6 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
 
     if (scriptState.loaded) {
       const map = initMap(location)
-      console.log(map)
       setScriptState({ loaded: true })
       mapRef.current = map
     }
