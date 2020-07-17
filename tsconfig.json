@@ -17,7 +17,8 @@
     "paths": {
       "lib": ["lib"],
       "gateways": ["gateways"],
-      "pages": ["pages"]
+      "pages": ["pages"],
+      "mocks": ["mocks"],
     }
   },
   "exclude": ["node_modules", ".next", "out"],

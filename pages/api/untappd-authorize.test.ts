@@ -2,8 +2,8 @@
  * @jest-environment node // to prevent CORS errors
  */
 import { client } from 'lib/http'
-import mockServer from 'test/mock-server'
-import testServer, { TestServer } from 'test/test-server'
+import mockServer from 'mocks/server'
+import testServer, { TestServer } from 'test/server'
 import handler, { AuthorizeRequest, AuthorizeResponse } from './untappd-authorize'
 
 beforeAll(() => mockServer.listen())
