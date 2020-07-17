@@ -3,6 +3,7 @@ import {
   GeoLocationResult,
   GeoLocationError,
   GeolocationPositionErrorType,
+  LocationStatus
 } from './user-location.types'
 
 export default function userLocation(): Promise<GeoLocationResult> {
