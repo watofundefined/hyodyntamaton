@@ -10,6 +10,7 @@
   "homepage": "https://github.com/watofundefined/hyodyntamaton",
   "scripts": {
     "dev": "next dev",
+    "dev:mocked": "nodemon",
     "build": "next build",
     "start": "next start",
     "format": "prettier --write **/*.{js,ts,tsx}",
@@ -61,7 +62,10 @@
     "jest-watch-typeahead": "^0.5.0",
     "lint-staged": "^10.0.10",
     "msw": "^0.19.5",
+    "nodemon": "^2.0.4",
     "prettier": "^2.0.2",
+    "ts-node": "^8.10.2",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "^3.8.3"
   }
 }
