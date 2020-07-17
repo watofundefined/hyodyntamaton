@@ -17,17 +17,7 @@ export interface UntappdMedia {
 
 export interface UntappdToast {
   uid: number // this uid and the user.uid below are same
-  user: Pick<
-    UntappdUser,
-    | 'uid'
-    | 'user_name'
-    | 'first_name'
-    | 'last_name'
-    | 'location'
-    | 'bio'
-    | 'relationship'
-    | 'user_avatar'
-  > & {
+  user: Partial<UntappdUser> & {
     account_type: 'user'
     venue_details: []
     brewery_details: []
@@ -49,7 +39,7 @@ export interface UntappdUser {
   relationship: string
   user_avatar: string
   is_private: BinaryBoolean
-  contact: {
+  contact?: {
     foursquare: number
     twitter: string
     facebook: number
@@ -63,8 +53,9 @@ export interface UntappdBeer {
   beer_label_hd: string
   beer_style: string
   beer_abv: number
-  auth_rating: number
-  wish_list: false
+  has_had: boolean
+  auth_rating?: number
+  wish_list?: false
   beer_active: BinaryBoolean
 }
 
@@ -72,6 +63,8 @@ export interface UntappdBrewery {
   brewery_id: number
   brewery_name: string
   brewery_slug: string
+  brewery_page_url: string
+  brewery_type: string
   brewery_label: string
   country_name: string
   contact: {
@@ -90,6 +83,7 @@ export interface UntappdBrewery {
 }
 
 export interface UntappdVenueCategory {
+  category_key: string
   category_name: string
   category_id: string
   is_primary: boolean
@@ -98,8 +92,11 @@ export interface UntappdVenueCategory {
 export interface UntappdVenue {
   venue_id: number
   venue_name: string
+  venue_slug: string
+  primary_category_key: string
   primary_category: string
   parent_category_id: string
+  is_verified: boolean
   categories: {
     count: number
     items: UntappdVenueCategory[]
@@ -116,7 +113,6 @@ export interface UntappdVenue {
     twitter: string
     venue_url: string
   }
-  public_venue: boolean
   foursquare: {
     foursquare_id: string
     foursquare_url: string
@@ -143,7 +139,7 @@ export interface UntappdBadge {
 
 export interface UntappdCheckin {
   checkin_id: number
-  distance: number
+  distance?: number
   // UTC0 "Wed, 15 Jul 2020 09:42:28 +0000"
   created_at: string
   checkin_comment: string
@@ -172,6 +168,7 @@ export interface UntappdCheckin {
     app_website: string
   }
   badges: {
+    retro_status?: boolean
     count: number
     items: UntappdBadge[]
   }
