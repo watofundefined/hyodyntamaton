@@ -95,4 +95,6 @@ export interface MarkerInstance {
   clickable: boolean
   visible: boolean
   setVisible: (val: boolean) => void
+  // Custom fields
+  id: string | number
 }

@@ -19,6 +19,7 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
   })
   // Keep reference to the DOM instance, won't work with useState
   const mapRef = useRef<GoogleMapInstance>(null)
+  const venueMarkers = useRef<MarkerInstance[]>([])
 
   useEffect(() => {
     window.onMapInit = function onMapInit() {
@@ -36,15 +37,28 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
   }, [])
 
   useEffect(() => {
-    // FIXME
-    // dispose of old venue markers which are not in current venues
-    if (mapRef.current && venues && venues.length) {
+    const anyNewVenues = venues && venues.length
+    const markersToRemain = []
+
+    for (const vm of venueMarkers.current) {
+      if (!anyNewVenues || !venues.some((v) => v.venue_id == vm.id)) {
+        vm.setMap(null)
+      } else {
+        markersToRemain.push(vm)
+      }
+    }
+
+    venueMarkers.current = markersToRemain
+
+    if (mapRef.current && anyNewVenues) {
       venues.forEach((v) => {
-        addMarker({
+        const marker = addMarker({
           map: mapRef.current,
           location: v.location,
           name: v.venue_name,
         })
+        marker.id = v.venue_id
+        venueMarkers.current.push(marker)
       })
     }
   }, [venues])
