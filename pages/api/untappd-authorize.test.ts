@@ -38,7 +38,7 @@ describe('/api/untappd-authorize handler', () => {
   })
 
   test('responds 200 and token when valid code is used', async () => {
-    expect.assertions(2)
+    expect.assertions(3)
     return client
       .get<AuthorizeRequest, AuthorizeResponse>(`http://localhost:${process.env.PORT}`, {
         params: { code: process.env.NEXT_PUBLIC_MOCKED_UNTAPPD_AUTH_CODE },
@@ -46,6 +46,7 @@ describe('/api/untappd-authorize handler', () => {
       })
       .then((r) => {
         expect(r.status).toBe(200)
+        expect(r.data.token).toBeDefined()
         expect(r.data.token).toBe(process.env.MOCKED_UNTAPPD_ACCESS_TOKEN)
       })
   })
