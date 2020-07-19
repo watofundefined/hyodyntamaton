@@ -16,7 +16,6 @@
     "baseUrl": ".",
     "paths": {
       "lib": ["lib"],
-      "gateways": ["gateways"],
       "pages": ["pages"],
       "mocks": ["mocks"],
     }

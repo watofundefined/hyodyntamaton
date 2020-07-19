@@ -15,4 +15,6 @@
 It has to be one of:
 
 - token == null && loggedIn == false
-- token == 'users-untappd-token' && loggedIn == true
+- token == 'users-untappd-token** && loggedIn == true
+
+### Make sure there's no way secrets can get into final bundle (maybe Next handles it)

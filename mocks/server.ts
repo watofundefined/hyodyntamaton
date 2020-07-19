@@ -1,6 +1,6 @@
 import { setupServer } from 'msw/node'
-import authMock from 'gateways/untappd/authorize.mock'
+import mocks from 'lib/endpoints/mocks'
 
-const handlers = [authMock]
+const handlers = [...mocks]
 
 export default setupServer(...handlers)

@@ -1,21 +1,16 @@
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useSelector } from 'react-redux'
 import dynamic from 'next/dynamic'
-import { local } from 'gateways/untappd/local'
 import { useState, useEffect } from 'react'
-import { AppState, UserState } from '../state'
 import GoogleMap from 'components/google-map'
 import userLocation from 'lib/client/user-location'
 import { GeoLocation } from 'lib/types'
-import { UntappdVenue } from 'gateways/untappd/shared.types'
-import unique from 'lib/unique'
+import api, { Venue } from 'lib/api'
 
 function Map(): JSX.Element {
   const router = useRouter()
-  const { token } = useSelector<AppState, UserState>((state) => state.user)
   const [location, setLocation] = useState<GeoLocation>()
-  const [venues, setVenues] = useState([])
+  const [venues, setVenues] = useState<Venue[]>([])
 
   useEffect(() => {
     userLocation().then((res) => {
@@ -24,20 +19,19 @@ function Map(): JSX.Element {
   }, [])
 
   useEffect(() => {
-    if (!location || !token) return
+    if (!location) return
 
-    local({ access_token: token, radius: 1, dist_pref: 'km', ...location }).then(
-      (res) => {
-        if (!res.error) {
-          setVenues(
-            res.data.response.checkins.items
-              .map((c) => c.venue)
-              .filter(unique<UntappdVenue>('venue_id'))
-          )
-        }
-      }
-    )
-  }, [location, token])
+    api.venues
+      .search({
+        lat: location.lat,
+        lng: location.lng,
+        radius: 2000,
+        categories: ['beer-bar', 'beer-garden', 'brewery'],
+      })
+      .then((res) => {
+        if (res.data) setVenues(res.data.venues)
+      })
+  }, [location])
 
   return (
     <>
@@ -57,9 +51,9 @@ function Map(): JSX.Element {
 
 function defaultLocation(): GeoLocation {
   // Lauttasaari
-  // return { lat: 60.148806, lng: 24.886443 }
-  // Center-ish
-  return { lat: 60.192059, lng: 24.945831 }
+  return { lat: 60.148806, lng: 24.886443 }
+  // Helsinki
+  // return { lat: 60.192059, lng: 24.945831 }
 }
 
 export default dynamic(() => Promise.resolve(Map), { ssr: false })

@@ -1,12 +1,12 @@
 import { rest } from 'msw'
 import { url } from './local'
-import { LocalResponse } from './local.types'
+import { UtLocalResponse } from './local.types'
 
 export default rest.get(new RegExp('^' + url), (_, res, ctx) => {
   return res(ctx.status(200), ctx.json(getMockedData()))
 })
 
-function getMockedData(): LocalResponse {
+function getMockedData(): UtLocalResponse {
   return {
     meta: {
       code: 200,

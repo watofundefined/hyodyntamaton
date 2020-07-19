@@ -1,7 +1,6 @@
 import { setupWorker } from 'msw'
+import mocks from 'lib/endpoints/mocks'
 
-import localMock from 'gateways/untappd/local.mock'
-
-const handlers = [localMock]
+const handlers = [...mocks]
 
 export default setupWorker(...handlers)

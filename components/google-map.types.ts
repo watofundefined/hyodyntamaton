@@ -1,9 +1,9 @@
 import { GeoLocation } from 'lib/types'
-import { UntappdVenue } from 'gateways/untappd/shared.types'
+import { Venue } from 'lib/api'
 
 export interface GoogleMapProps {
   location: GeoLocation
-  venues: UntappdVenue[]
+  venues: Venue[]
 }
 
 export interface WindowWithGoogleStuff extends Window {

@@ -3,9 +3,9 @@ export type DistPref = 'm' | 'km'
 export type BinaryBoolean = 0 | 1
 
 // FIXME - fill in
-export type UntappdComment = any
+export type UtComment = any
 
-export interface UntappdMedia {
+export interface UtMedia {
   photo_id: number
   photo: {
     photo_img_sm: string
@@ -15,9 +15,9 @@ export interface UntappdMedia {
   }
 }
 
-export interface UntappdToast {
+export interface UtToast {
   uid: number // this uid and the user.uid below are same
-  user: Partial<UntappdUser> & {
+  user: Partial<UtUser> & {
     account_type: 'user'
     venue_details: []
     brewery_details: []
@@ -27,7 +27,7 @@ export interface UntappdToast {
   created_at: string
 }
 
-export interface UntappdUser {
+export interface UtUser {
   uid: number
   user_name: string
   first_name: string
@@ -46,7 +46,7 @@ export interface UntappdUser {
   }
 }
 
-export interface UntappdBeer {
+export interface UtBeer {
   bid: number
   beer_name: string
   beer_label: string
@@ -59,7 +59,7 @@ export interface UntappdBeer {
   beer_active: BinaryBoolean
 }
 
-export interface UntappdBrewery {
+export interface UtBrewery {
   brewery_id: number
   brewery_name: string
   brewery_slug: string
@@ -82,14 +82,14 @@ export interface UntappdBrewery {
   brewery_active: BinaryBoolean
 }
 
-export interface UntappdVenueCategory {
+export interface UtVenueCategory {
   category_key: string
   category_name: string
   category_id: string
   is_primary: boolean
 }
 
-export interface UntappdVenue {
+export interface UtVenue {
   venue_id: number
   venue_name: string
   venue_slug: string
@@ -99,7 +99,7 @@ export interface UntappdVenue {
   is_verified: boolean
   categories: {
     count: number
-    items: UntappdVenueCategory[]
+    items: UtVenueCategory[]
   }
   location: {
     venue_address: string
@@ -124,7 +124,7 @@ export interface UntappdVenue {
   }
 }
 
-export interface UntappdBadge {
+export interface UtBadge {
   badge_id: number
   user_badge_id: number
   badge_name: string
@@ -137,31 +137,31 @@ export interface UntappdBadge {
   }
 }
 
-export interface UntappdCheckin {
+export interface UtCheckin {
   checkin_id: number
   distance?: number
   // UTC0 "Wed, 15 Jul 2020 09:42:28 +0000"
   created_at: string
   checkin_comment: string
   rating_score: number
-  user: UntappdUser
-  beer: UntappdBeer
-  brewery: UntappdBrewery
-  venue: UntappdVenue
+  user: UtUser
+  beer: UtBeer
+  brewery: UtBrewery
+  venue: UtVenue
   comments: {
     total_count: number
     count: number
-    items: UntappdComment[]
+    items: UtComment[]
   }
   toasts: {
     total_count: number
     count: number
     auth_toast: boolean
-    items: UntappdToast[]
+    items: UtToast[]
   }
   media: {
     count: number
-    items: UntappdMedia[]
+    items: UtMedia[]
   }
   source: {
     app_name: string
@@ -170,6 +170,6 @@ export interface UntappdCheckin {
   badges: {
     retro_status?: boolean
     count: number
-    items: UntappdBadge[]
+    items: UtBadge[]
   }
 }

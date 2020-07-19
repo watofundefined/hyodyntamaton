@@ -1,6 +1,6 @@
-import { DistPref, UntappdCheckin } from './shared.types'
+import { DistPref, UtCheckin } from './shared.types'
 
-export interface LocalRequest {
+export interface UtLocalRequest {
   access_token: string
   lat: number
   lng: number
@@ -11,8 +11,8 @@ export interface LocalRequest {
   dist_pref?: DistPref
 }
 
-export interface LocalResponse {
-  response: LocalData
+export interface UtLocalResponse {
+  response: UtLocalData
   meta: {
     code: number
     response_time: {
@@ -39,7 +39,7 @@ export interface LocalResponse {
   }
 }
 
-export interface LocalData {
+export interface UtLocalData {
   radius: number
   dist_pref: DistPref
   limit: number
@@ -47,7 +47,7 @@ export interface LocalData {
   type: string
   checkins: {
     count: number
-    items: UntappdCheckin[]
+    items: UtCheckin[]
   }
   pagination: {
     max_id: number

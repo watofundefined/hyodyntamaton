@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { ApiError } from 'lib/http'
-import { authorize } from 'gateways/untappd/authorize'
+import { utAuthorize } from 'lib/endpoints'
 
 export interface AuthorizeRequest {
   code: string
@@ -28,7 +28,7 @@ export default async function handler(
     return
   }
 
-  const { status, error, data } = await authorize({
+  const { status, error, data } = await utAuthorize({
     code,
     response_type: 'code',
     client_id: process.env.NEXT_PUBLIC_UNTAPPD_CLIENT_ID,
