@@ -41,7 +41,7 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
     const markersToRemain = []
 
     for (const vm of venueMarkers.current) {
-      if (!anyNewVenues || !venues.some((v) => v.venue_id == vm.id)) {
+      if (!anyNewVenues || !venues.some((v) => v.fsId == vm.id)) {
         vm.setMap(null)
       } else {
         markersToRemain.push(vm)
@@ -55,9 +55,9 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
         const marker = addMarker({
           map: mapRef.current,
           location: v.location,
-          name: v.venue_name,
+          name: v.name,
         })
-        marker.id = v.venue_id
+        marker.id = v.fsId
         venueMarkers.current.push(marker)
       })
     }

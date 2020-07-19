@@ -46,7 +46,7 @@ function toVenues(v: FsVenue): Venue {
       lat: v.location.lat,
       lng: v.location.lng,
     },
-    categories: v.categories.map((c) => fsCategoryToApiCategory(c.id)),
+    categories: v.categories.map((c) => fsCategoryToApiCategory(c.id as any)),
   }
 }
 

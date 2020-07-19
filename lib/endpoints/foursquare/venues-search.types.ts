@@ -43,7 +43,8 @@ export enum FsVenueCategoryId {
 }
 
 export interface FsVenueCategory {
-  id: FsVenueCategoryId
+  // string for all the categories I don't care about now
+  id: FsVenueCategoryId | string
   name: string
   pluralName: string
   shortName: string
