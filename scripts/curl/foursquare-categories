@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CLIENT_ID=`cat ../../.env | grep NEXT_PUBLIC_FOURSQUARE_ID | awk -F= '{print $2}'`
+SECRET=`cat ../../.env.local | grep FOURSQUARE_SECRET | awk -F= '{print $2}'`
+VERSION=`cat ../../.env | grep NEXT_PUBLIC_FOURSQUARE_VERSION_DATE | awk -F= '{print $2}'`
+
+curl -X GET "https://api.foursquare.com/v2/venues/categories?v=$VERSION&client_id=$CLIENT_ID&client_secret=$SECRET"
