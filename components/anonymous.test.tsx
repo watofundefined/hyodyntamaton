@@ -18,13 +18,8 @@ describe('Home page', () => {
 
     const { getByText } = render(<Anonymous onLoginClicked={cb} />)
     const loginButton = getByText(/log in/i)
-    fireEvent(
-      loginButton,
-      new MouseEvent('click', {
-        bubbles: true,
-        cancelable: true,
-      })
-    )
-    expect(cb).toHaveBeenCalled()
+    fireEvent.click(loginButton)
+
+    expect(cb).toHaveBeenCalledTimes(1)
   })
 })
