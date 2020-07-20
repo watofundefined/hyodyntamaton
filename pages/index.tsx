@@ -5,6 +5,12 @@ import Anonymous from '../components/anonymous'
 import MainMenu from '../components/main-menu'
 import { AppState, UserState } from '../state'
 
+const menuNavigation: [string, string][] = [
+  ['Pubs Nearby', '/map'],
+  ['Account', '/account'],
+  ['About', '/about'],
+]
+
 function Home(): JSX.Element {
   const router = useRouter()
   const { loggedIn } = useSelector<AppState, UserState>((state) => state.user)
@@ -13,7 +19,7 @@ function Home(): JSX.Element {
   return (
     <div className="page-container stack">
       {!loggedIn && <Anonymous onLoginClicked={onLoginClicked} />}
-      {loggedIn && <MainMenu />}
+      {loggedIn && <MainMenu nav={menuNavigation} />}
     </div>
   )
 }

@@ -1,19 +1,21 @@
 import { useRouter } from 'next/router'
 
-function MainMenu() {
+export interface MainMenuProps {
+  nav: [string, string][]
+}
+
+function MainMenu(props: MainMenuProps) {
   const router = useRouter()
 
   return (
     <>
-      <button className="btn" onClick={() => router.push('/map')}>
-        Pubs Nearby
-      </button>
-      <button className="btn" onClick={() => router.push('/account')}>
-        Account
-      </button>
-      <button className="btn" onClick={() => router.push('/about')}>
-        About
-      </button>
+      {props.nav.map(([displayName, route], index) => {
+        return (
+          <button key={index} className="btn" onClick={() => router.push(route)}>
+            {displayName}
+          </button>
+        )
+      })}
     </>
   )
 }
