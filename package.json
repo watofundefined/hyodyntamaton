@@ -14,7 +14,7 @@
     "build": "next build",
     "start": "next start",
     "format": "prettier --write **/*.{js,jsx,ts,tsx}",
-    "lint": "eslint . --ext ts --ext tsx --ext js",
+    "lint": "eslint . --ext ts --ext tsx --ext js --ext jsx",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:ts": "tsc --pretty --noEmit",
