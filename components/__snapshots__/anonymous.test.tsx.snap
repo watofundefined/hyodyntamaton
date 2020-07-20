@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home page matches snapshot 1`] = `
+<DocumentFragment>
+  <header>
+    <span
+      class="logo"
+    >
+      Hyödyntämätön
+    </span>
+  </header>
+  <main>
+    App which translates beer reviews to your language.
+    <button
+      class="btn"
+    >
+      Log in with your Untappd account
+    </button>
+  </main>
+</DocumentFragment>
+`;
