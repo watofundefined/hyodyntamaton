@@ -14,9 +14,7 @@ let map: GoogleMapInstance
 declare let window: WindowWithGoogleStuff
 
 export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Element {
-  const [scriptState, setScriptState] = useState({
-    loaded: isScriptAdded(),
-  })
+  const [scriptLoaded, setScriptLoaded] = useState(isScriptAdded())
   // Keep reference to the DOM instance, won't work with useState
   const mapRef = useRef<GoogleMapInstance>(null)
   const venueMarkers = useRef<MarkerInstance[]>([])
@@ -24,17 +22,17 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
   useEffect(() => {
     window.onMapInit = function onMapInit() {
       const map = initMap(location)
-      setScriptState({ loaded: true })
+      setScriptLoaded(true)
 
       mapRef.current = map
     }
 
-    if (scriptState.loaded) {
+    if (scriptLoaded) {
       const map = initMap(location)
-      setScriptState({ loaded: true })
+      setScriptLoaded(true)
       mapRef.current = map
     }
-  }, [])
+  }, [location, scriptLoaded])
 
   useEffect(() => {
     const anyNewVenues = venues && venues.length
@@ -65,7 +63,7 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
 
   return (
     <>
-      {!scriptState.loaded && (
+      {!scriptLoaded && (
         <Head>
           <script async defer src={scriptUrl()}></script>
         </Head>
@@ -87,7 +85,7 @@ function initMap(location: GeoLocation): GoogleMapInstance {
     zoomControl: true,
   })
 
-  // FIXME style properly - remove magic numbers
+  // FIXME remove magic numbers
   container.style.height = '' + mainHeight() + 'px'
   container.style.width = '' + Math.min(bodyWidth(), 800) + 'px'
 

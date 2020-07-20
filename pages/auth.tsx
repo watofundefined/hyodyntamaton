@@ -17,6 +17,26 @@ function UntappdAuth(): JSX.Element {
   const router = useRouter()
   const { code } = router.query
 
+  const [state, setState] = useState<State>({ loading: true })
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    if (!code) return
+
+    client
+      .get<AuthorizeRequest, AuthorizeResponse>('/api/untappd-authorize', {
+        params: { code: code as string },
+      })
+      .then(({ status, error, data }) => {
+        if (error) {
+          setState({ loading: false, error, status })
+        } else {
+          dispatch(UserActions.logIn(data.token))
+          router.push('/')
+        }
+      })
+  }, [code, dispatch, router])
+
   if (!code) {
     return (
       <ErrorPage
@@ -26,26 +46,6 @@ function UntappdAuth(): JSX.Element {
     )
   }
 
-  const [state, setState] = useState<State>({ loading: true })
-  const dispatch = useDispatch()
-
-  useEffect(() => {
-    if (code) {
-      client
-        .get<AuthorizeRequest, AuthorizeResponse>('/api/untappd-authorize', {
-          params: { code: code as string },
-        })
-        .then(({ status, error, data }) => {
-          if (error) {
-            setState({ loading: false, error, status })
-          } else {
-            dispatch(UserActions.logIn(data.token))
-            router.push('/')
-          }
-        })
-    }
-  }, [])
-
   const { status, loading, error } = state
 
   if (loading) return <>Loading</>
@@ -53,10 +53,7 @@ function UntappdAuth(): JSX.Element {
   if (error) return <ErrorPage statusCode={status} title={error.message} />
 }
 
-// Prevent the warning "React has detected a change in the order of Hooks called".
-// Next.js router works only on the client side so the SSR'd version of the page
-// will never reach the `useEffect`. On the client it will, hence the warning.
-// SSR is useless here anyway ¯\_(ツ)_/¯
+// Disable SSR since router is required
 export default dynamic(() => Promise.resolve(UntappdAuth), {
   ssr: false,
 })
