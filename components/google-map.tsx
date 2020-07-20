@@ -88,8 +88,8 @@ function initMap(location: GeoLocation): GoogleMapInstance {
   })
 
   // FIXME style properly - remove magic numbers
-  container.style.height = '' + (mainHeight() - 250) + 'px'
-  container.style.width = '' + Math.min(bodyWidth() - 50, 800) + 'px'
+  container.style.height = '' + mainHeight() + 'px'
+  container.style.width = '' + Math.min(bodyWidth(), 800) + 'px'
 
   return map
 }
