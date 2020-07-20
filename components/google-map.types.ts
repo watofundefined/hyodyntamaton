@@ -34,7 +34,7 @@ export type MapEventType =
   | 'projection_changed'
   | 'rightclick'
   // The ones below seem to not pass in any event in event cb
-// Leaving as one type for now
+  // Leaving as one type for now
   | 'bounds_changed'
   | 'center_changed'
   | 'drag'
