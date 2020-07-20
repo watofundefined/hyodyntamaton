@@ -2,7 +2,7 @@ import React from 'react'
 import { render, fireEvent } from 'test/test-utils'
 import Anonymous from './anonymous'
 
-describe('Home page', () => {
+describe('Anonymous component', () => {
   it('matches snapshot', () => {
     const { asFragment } = render(<Anonymous onLoginClicked={() => null} />)
     expect(asFragment()).toMatchSnapshot()
