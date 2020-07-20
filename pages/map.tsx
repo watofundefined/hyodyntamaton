@@ -38,13 +38,18 @@ function Map(): JSX.Element {
       <Head>
         <title>Hyödyntämätön | Pubs Nearby</title>
       </Head>
-      <div className="container stack">
+      <header className="header">
         <h1>Map</h1>
+      </header>
+      <div className="container stack">
         {location && <GoogleMap location={location} venues={venues} />}
+      </div>
+      <footer className="footer">
         <button className="btn" onClick={() => router.push('/')}>
           Back to menu
         </button>
-      </div>
+        <button className="btn">Load more</button>
+      </footer>
     </>
   )
 }

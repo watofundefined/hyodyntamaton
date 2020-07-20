@@ -24,3 +24,17 @@ body {
 .stack-small > * + * {
   margin-top: 1.5rem;
 }
+
+.header {}
+
+.container {}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  padding-top: 1rem;
+}
+
+.footer * {
+  margin-right: 1rem;
+}
