@@ -1,4 +1,5 @@
 import { AppProps } from 'next/app'
+import Modal from 'react-modal'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import AuthValidator from '../components/auth-validator'
@@ -26,6 +27,8 @@ const store = createStore(
 )
 
 const publicRoutes = ['/', '/auth', '/about']
+
+Modal.setAppElement('#__next')
 
 if (
   isBrowser &&
