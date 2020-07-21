@@ -6,6 +6,12 @@
 
 ### Let user search pubs by name too
 
+### Simple share - copy coordinates 
+
+Or generate links - GMap / ...
+
+https://www.google.com/maps/search/60.192059,+24.945831
+
 ## Security
 
 ### Validate login state
