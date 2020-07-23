@@ -1,12 +1,17 @@
-import { client, ApiResult } from 'lib/http'
+import { foursquareLookup } from 'lib/endpoints'
+import { ApiResult, client } from 'lib/http'
+import { VenueIds } from 'lib/types'
 import { VenuesSearchRequest, VenuesSearchResponse } from './types'
 
 export default {
   venues: {
-    search: function (req: VenuesSearchRequest): ApiResult<VenuesSearchResponse> {
+    search: (req: VenuesSearchRequest): ApiResult<VenuesSearchResponse> => {
       return client.get('/api/venues-search', {
         params: req,
       })
+    },
+    foursquareIdToUntappdId: (id: string, untappedToken: string): ApiResult<VenueIds> => {
+      return foursquareLookup(id, { access_token: untappedToken })
     },
   },
 }

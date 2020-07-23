@@ -1,3 +1,35 @@
+export type UtReq<T> = UtReqUserContext & T
+
+export interface UtReqUserContext {
+  access_token: string
+}
+
+export interface UtResMeta {
+  code: number
+  response_time: {
+    time: number
+    measure: 'seconds'
+  }
+  init_time: {
+    time: number
+    measure: 'seconds'
+  }
+}
+
+export interface UtNotifications {
+  type: 'notifications'
+  unread_count: {
+    comments: number
+    toasts: number
+    friends: number
+    messages: number
+    venues: number
+    veunes: number
+    others: number
+    news: number
+  }
+}
+
 export type DistPref = 'm' | 'km'
 
 export type BinaryBoolean = 0 | 1

@@ -8,3 +8,5 @@ configureInterceptors(client)
 
 export * from './types'
 export { client }
+export { axios as rawClient }
+export type { AxiosError } from 'axios'

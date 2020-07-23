@@ -1,4 +1,5 @@
 export { local } from './local'
 export { utAuthorize } from './authorize'
+export { foursquareLookup } from './foursquare-lookup'
 export * from './shared.types'
 export * from './local.types'
