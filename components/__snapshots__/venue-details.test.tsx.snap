@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VenueDetails component matches snapshot 1`] = `
+<DocumentFragment>
+  <h2>
+    Dummy Name
+  </h2>
+  <ul>
+    <li>
+      Beer Place
+    </li>
+  </ul>
+  UntappdId: 
+  <br />
+  FoursquareId: abcd1234
+</DocumentFragment>
+`;

@@ -5,7 +5,7 @@ export interface ApiReqConfig<TParams> extends AxiosRequestConfig {
   params?: TParams
 }
 
-export type Result<TData, TError> =
+export type Result<TData, TError = null> =
   | { status: number; error: null; data: TData }
   | { status: number; error: TError; data: null }
 

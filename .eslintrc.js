@@ -53,5 +53,7 @@ module.exports = {
         message: 'No direct axios import, use lib/http',
       },
     ],
+    // ';' comes in useful sometimes: https://prettier.io/docs/en/rationale.html#semicolons
+    'no-extra-semi': 0,
   },
 }
