@@ -5,10 +5,14 @@ import { AppState } from 'state'
 import { render } from 'test/test-utils'
 import VenueDetails from './venue-details'
 
-jest.mock('lib/api')
+jest.mock('lib/api', () => {
+  const realApi = jest.requireActual('lib/api')
 
-beforeAll(() => {
-  ;(api.venues.foursquareIdToUntappdId as jest.Mock).mockImplementation((fsId) => {
+  const api = {
+    ...realApi.default,
+  }
+
+  api.venues.foursquareIdToUntappdId = jest.fn().mockImplementation((fsId) => {
     return new Promise<Result<VenueIds>>((resolve) =>
       resolve({
         data: {
@@ -20,6 +24,8 @@ beforeAll(() => {
       })
     )
   })
+
+  return api
 })
 
 beforeEach(() => jest.clearAllMocks())

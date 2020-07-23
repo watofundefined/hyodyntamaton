@@ -25,3 +25,28 @@ export type VenueCategory =
   | 'brewery'
   | 'cidery'
   | 'other'
+
+export interface Checkin {
+  id: number
+  createdAt: string
+  rating: number
+  comment: string
+  userId: number
+  beerId: number
+}
+
+export interface Beer {
+  id: number
+  breweryId: number
+  name: string
+  abv: number
+  style: string
+}
+
+export interface BeerDetail {
+  id: number
+  ibu: number
+  description: string
+  rating: number
+  numberOfRatings: number
+}

@@ -82,7 +82,7 @@ export interface UtBeer {
   bid: number
   beer_name: string
   beer_label: string
-  beer_label_hd: string
+  beer_label_hd?: string
   beer_style: string
   beer_abv: number
   has_had: boolean
@@ -96,14 +96,14 @@ export interface UtBrewery {
   brewery_name: string
   brewery_slug: string
   brewery_page_url: string
-  brewery_type: string
+  brewery_type?: string
   brewery_label: string
   country_name: string
   contact: {
-    twitter: string
-    facebook: string
-    instagram: string
-    url: string
+    twitter?: string
+    facebook?: string
+    instagram?: string
+    url?: string
   }
   location: {
     brewery_city: string
@@ -133,27 +133,37 @@ export interface UtVenue {
     count: number
     items: UtVenueCategory[]
   }
-  location: {
-    venue_address: string
-    venue_city: string
-    venue_state: string
-    venue_country: string
-    lat: number
-    lng: number
-  }
-  contact: {
-    twitter: string
-    venue_url: string
-  }
-  foursquare: {
-    foursquare_id: string
-    foursquare_url: string
-  }
-  venue_icon: {
-    sm: string
-    md: string
-    lg: string
-  }
+  location: UtVenueLocation
+  contact: UtVenueContact
+  foursquare: UtVenueFoursquareDetails
+  venue_icon: UtVenueIcon
+}
+
+export interface UtVenueFoursquareDetails {
+  foursquare_id: string
+  foursquare_url: string
+}
+
+export interface UtVenueContact {
+  venue_url?: string
+  twitter?: string
+  facebook?: string
+  yelp?: string
+}
+
+export interface UtVenueLocation {
+  venue_address: string
+  venue_city: string
+  venue_state: string
+  venue_country: string
+  lat: number
+  lng: number
+}
+
+export interface UtVenueIcon {
+  sm: string
+  md: string
+  lg: string
 }
 
 export interface UtBadge {
@@ -169,6 +179,30 @@ export interface UtBadge {
   }
 }
 
+export interface UtCheckinComment {
+  total_count: number
+  count: number
+  items: UtComment[]
+}
+
+export interface UtCheckinToasts {
+  total_count: number
+  count: number
+  auth_toast: boolean
+  items: UtToast[]
+}
+
+export interface UtCheckinMedia {
+  count: number
+  items: UtMedia[]
+}
+
+export interface UtCheckinBadges {
+  retro_status?: boolean
+  count: number
+  items: UtBadge[]
+}
+
 export interface UtCheckin {
   checkin_id: number
   distance?: number
@@ -180,28 +214,12 @@ export interface UtCheckin {
   beer: UtBeer
   brewery: UtBrewery
   venue: UtVenue
-  comments: {
-    total_count: number
-    count: number
-    items: UtComment[]
-  }
-  toasts: {
-    total_count: number
-    count: number
-    auth_toast: boolean
-    items: UtToast[]
-  }
-  media: {
-    count: number
-    items: UtMedia[]
-  }
+  comments: UtCheckinComment
+  toasts: UtCheckinToasts
+  media: UtCheckinMedia
   source: {
     app_name: string
     app_website: string
   }
-  badges: {
-    retro_status?: boolean
-    count: number
-    items: UtBadge[]
-  }
+  badges: UtCheckinBadges
 }
