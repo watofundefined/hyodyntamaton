@@ -4,8 +4,8 @@ import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import GoogleMap from 'components/google-map'
 import userLocation from 'lib/client/user-location'
-import { GeoLocation } from 'lib/types'
-import api, { Venue } from 'lib/api'
+import { GeoLocation, Venue } from 'lib/types'
+import api from 'lib/api'
 
 function Map(): JSX.Element {
   const router = useRouter()

@@ -5,6 +5,19 @@ export interface GeoLocation {
   lng: number
 }
 
+export interface Venue {
+  ids: VenueIds
+  name: string
+  url: string
+  location: GeoLocation
+  categories: VenueCategory[]
+}
+
+export interface VenueIds {
+  foursquareId: string
+  untappedId?: number
+}
+
 export type VenueCategory =
   | 'beer-bar'
   | 'beer-garden'

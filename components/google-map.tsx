@@ -1,7 +1,6 @@
 import Modal, { Styles } from 'react-modal'
 import { bodyWidth, mainHeight } from 'lib/client/dimensions'
-import { GeoLocation } from 'lib/types'
-import { Venue } from 'lib/api'
+import { GeoLocation, Venue } from 'lib/types'
 import Head from 'next/head'
 import { useEffect, useRef, useState, MutableRefObject } from 'react'
 import {

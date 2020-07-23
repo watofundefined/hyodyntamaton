@@ -1,5 +1,5 @@
 import { GeoLocation } from 'lib/types'
-import { Venue } from 'lib/api'
+import { Venue } from 'lib/types'
 
 export interface GoogleMapProps {
   location: GeoLocation

@@ -5,8 +5,8 @@ import {
   FsVenuesSearchReq,
   FsVenueCategoryId,
 } from 'lib/endpoints'
-import { VenuesSearchResponse, Venue, VenuesSearchRequest } from 'lib/api/types'
-import { QueryDict, VenueCategory } from 'lib/types'
+import { VenuesSearchResponse, VenuesSearchRequest } from 'lib/api'
+import { QueryDict, Venue, VenueCategory } from 'lib/types'
 
 export default async function handler(
   req: NextApiRequest,

@@ -1,5 +1,5 @@
 import { ApiError } from 'lib/http'
-import { GeoLocation, VenueCategory } from 'lib/types'
+import { Venue, VenueCategory } from 'lib/types'
 
 export interface VenuesSearchRequest {
   lat: number
@@ -11,12 +11,4 @@ export interface VenuesSearchRequest {
 export interface VenuesSearchResponse {
   venues?: Venue[]
   error?: ApiError
-}
-
-export interface Venue {
-  fsId: string
-  name: string
-  url: string
-  location: GeoLocation
-  categories: VenueCategory[]
 }
