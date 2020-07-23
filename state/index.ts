@@ -1,20 +1,19 @@
 import { combineReducers } from 'redux'
-
-import user, { UserState } from './user/reducer'
-
-export interface AppState {
-  user: UserState
-}
+import user from './user/reducer'
+import venues from './venues/reducer'
+import { AppState } from './types'
 
 function getInitialState(state: Partial<AppState> = {}): AppState {
   return {
     user: user.defaultState(),
+    venues: venues.defaultState(),
     ...state,
   }
 }
 
-const reducer = combineReducers({ user: user.reducer })
+const reducer = combineReducers<AppState>({ user: user.reducer, venues: venues.reducer })
 
 export { reducer, getInitialState }
-export type { UserState }
+export * from './types'
 export { default as UserActions } from './user/actions'
+export { default as VenuesActions } from './venues/actions'

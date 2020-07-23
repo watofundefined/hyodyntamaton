@@ -1,4 +1,8 @@
-function logIn(token: string) {
+import { Action } from '../types'
+
+export type UserAction = Action<'LOG_IN', { token: string }> | Action<'LOG_OUT'>
+
+function logIn(token: string): UserAction {
   window.localStorage.setItem('token', token)
 
   return {
@@ -7,7 +11,7 @@ function logIn(token: string) {
   }
 }
 
-function logOut() {
+function logOut(): UserAction {
   window.localStorage.removeItem('token')
 
   return {

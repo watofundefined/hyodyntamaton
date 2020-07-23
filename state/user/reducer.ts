@@ -1,24 +1,23 @@
+import { UserAction } from './actions'
+
 export interface UserState {
   loggedIn: boolean
-  token: string | null
+  token?: string
 }
 
 function defaultState(): UserState {
   return { loggedIn: false, token: null }
 }
 
-function reducer(state = defaultState(), action): UserState {
+function reducer(state = defaultState(), action: UserAction): UserState {
   switch (action.type) {
     case 'LOG_IN':
       return {
         loggedIn: true,
-        token: action.token,
+        token: action.payload.token,
       }
     case 'LOG_OUT':
-      return {
-        loggedIn: false,
-        token: null,
-      }
+      return { loggedIn: false }
     default:
       return state
   }
