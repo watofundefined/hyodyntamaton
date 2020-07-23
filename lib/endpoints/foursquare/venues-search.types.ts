@@ -20,7 +20,7 @@ export type FsVenuesSearchReq = FsReq<BaseReq>
 
 export interface FsVenuesSearchRes {
   meta: FsResMeta
-  notifications: FsNotification[]
+  notifications?: FsNotification[]
   response: {
     venues: FsVenue[]
     confident?: boolean
