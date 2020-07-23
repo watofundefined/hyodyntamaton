@@ -39,7 +39,7 @@ function apiReqToFsReq(req: QueryDict<VenuesSearchRequest>): FsVenuesSearchReq {
 
 function toVenues(v: FsVenue): Venue {
   return {
-    fsId: v.id,
+    ids: { foursquareId: v.id },
     name: v.name,
     url: v.url,
     location: {

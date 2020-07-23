@@ -1,9 +1,7 @@
 import { GeoLocation } from 'lib/types'
-import { Venue } from 'lib/types'
 
 export interface GoogleMapProps {
   location: GeoLocation
-  venues: Venue[]
 }
 
 export interface WindowWithGoogleStuff extends Window {

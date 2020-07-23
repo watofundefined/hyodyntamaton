@@ -1,24 +1,28 @@
-import Modal, { Styles } from 'react-modal'
 import { bodyWidth, mainHeight } from 'lib/client/dimensions'
 import { GeoLocation, Venue } from 'lib/types'
 import Head from 'next/head'
-import { useEffect, useRef, useState, MutableRefObject } from 'react'
+import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import Modal, { Styles } from 'react-modal'
+import { useSelector } from 'react-redux'
+import { AppState, VenuesState } from 'state'
 import {
   GoogleMapInstance,
   GoogleMapProps,
   MarkerInstance,
   WindowWithGoogleStuff,
 } from './google-map.types'
+import VenueDetails from './venue-details'
 
 let map: GoogleMapInstance
 
 declare let window: WindowWithGoogleStuff
 
-export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Element {
+export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   const [scriptLoaded, setScriptLoaded] = useState(isScriptAdded())
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [modalStyles, setModalStyles] = useState(getInitialModalStyles())
   const [venue, setVenue] = useState<Venue>(null)
+  const { items: venues } = useSelector<AppState, VenuesState>((state) => state.venues)
 
   const mapRef = useRef<GoogleMapInstance>(null)
   const venueMarkers = useRef<MarkerInstance[]>([])
@@ -44,13 +48,20 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
       .getElementsByClassName('gmap-container')[0]
       .getBoundingClientRect()
 
+    document.documentElement.style.setProperty(
+      '--pub-details-modal-width',
+      mapRect.width + 'px'
+    )
+
     setModalStyles((oldStyles) => {
       return {
         ...oldStyles,
         content: {
           pointerEvents: 'initial',
-          backgroundColor: 'red',
+          overflowX: 'hidden',
+          backgroundColor: 'transparent',
           position: 'absolute',
+          padding: 0,
           top: mapRect.top,
           left: mapRect.left,
           width: mapRect.width,
@@ -63,6 +74,10 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
   function onMarkerClicked(v: Venue) {
     setIsModalOpened(true)
     setVenue(v)
+  }
+
+  function closeModal() {
+    setIsModalOpened(false)
   }
 
   return (
@@ -79,15 +94,18 @@ export default function GoogleMap({ location, venues }: GoogleMapProps): JSX.Ele
         closeTimeoutMS={500}
         style={modalStyles}
         contentLabel="Pub deatails"
+        onRequestClose={closeModal}
+        ariaHideApp={false}
       >
-        {venue && (
-          <>
-            <button className="btn" onClick={() => setIsModalOpened(false)}>
+        {/* Wrapper needs to be in the DOM so that the first slide-in works */}
+        <div className="pub-details-modal">
+          {venue && <VenueDetails venueFsId={venue.ids.foursquareId} />}
+          <div className="pub-details-close-button-container">
+            <button className="btn close-modal" onClick={closeModal}>
               X
             </button>
-            {venue.name}
-          </>
-        )}
+          </div>
+        </div>
       </Modal>
     </>
   )
@@ -103,7 +121,7 @@ function onVenuesChanged(
   const markersToRemain = []
 
   for (const vm of markers.current) {
-    if (!anyNewVenues || !venues.some((v) => v.fsId == vm.id)) {
+    if (!anyNewVenues || !venues.some((v) => v.ids.foursquareId == vm.id)) {
       vm.setMap(null)
     } else {
       markersToRemain.push(vm)
@@ -115,7 +133,7 @@ function onVenuesChanged(
   if (map.current && anyNewVenues) {
     venues.forEach((v) => {
       const marker = addMarker(map.current, v)
-      marker.id = v.fsId
+      marker.id = v.ids.foursquareId
       markers.current.push(marker)
       marker.addListener('click', () => onMarkerClicked(v))
     })

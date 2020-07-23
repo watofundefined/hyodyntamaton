@@ -4,13 +4,15 @@ import dynamic from 'next/dynamic'
 import { useState, useEffect } from 'react'
 import GoogleMap from 'components/google-map'
 import userLocation from 'lib/client/user-location'
-import { GeoLocation, Venue } from 'lib/types'
+import { GeoLocation } from 'lib/types'
 import api from 'lib/api'
+import { useDispatch } from 'react-redux'
+import { VenuesActions } from 'state'
 
 function Map(): JSX.Element {
   const router = useRouter()
   const [location, setLocation] = useState<GeoLocation>()
-  const [venues, setVenues] = useState<Venue[]>([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     userLocation().then((res) => {
@@ -29,9 +31,11 @@ function Map(): JSX.Element {
         categories: ['beer-bar', 'beer-garden', 'brewery'],
       })
       .then((res) => {
-        if (res.data) setVenues(res.data.venues)
+        if (res.data) {
+          dispatch(VenuesActions.addVenues(res.data.venues))
+        }
       })
-  }, [location])
+  }, [location, dispatch])
 
   return (
     <>
@@ -42,7 +46,7 @@ function Map(): JSX.Element {
         <h1>Map</h1>
       </header>
       <div className="container stack">
-        {location && <GoogleMap location={location} venues={venues} />}
+        {location && <GoogleMap location={location} />}
       </div>
       <footer className="footer">
         <button className="btn" onClick={() => router.push('/')}>
@@ -56,9 +60,9 @@ function Map(): JSX.Element {
 
 function defaultLocation(): GeoLocation {
   // Lauttasaari
-  return { lat: 60.148806, lng: 24.886443 }
+  // return { lat: 60.148806, lng: 24.886443 }
   // Helsinki
-  // return { lat: 60.192059, lng: 24.945831 }
+  return { lat: 60.192059, lng: 24.945831 }
 }
 
 export default dynamic(() => Promise.resolve(Map), { ssr: false })
