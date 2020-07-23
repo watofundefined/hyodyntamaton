@@ -1,7 +1,6 @@
-import { DistPref, UtCheckin } from './shared.types'
+import { DistPref, UtCheckin, UtReq } from './shared.types'
 
-export interface UtLocalRequest {
-  access_token: string
+export type UtLocalRequest = UtReq<{
   lat: number
   lng: number
   max_id?: number
@@ -9,7 +8,7 @@ export interface UtLocalRequest {
   limit?: number
   radius?: number
   dist_pref?: DistPref
-}
+}>
 
 export interface UtLocalResponse {
   response: UtLocalData
