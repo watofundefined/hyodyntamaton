@@ -15,7 +15,7 @@ function reducer(state = defaultState(), action: VenuesAction): VenuesState {
       return {
         items: action.payload,
       }
-    case 'UPDATE_VENUE':
+    case 'ADD_UNTAPPD_ID':
       return {
         items: state.items.map((v) => {
           if (v.ids.foursquareId != action.payload.foursquareId) return v

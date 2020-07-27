@@ -3,7 +3,7 @@ import { Action } from '../types'
 
 export type VenuesAction =
   | Action<'ADD_VENUES', Venue[]>
-  | Action<'UPDATE_VENUE', VenueIds>
+  | Action<'ADD_UNTAPPD_ID', VenueIds>
 
 function addVenues(venues: Venue[]): VenuesAction {
   return {
@@ -14,7 +14,7 @@ function addVenues(venues: Venue[]): VenuesAction {
 
 function addUntappdId(ids: VenueIds): VenuesAction {
   return {
-    type: 'UPDATE_VENUE',
+    type: 'ADD_UNTAPPD_ID',
     payload: ids,
   }
 }
