@@ -25,10 +25,10 @@ function Home(): JSX.Element {
 }
 
 function auth(router: NextRouter): void {
-  const env = process.env.NODE_ENV
-  const authMocked = process.env.NEXT_PUBLIC_MOCKING_ENABLED
+  const isDev = process.env.NODE_ENV === 'development'
+  const isAuthMocked = process.env.API_MOCKING_ENABLED === 'true'
 
-  if (env === 'development' && authMocked === 'true') {
+  if (isDev && isAuthMocked) {
     router.push(`/auth?code=${process.env.NEXT_PUBLIC_MOCKED_UNTAPPD_AUTH_CODE}`)
   } else {
     window.location.assign(untappdUrl())
