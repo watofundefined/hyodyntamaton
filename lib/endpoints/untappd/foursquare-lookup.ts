@@ -9,7 +9,7 @@ export const url =
 /*
  * Foursquare Id --> Untappd Id
  *
- * Foursquare returns 500 when not found - hence the extra logic
+ * Foursquare returns 500 when no venue is found - hence the extra logic
  */
 export function foursquareLookup(
   fsVenueId: string,

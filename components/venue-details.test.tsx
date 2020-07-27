@@ -1,4 +1,5 @@
 import api from 'lib/api'
+import { FsVenueCategoryId } from 'lib/endpoints'
 import { Result } from 'lib/http'
 import { VenueIds } from 'lib/types'
 import { AppState } from 'state'
@@ -67,7 +68,19 @@ function makeState(token: string, fsId: string, utId?: number): Partial<AppState
             untappedId: utId,
           },
           name: 'Dummy Name',
-          categories: ['beer-bar'],
+          categories: [
+            {
+              name: 'Beer Bar',
+              id: FsVenueCategoryId.BeerBar,
+              icon: {
+                prefix: 'prefix-icon',
+                suffix: 'suffix-icon',
+              },
+              primary: true,
+              shortName: 'short name of the category',
+              pluralName: 'Beer Bars',
+            },
+          ],
           location: { lat: 123, lng: 123 },
           url: 'http://example.com',
         },

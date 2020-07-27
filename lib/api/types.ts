@@ -1,10 +1,9 @@
 import { ApiError } from 'lib/http'
-import { Venue, VenueCategory } from 'lib/types'
+import { Venue } from 'lib/types'
 
 export interface VenuesSearchRequest {
   lat: number
   lng: number
-  categories: VenueCategory[]
   radius: number
 }
 

@@ -28,7 +28,6 @@ function Map(): JSX.Element {
         lat: location.lat,
         lng: location.lng,
         radius: 2000,
-        categories: ['beer-bar', 'beer-garden', 'brewery'],
       })
       .then((res) => {
         if (res.data) {

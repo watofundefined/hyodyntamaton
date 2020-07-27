@@ -6,7 +6,7 @@ import {
   FsVenueCategoryId,
 } from 'lib/endpoints'
 import { VenuesSearchResponse, VenuesSearchRequest } from 'lib/api'
-import { QueryDict, Venue, VenueCategory } from 'lib/types'
+import { QueryDict, Venue } from 'lib/types'
 
 export default async function handler(
   req: NextApiRequest,
@@ -24,13 +24,11 @@ function apiReqToFsReq(req: QueryDict<VenuesSearchRequest>): FsVenuesSearchReq {
   const lat = req.lat as string
   const lng = req.lng as string
   const radius = +req.radius
-  let categories = req.categories as VenueCategory[]
-  categories = categories && categories.length ? categories : allBeerVenueCategories()
 
   return {
     ll: lat + ',' + lng,
     radius: +radius,
-    categoryId: categories.map(apiCategoryToFsCategory).join(','),
+    categoryId: allBeerVenueCategories().join(','),
     client_id: process.env.NEXT_PUBLIC_FOURSQUARE_ID,
     client_secret: process.env.FOURSQUARE_SECRET,
     v: process.env.NEXT_PUBLIC_FOURSQUARE_VERSION_DATE,
@@ -46,44 +44,16 @@ function toVenues(v: FsVenue): Venue {
       lat: v.location.lat,
       lng: v.location.lng,
     },
-    categories: v.categories.map((c) => fsCategoryToApiCategory(c.id as any)),
+    categories: v.categories,
   }
 }
 
-function fsCategoryToApiCategory(fsId: FsVenueCategoryId): VenueCategory {
-  switch (fsId) {
-    case FsVenueCategoryId.Cidery:
-      return 'cidery'
-    case FsVenueCategoryId.BeerBar:
-      return 'beer-bar'
-    case FsVenueCategoryId.Brewery:
-      return 'brewery'
-    case FsVenueCategoryId.BeerStore:
-      return 'beer-shop'
-    case FsVenueCategoryId.BeerGarden:
-      return 'beer-garden'
-    default:
-      return 'other'
-  }
-}
-
-function apiCategoryToFsCategory(c: VenueCategory): string {
-  switch (c) {
-    case 'cidery':
-      return FsVenueCategoryId.Cidery
-    case 'beer-bar':
-      return FsVenueCategoryId.BeerBar
-    case 'brewery':
-      return FsVenueCategoryId.Brewery
-    case 'beer-shop':
-      return FsVenueCategoryId.BeerStore
-    case 'beer-garden':
-      return FsVenueCategoryId.BeerGarden
-    default:
-      throw new Error(`Unkown category '${c}'`)
-  }
-}
-
-function allBeerVenueCategories(): VenueCategory[] {
-  return ['cidery', 'beer-bar', 'brewery', 'beer-shop', 'beer-garden']
+function allBeerVenueCategories(): FsVenueCategoryId[] {
+  return [
+    FsVenueCategoryId.BeerBar,
+    FsVenueCategoryId.BeerGarden,
+    FsVenueCategoryId.BeerStore,
+    FsVenueCategoryId.Brewery,
+    FsVenueCategoryId.Cidery,
+  ]
 }

@@ -1,3 +1,5 @@
+import { FsVenueCategory } from './endpoints/foursquare/venues-search.types'
+
 export type QueryDict<T> = { [key in keyof T]: string | string[] }
 
 export interface GeoLocation {
@@ -10,7 +12,7 @@ export interface Venue {
   name: string
   url: string
   location: GeoLocation
-  categories: VenueCategory[]
+  categories: FsVenueCategory[]
 }
 
 export interface VenueIds {

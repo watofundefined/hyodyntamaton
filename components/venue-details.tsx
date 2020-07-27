@@ -1,5 +1,4 @@
 import api from 'lib/api'
-import { VenueCategory } from 'lib/types'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState, UserState, VenuesActions, VenuesState } from 'state'
@@ -32,8 +31,8 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
     <>
       <h2>{venue.name}</h2>
       <ul>
-        {venue.categories.map((c) => (
-          <li key={c}>{displayCategory(c)}</li>
+        {venue.categories.map((c, i) => (
+          <li key={i}>{c.name}</li>
         ))}
       </ul>
       {apiError && <span>Error: {apiError}</span>}
@@ -42,23 +41,4 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
       FoursquareId: {venue.ids.foursquareId}
     </>
   )
-}
-
-function displayCategory(vc: VenueCategory): string {
-  switch (vc) {
-    case 'beer-bar':
-      return 'Beer Place'
-    case 'beer-garden':
-      return 'Beer Garden'
-    case 'beer-shop':
-      return 'Beer Shop'
-    case 'brewery':
-      return 'Brewery'
-    case 'cidery':
-      return 'Cidery'
-    case 'other':
-      return 'Other'
-    default:
-      throw new Error(`Invalid venue category: '${vc}'`)
-  }
 }
