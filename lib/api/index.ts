@@ -7,6 +7,8 @@ import {
   UtVenueCheckinsRequest,
   UtVenueCheckinsResponse,
 } from 'lib/endpoints/untappd/venue-checkins.types'
+import { UtBeerInfoResponse } from 'lib/endpoints/untappd/beer-info.types'
+import { beerInfo } from 'lib/endpoints/untappd/beer-info'
 
 export default {
   venues: {
@@ -26,6 +28,11 @@ export default {
       req: UtVenueCheckinsRequest
     ): ApiResult<UtVenueCheckinsResponse> => {
       return venueCheckins(id, req)
+    },
+  },
+  beer: {
+    info: (id: number, token: string): ApiResult<UtBeerInfoResponse> => {
+      return beerInfo(id, { access_token: token })
     },
   },
 }
