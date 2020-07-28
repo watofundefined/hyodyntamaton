@@ -28,7 +28,8 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
   }, [venue.ids, token, dispatch])
 
   useEffect(() => {
-    if (!venue.ids.untappedId) return
+    // run just once before any checkins are loaded, then the let user load more
+    if (!venue.ids.untappedId || venue.checkins.length) return
 
     api.venues.info(venue.ids.untappedId, token).then((res) => {
       const { error, data } = res
@@ -36,20 +37,40 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
       if (error) setApiError(error.message)
       else dispatch(VenuesActions.addVenueInfo(data.response.venue))
     })
-  }, [venue.ids, token, dispatch])
+  }, [venue.ids, venue.checkins, token, dispatch])
+
+  function fetchMoreCheckins() {
+    const id = venue.checkins[venue.checkins.length - 1].venue.venue_id
+    // eslint-disable-next-line no-console
+    console.log('Fetching more checkins after: ', id)
+  }
 
   return (
     <>
-      <h2>{venue.name}</h2>
+      {venue.url && (
+        <h2>
+          <a href={venue.url}>{venue.name}</a>
+        </h2>
+      )}
+      {!venue.url && <h2>{venue.name}</h2>}
       <ul>
         {venue.categories.map((c, i) => (
           <li key={i}>{c.name}</li>
         ))}
       </ul>
       {apiError && <span>Error: {apiError}</span>}
-      UntappdId: {venue.ids.untappedId}
-      <br />
-      FoursquareId: {venue.ids.foursquareId}
+      <section className="checkins">
+        <header className="checkins-header">Last Checkins</header>
+        {venue.checkins.map((c) => (
+          <div className="checkin" key={c.checkin_id}>
+            {c.beer.beer_name} by {c.brewery.brewery_name} ({c.rating_score})
+            {c.beer.beer_style}
+          </div>
+        ))}
+        {venue && venue.checkins.length && (
+          <button onClick={fetchMoreCheckins}>Load more</button>
+        )}
+      </section>
     </>
   )
 }

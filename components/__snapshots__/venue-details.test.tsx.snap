@@ -3,15 +3,26 @@
 exports[`VenueDetails component matches snapshot 1`] = `
 <DocumentFragment>
   <h2>
-    Dummy Name
+    <a
+      href="http://example.com"
+    >
+      Dummy Name
+    </a>
   </h2>
   <ul>
     <li>
       Beer Bar
     </li>
   </ul>
-  UntappdId: 
-  <br />
-  FoursquareId: abcd1234
+  <section
+    class="checkins"
+  >
+    <header
+      class="checkins-header"
+    >
+      Last Checkins
+    </header>
+    0
+  </section>
 </DocumentFragment>
 `;
