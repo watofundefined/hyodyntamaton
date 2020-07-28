@@ -72,7 +72,7 @@ export interface UtVenueInfo {
 
 export interface UtVenueInfoCheckin {
   checkin_id: number
-  created_at: string
+  created_at: string // "Sun, 19 Jul 2020 19:58:51 +0000"
   rating_score: number
   checkin_comment: string
   user: {

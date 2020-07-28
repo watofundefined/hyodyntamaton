@@ -16,6 +16,7 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
 
   const [apiError, setApiError] = useState<string>(null)
   const [isFetchingCheckins, setIsFetchingCheckins] = useState(false)
+  const [checkinsMaxHeight, setCheckinsMaxHeight] = useState(400)
 
   const dispatch = useDispatch()
 
@@ -46,6 +47,10 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
     })
   }, [venue.ids, venue.checkins, token, dispatch])
 
+  useEffect(() => {
+    setCheckinsMaxHeight(calculateVenueCheckinsHeight())
+  }, [])
+
   function fetchMoreCheckins() {
     setIsFetchingCheckins(true)
     const id = venue.checkins[venue.checkins.length - 1].checkin_id
@@ -69,26 +74,31 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
   }
 
   return (
-    <>
-      {venue.url && (
-        <h2>
-          <a href={venue.url}>{venue.name}</a>
-        </h2>
-      )}
-      {!venue.url && <h2>{venue.name}</h2>}
-      <ul>
-        {venue.categories.map((c, i) => (
-          <li key={i}>{c.name}</li>
-        ))}
-      </ul>
+    <div className="venue-details">
+      <h2 className="venue-name">
+        {venue.name}
+        <span className="venue-category">
+          {venue.categories.map((c) => c.name).join(', ')}
+        </span>
+      </h2>
       {apiError && <span>Error: {apiError}</span>}
       {venue && (
         <Checkins
           loading={isFetchingCheckins}
           checkins={venue.checkins}
           onFetchMoreClicked={fetchMoreCheckins}
+          maxHeight={checkinsMaxHeight}
         />
       )}
-    </>
+    </div>
   )
+}
+
+function calculateVenueCheckinsHeight(): number {
+  if (typeof window == 'undefined') return 500
+
+  const { height } = document.querySelector('.venue-details').getBoundingClientRect()
+
+  // FIXME - replace 100 with <heading + 2 * padding + errorIfThereIsAny>
+  return height - 100
 }
