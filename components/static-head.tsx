@@ -11,7 +11,7 @@ function StaticHead() {
         rel="stylesheet"
       />
       <link
-        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=block"
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=block"
         rel="stylesheet"
       />
     </Head>
