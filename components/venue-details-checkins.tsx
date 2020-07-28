@@ -1,5 +1,8 @@
+import api from 'lib/api'
 import { UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
-import Rating from './rating'
+import { useSelector } from 'react-redux'
+import { AppState, UserState } from 'state'
+import Checkin from './checkin'
 
 export interface CheckinsProps {
   loading: boolean
@@ -15,10 +18,6 @@ const dateFormatter = new Intl.DateTimeFormat('en-GB', {
   month: 'numeric',
   weekday: 'long',
 })
-const timeFormatter = new Intl.DateTimeFormat('en-GB', {
-  hour: 'numeric',
-  minute: 'numeric',
-})
 
 export default function Checkins({
   loading,
@@ -26,14 +25,23 @@ export default function Checkins({
   onFetchMoreClicked,
   maxHeight,
 }: CheckinsProps) {
+  const { token } = useSelector<AppState, UserState>((state) => state.user)
+
   if (loading && !checkins.length) return <section className="checkins">Loading</section>
 
   const grouped = groupCheckinsByDate(checkins)
 
+  function onFetchBeerDetails(id: number): void {
+    // eslint-disable-next-line no-console
+    api.beer.info(id, token).then((res) => console.log(res))
+  }
+
   return (
     <section className="checkins" style={{ maxHeight: maxHeight.toString() + 'px' }}>
       <header>Latest feed:</header>
-      {Object.keys(grouped).map((day) => markupForEachDay(day, grouped[day]))}
+      {Object.keys(grouped).map((day) =>
+        markupForEachDay(day, grouped[day], onFetchBeerDetails)
+      )}
       {!loading && checkins.length && (
         <button className="btn" onClick={onFetchMoreClicked}>
           Load more
@@ -44,29 +52,16 @@ export default function Checkins({
   )
 }
 
-function markupForEachDay(day: string, checkins: UtVenueInfoCheckin[]) {
+function markupForEachDay(
+  day: string,
+  checkins: UtVenueInfoCheckin[],
+  onFetchBeerDetails: (id: number) => void
+) {
   return (
     <div key={day} className="day-checkins">
       <div className="day">{day}</div>
       {checkins.map((c) => (
-        <div key={c.checkin_id} className="checkin">
-          <span className="time">{timeFormatter.format(new Date(c.created_at))}</span>
-          <span className="checkin-details">
-            <span className="beer-name">
-              {c.beer.beer_name} {c.beer.beer_abv}%
-            </span>
-            <span>{c.beer.beer_style}</span>
-            <span>
-              {c.brewery.brewery_name} - {c.brewery.location.brewery_city}
-              {c.brewery.country_name}
-            </span>
-            <span className="score">
-              <Rating score={c.rating_score} />
-              <span className="username">— {c.user.user_name}</span>
-            </span>
-            {c.checkin_comment && <q className="comment">{c.checkin_comment}</q>}
-          </span>
-        </div>
+        <Checkin key={c.checkin_id} data={c} onFetchBeerDetails={onFetchBeerDetails} />
       ))}
     </div>
   )
