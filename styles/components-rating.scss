@@ -1,0 +1,46 @@
+$radius: 12px;
+
+.rating {
+  display: flex;
+  flex-direction: row;
+
+  .circle-container + .circle-container {
+    margin-left: $radius / 3;
+  }
+}
+
+.circle-container {
+  height: 2 * $radius;
+  width: 2 * $radius;
+  position: relative;
+
+  span {
+    display: inline-block;
+    background: $black;
+    opacity: 0.8;
+  }
+}
+
+.quarter-circle {
+  position: absolute;
+  top: 0;
+  left: $radius;
+  width: $radius;
+  height: $radius;
+  border-radius: 0 $radius 0 0;
+}
+
+.half-circle {
+  position: absolute;
+  top: $radius;
+  left: 0;
+  border-radius: 0 0 $radius $radius;
+  width: 2 * $radius;
+  height: $radius;
+}
+
+.full-circle {
+  border-radius: $radius;
+  width: 2 * $radius;
+  height: 2 * $radius;
+}
