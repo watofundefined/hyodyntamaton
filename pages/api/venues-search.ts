@@ -45,6 +45,7 @@ function toVenues(v: FsVenue): Venue {
       lng: v.location.lng,
     },
     categories: v.categories,
+    checkins: [],
   }
 }
 

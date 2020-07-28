@@ -12,14 +12,6 @@ import {
   UtCheckinMedia,
   UtCheckinBadges,
 } from './shared.types'
-import { Checkin, Beer, BeerDetail } from 'lib/types'
-
-export interface VenueInfoResponse {
-  topBeerIds: number[]
-  lastCheckins: Checkin[]
-  beers: Beer[]
-  beerDetails: BeerDetail[]
-}
 
 export interface UtVenueInfoResponse {
   meta: UtResMeta

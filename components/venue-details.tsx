@@ -27,6 +27,17 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
     })
   }, [venue.ids, token, dispatch])
 
+  useEffect(() => {
+    if (!venue.ids.untappedId) return
+
+    api.venues.info(venue.ids.untappedId, token).then((res) => {
+      const { error, data } = res
+
+      if (error) setApiError(error.message)
+      else dispatch(VenuesActions.addVenueInfo(data.response.venue))
+    })
+  }, [venue.ids, token, dispatch])
+
   return (
     <>
       <h2>{venue.name}</h2>

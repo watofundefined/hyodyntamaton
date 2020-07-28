@@ -83,6 +83,7 @@ function makeState(token: string, fsId: string, utId?: number): Partial<AppState
           ],
           location: { lat: 123, lng: 123 },
           url: 'http://example.com',
+          checkins: [],
         },
       ],
     },
