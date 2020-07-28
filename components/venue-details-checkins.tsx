@@ -57,13 +57,14 @@ function markupForEachDay(day: string, checkins: UtVenueInfoCheckin[]) {
             </span>
             <span>{c.beer.beer_style}</span>
             <span>
-              {c.brewery.brewery_name} - {c.brewery.location.brewery_city},{' '}
+              {c.brewery.brewery_name} - {c.brewery.location.brewery_city}
               {c.brewery.country_name}
             </span>
-            <Rating score={c.rating_score} />
-            {c.checkin_comment && (
-              <blockquote className="comment">{c.checkin_comment}</blockquote>
-            )}
+            <span className="score">
+              <Rating score={c.rating_score} />
+              <span className="username">— {c.user.user_name}</span>
+            </span>
+            {c.checkin_comment && <q className="comment">{c.checkin_comment}</q>}
           </span>
         </div>
       ))}
