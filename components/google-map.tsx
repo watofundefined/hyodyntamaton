@@ -42,33 +42,39 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   ])
 
   useEffect(() => {
-    if (!scriptLoaded) return
+    function updateModalStyles() {
+      const mapRect = document
+        .getElementsByClassName('gmap-container')[0]
+        .getBoundingClientRect()
 
-    const mapRect = document
-      .getElementsByClassName('gmap-container')[0]
-      .getBoundingClientRect()
+      document.documentElement.style.setProperty(
+        '--pub-details-modal-width',
+        mapRect.width + 'px'
+      )
 
-    document.documentElement.style.setProperty(
-      '--pub-details-modal-width',
-      mapRect.width + 'px'
-    )
+      setModalStyles((oldStyles) => {
+        return {
+          ...oldStyles,
+          content: {
+            pointerEvents: 'initial',
+            overflowX: 'hidden',
+            backgroundColor: 'transparent',
+            position: 'absolute',
+            padding: 0,
+            top: mapRect.top,
+            left: mapRect.left,
+            width: mapRect.width,
+            height: mapRect.height,
+          },
+        }
+      })
+    }
 
-    setModalStyles((oldStyles) => {
-      return {
-        ...oldStyles,
-        content: {
-          pointerEvents: 'initial',
-          overflowX: 'hidden',
-          backgroundColor: 'transparent',
-          position: 'absolute',
-          padding: 0,
-          top: mapRect.top,
-          left: mapRect.left,
-          width: mapRect.width,
-          height: mapRect.height,
-        },
-      }
-    })
+    window.addEventListener('resize', updateModalStyles)
+
+    if (scriptLoaded) updateModalStyles()
+
+    return () => window.removeEventListener('resize', updateModalStyles)
   }, [scriptLoaded])
 
   function onMarkerClicked(v: Venue) {
