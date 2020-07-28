@@ -74,15 +74,13 @@ describe('Rating component', () => {
     expect(queryAllByTestId('half-circle')).toHaveLength(1)
   })
 
-  it('renders a quarter circle and a half circle for a score which contains 0.75', async () => {
+  it('renders a three-quarter circle and a half circle for a score which contains 0.75', async () => {
     const { queryAllByTestId } = render(<Rating score={4.75} />)
 
     const fullCircles = queryAllByTestId('full-circle')
-    const quarterCircles = queryAllByTestId('quarter-circle')
-    const halfCircles = queryAllByTestId('half-circle')
+    const threeQuarterCircles = queryAllByTestId('three-quarter-circle')
 
     expect(fullCircles).toHaveLength(4)
-    expect(quarterCircles).toHaveLength(1)
-    expect(halfCircles).toHaveLength(1)
+    expect(threeQuarterCircles).toHaveLength(1)
   })
 })

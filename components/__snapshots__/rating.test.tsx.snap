@@ -5,7 +5,48 @@ exports[`Rating component matches snapshot for 0 1`] = `
   <span
     aria-label="Rating: 0 out of 5"
     class="rating"
-  />
+  >
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+  </span>
 </DocumentFragment>
 `;
 
@@ -20,8 +61,40 @@ exports[`Rating component matches snapshot for 1 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
       />
     </span>
   </span>
@@ -39,7 +112,7 @@ exports[`Rating component matches snapshot for 2 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -48,8 +121,32 @@ exports[`Rating component matches snapshot for 2 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
       />
     </span>
   </span>
@@ -67,7 +164,7 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -76,7 +173,7 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -85,8 +182,27 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
       class="circle-container"
     >
       <span
-        class="quarter-circle"
+        class="circle quarter-circle"
         data-testid="quarter-circle"
+      />
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
       />
     </span>
   </span>
@@ -104,7 +220,7 @@ exports[`Rating component matches snapshot for 3 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -113,7 +229,7 @@ exports[`Rating component matches snapshot for 3 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -122,8 +238,24 @@ exports[`Rating component matches snapshot for 3 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
       />
     </span>
   </span>
@@ -141,7 +273,7 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -150,7 +282,7 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -159,7 +291,7 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -168,8 +300,19 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
       class="circle-container"
     >
       <span
-        class="half-circle"
+        class="circle half-circle"
         data-testid="half-circle"
+      />
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
       />
     </span>
   </span>
@@ -187,7 +330,7 @@ exports[`Rating component matches snapshot for 4 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -196,7 +339,7 @@ exports[`Rating component matches snapshot for 4 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -205,7 +348,7 @@ exports[`Rating component matches snapshot for 4 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -214,8 +357,16 @@ exports[`Rating component matches snapshot for 4 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle-outline"
       />
     </span>
   </span>
@@ -233,7 +384,7 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -242,7 +393,7 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -251,7 +402,7 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -260,7 +411,7 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -269,12 +420,11 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
       class="circle-container"
     >
       <span
-        class="quarter-circle"
-        data-testid="quarter-circle"
+        class="circle three-quarter-circle"
+        data-testid="three-quarter-circle"
       />
       <span
-        class="half-circle"
-        data-testid="half-circle"
+        class="circle-outline"
       />
     </span>
   </span>
@@ -292,7 +442,7 @@ exports[`Rating component matches snapshot for 5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -301,7 +451,7 @@ exports[`Rating component matches snapshot for 5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -310,7 +460,7 @@ exports[`Rating component matches snapshot for 5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -319,7 +469,7 @@ exports[`Rating component matches snapshot for 5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>
@@ -328,7 +478,7 @@ exports[`Rating component matches snapshot for 5 1`] = `
       class="circle-container"
     >
       <span
-        class="full-circle"
+        class="circle"
         data-testid="full-circle"
       />
     </span>

@@ -4,43 +4,44 @@ $radius: 12px;
   display: flex;
   flex-direction: row;
 
+  .circle-container {
+    height: 2 * $radius;
+    width: 2 * $radius;
+    position: relative;
+  }
+
   .circle-container + .circle-container {
     margin-left: $radius / 3;
   }
-}
 
-.circle-container {
-  height: 2 * $radius;
-  width: 2 * $radius;
-  position: relative;
-
-  span {
-    display: inline-block;
-    background: $black;
-    opacity: 0.8;
+  .circle-outline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border: 1px solid $black;
+    width: 2 * $radius;
+    height: 2 * $radius;
+    border-radius: $radius;
   }
-}
 
-.quarter-circle {
-  position: absolute;
-  top: 0;
-  left: $radius;
-  width: $radius;
-  height: $radius;
-  border-radius: 0 $radius 0 0;
-}
+  .circle {
+    height: 2 * $radius;
+    width: 2 * $radius;
+    border-radius: $radius;
+    background: $black;
+    display: inline-block;
+  }
 
-.half-circle {
-  position: absolute;
-  top: $radius;
-  left: 0;
-  border-radius: 0 0 $radius $radius;
-  width: 2 * $radius;
-  height: $radius;
-}
+  .three-quarter-circle {
+    clip-path: inset(25% 0 0 0);
+  }
 
-.full-circle {
-  border-radius: $radius;
-  width: 2 * $radius;
-  height: 2 * $radius;
+  .half-circle {
+    clip-path: inset(50% 0 0 0);
+  }
+
+  .quarter-circle {
+    clip-path: inset(75% 0 0 0);
+  }
 }
