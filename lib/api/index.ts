@@ -1,8 +1,12 @@
-import { foursquareLookup, venueInfo } from 'lib/endpoints'
+import { foursquareLookup, venueInfo, venueCheckins } from 'lib/endpoints'
 import { ApiResult, client } from 'lib/http'
 import { VenueIds } from 'lib/types'
 import { VenuesSearchRequest, VenuesSearchResponse } from './types'
 import { UtVenueInfoResponse } from 'lib/endpoints/untappd/venue-info.types'
+import {
+  UtVenueCheckinsRequest,
+  UtVenueCheckinsResponse,
+} from 'lib/endpoints/untappd/venue-checkins.types'
 
 export default {
   venues: {
@@ -16,6 +20,12 @@ export default {
     },
     info: (untappdId: number, untappedToken: string): ApiResult<UtVenueInfoResponse> => {
       return venueInfo(untappdId, { access_token: untappedToken })
+    },
+    checkins: (
+      id: number,
+      req: UtVenueCheckinsRequest
+    ): ApiResult<UtVenueCheckinsResponse> => {
+      return venueCheckins(id, req)
     },
   },
 }

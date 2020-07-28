@@ -2,6 +2,7 @@ import api from 'lib/api'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState, UserState, VenuesActions, VenuesState } from 'state'
+import Checkins from './venue-details-checkins'
 
 export interface VenueDetailsProps {
   venueFsId: string
@@ -14,6 +15,8 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
   )
 
   const [apiError, setApiError] = useState<string>(null)
+  const [isFetchingCheckins, setIsFetchingCheckins] = useState(false)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -31,8 +34,12 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
     // run just once before any checkins are loaded, then the let user load more
     if (!venue.ids.untappedId || venue.checkins.length) return
 
+    setIsFetchingCheckins(true)
+
     api.venues.info(venue.ids.untappedId, token).then((res) => {
       const { error, data } = res
+
+      setIsFetchingCheckins(false)
 
       if (error) setApiError(error.message)
       else dispatch(VenuesActions.addVenueInfo(data.response.venue))
@@ -40,9 +47,25 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
   }, [venue.ids, venue.checkins, token, dispatch])
 
   function fetchMoreCheckins() {
-    const id = venue.checkins[venue.checkins.length - 1].venue.venue_id
-    // eslint-disable-next-line no-console
-    console.log('Fetching more checkins after: ', id)
+    setIsFetchingCheckins(true)
+    const id = venue.checkins[venue.checkins.length - 1].checkin_id
+
+    api.venues
+      .checkins(venue.ids.untappedId, { access_token: token, max_id: id })
+      .then((res) => {
+        const { error, data } = res
+
+        setIsFetchingCheckins(false)
+
+        if (error) setApiError(error.message)
+        else
+          dispatch(
+            VenuesActions.addCheckins({
+              utId: venue.ids.untappedId,
+              checkins: data.response.checkins.items,
+            })
+          )
+      })
   }
 
   return (
@@ -59,18 +82,13 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
         ))}
       </ul>
       {apiError && <span>Error: {apiError}</span>}
-      <section className="checkins">
-        <header className="checkins-header">Last Checkins</header>
-        {venue.checkins.map((c) => (
-          <div className="checkin" key={c.checkin_id}>
-            {c.beer.beer_name} by {c.brewery.brewery_name} ({c.rating_score})
-            {c.beer.beer_style}
-          </div>
-        ))}
-        {venue && venue.checkins.length && (
-          <button onClick={fetchMoreCheckins}>Load more</button>
-        )}
-      </section>
+      {venue && (
+        <Checkins
+          loading={isFetchingCheckins}
+          checkins={venue.checkins}
+          onFetchMoreClicked={fetchMoreCheckins}
+        />
+      )}
     </>
   )
 }
