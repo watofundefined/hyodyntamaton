@@ -3,6 +3,7 @@ import { UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
 import { useSelector } from 'react-redux'
 import { AppState, UserState } from 'state'
 import Checkin from './checkin'
+import { useCallback } from 'react'
 
 export interface CheckinsProps {
   loading: boolean
@@ -25,22 +26,24 @@ export default function Checkins({
   onFetchMoreClicked,
   maxHeight,
 }: CheckinsProps) {
+  function onShowBeerDetailsClicked(id: number): void {
+    // eslint-disable-next-line no-console
+    api.beer.info(id, token).then((res) => console.log(res))
+  }
+
   const { token } = useSelector<AppState, UserState>((state) => state.user)
+
+  const memoizedFetchBeerDetails = useCallback(onShowBeerDetailsClicked, [token])
 
   if (loading && !checkins.length) return <section className="checkins">Loading</section>
 
   const grouped = groupCheckinsByDate(checkins)
 
-  function onFetchBeerDetails(id: number): void {
-    // eslint-disable-next-line no-console
-    api.beer.info(id, token).then((res) => console.log(res))
-  }
-
   return (
     <section className="checkins" style={{ maxHeight: maxHeight.toString() + 'px' }}>
       <header>Latest feed:</header>
       {Object.keys(grouped).map((day) =>
-        markupForEachDay(day, grouped[day], onFetchBeerDetails)
+        markupForEachDay(day, grouped[day], memoizedFetchBeerDetails)
       )}
       {!loading && checkins.length && (
         <button className="btn" onClick={onFetchMoreClicked}>
@@ -55,13 +58,17 @@ export default function Checkins({
 function markupForEachDay(
   day: string,
   checkins: UtVenueInfoCheckin[],
-  onFetchBeerDetails: (id: number) => void
+  onShowBeerDetailsClicked: (id: number) => void
 ) {
   return (
     <div key={day} className="day-checkins">
       <div className="day">{day}</div>
       {checkins.map((c) => (
-        <Checkin key={c.checkin_id} data={c} onFetchBeerDetails={onFetchBeerDetails} />
+        <Checkin
+          key={c.checkin_id}
+          data={c}
+          onShowBeerDetailsClicked={onShowBeerDetailsClicked}
+        />
       ))}
     </div>
   )

@@ -3,7 +3,7 @@ import { UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
 
 export interface CheckinProps {
   data: UtVenueInfoCheckin
-  onFetchBeerDetails: (id: number) => void
+  onShowBeerDetailsClicked: (id: number) => void
 }
 
 const timeFormatter = new Intl.DateTimeFormat('en-GB', {
@@ -11,7 +11,7 @@ const timeFormatter = new Intl.DateTimeFormat('en-GB', {
   minute: 'numeric',
 })
 
-export default function Checkin({ data, onFetchBeerDetails }: CheckinProps) {
+export default function Checkin({ data, onShowBeerDetailsClicked }: CheckinProps) {
   const {
     checkin_id,
     created_at,
@@ -30,7 +30,7 @@ export default function Checkin({ data, onFetchBeerDetails }: CheckinProps) {
     <div key={checkin_id} className="checkin">
       <span className="time">{timeFormatter.format(new Date(created_at))}</span>
       <span className="checkin-details">
-        <span className="beer-name" onClick={() => onFetchBeerDetails(bid)}>
+        <span className="beer-name" onClick={() => onShowBeerDetailsClicked(bid)}>
           {beer_name} {beer_abv}%
         </span>
         <span>{beer_style}</span>
