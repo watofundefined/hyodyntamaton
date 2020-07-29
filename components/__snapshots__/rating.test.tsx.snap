@@ -5,19 +5,17 @@ exports[`Rating component matches snapshot for 0 1`] = `
   <span
     aria-label="Rating: 0 out of 5"
     class="rating"
+    title="Rating: 0 out of 5"
   >
     <span
       aria-hidden="true"
       class="circle-container"
     >
       <span
-        class="circle-outline"
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(100% 0 0 0);"
       />
-    </span>
-    <span
-      aria-hidden="true"
-      class="circle-container"
-    >
       <span
         class="circle-outline"
       />
@@ -27,13 +25,10 @@ exports[`Rating component matches snapshot for 0 1`] = `
       class="circle-container"
     >
       <span
-        class="circle-outline"
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(200% 0 0 0);"
       />
-    </span>
-    <span
-      aria-hidden="true"
-      class="circle-container"
-    >
       <span
         class="circle-outline"
       />
@@ -42,6 +37,37 @@ exports[`Rating component matches snapshot for 0 1`] = `
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(300% 0 0 0);"
+      />
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(400% 0 0 0);"
+      />
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(500% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -55,6 +81,7 @@ exports[`Rating component matches snapshot for 1 1`] = `
   <span
     aria-label="Rating: 1 out of 5"
     class="rating"
+    title="Rating: 1 out of 5"
   >
     <span
       aria-hidden="true"
@@ -62,13 +89,19 @@ exports[`Rating component matches snapshot for 1 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(100% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -78,13 +111,10 @@ exports[`Rating component matches snapshot for 1 1`] = `
       class="circle-container"
     >
       <span
-        class="circle-outline"
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(200% 0 0 0);"
       />
-    </span>
-    <span
-      aria-hidden="true"
-      class="circle-container"
-    >
       <span
         class="circle-outline"
       />
@@ -93,6 +123,24 @@ exports[`Rating component matches snapshot for 1 1`] = `
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(300% 0 0 0);"
+      />
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(400% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -106,6 +154,7 @@ exports[`Rating component matches snapshot for 2 1`] = `
   <span
     aria-label="Rating: 2 out of 5"
     class="rating"
+    title="Rating: 2 out of 5"
   >
     <span
       aria-hidden="true"
@@ -113,7 +162,8 @@ exports[`Rating component matches snapshot for 2 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -122,13 +172,19 @@ exports[`Rating component matches snapshot for 2 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(100% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -138,6 +194,11 @@ exports[`Rating component matches snapshot for 2 1`] = `
       class="circle-container"
     >
       <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(200% 0 0 0);"
+      />
+      <span
         class="circle-outline"
       />
     </span>
@@ -145,6 +206,11 @@ exports[`Rating component matches snapshot for 2 1`] = `
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(300% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -158,6 +224,7 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
   <span
     aria-label="Rating: 2.25 out of 5"
     class="rating"
+    title="Rating: 2.25 out of 5"
   >
     <span
       aria-hidden="true"
@@ -165,7 +232,8 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -174,7 +242,8 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -182,8 +251,22 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
       class="circle-container"
     >
       <span
-        class="circle quarter-circle"
-        data-testid="quarter-circle"
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(75% 0 0 0);"
+      />
+      <span
+        class="circle-outline"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(175% 0 0 0);"
       />
       <span
         class="circle-outline"
@@ -194,13 +277,10 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
       class="circle-container"
     >
       <span
-        class="circle-outline"
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(275% 0 0 0);"
       />
-    </span>
-    <span
-      aria-hidden="true"
-      class="circle-container"
-    >
       <span
         class="circle-outline"
       />
@@ -214,6 +294,7 @@ exports[`Rating component matches snapshot for 3 1`] = `
   <span
     aria-label="Rating: 3 out of 5"
     class="rating"
+    title="Rating: 3 out of 5"
   >
     <span
       aria-hidden="true"
@@ -221,7 +302,8 @@ exports[`Rating component matches snapshot for 3 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -230,7 +312,8 @@ exports[`Rating component matches snapshot for 3 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -239,13 +322,19 @@ exports[`Rating component matches snapshot for 3 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(100% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -254,6 +343,11 @@ exports[`Rating component matches snapshot for 3 1`] = `
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(200% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -267,6 +361,7 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
   <span
     aria-label="Rating: 3.5 out of 5"
     class="rating"
+    title="Rating: 3.5 out of 5"
   >
     <span
       aria-hidden="true"
@@ -274,7 +369,8 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -283,7 +379,8 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -292,7 +389,8 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -300,8 +398,9 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
       class="circle-container"
     >
       <span
-        class="circle half-circle"
-        data-testid="half-circle"
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(50% 0 0 0);"
       />
       <span
         class="circle-outline"
@@ -311,6 +410,11 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(150% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -324,6 +428,7 @@ exports[`Rating component matches snapshot for 4 1`] = `
   <span
     aria-label="Rating: 4 out of 5"
     class="rating"
+    title="Rating: 4 out of 5"
   >
     <span
       aria-hidden="true"
@@ -331,7 +436,8 @@ exports[`Rating component matches snapshot for 4 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -340,7 +446,8 @@ exports[`Rating component matches snapshot for 4 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -349,7 +456,8 @@ exports[`Rating component matches snapshot for 4 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -358,13 +466,83 @@ exports[`Rating component matches snapshot for 4 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
       aria-hidden="true"
       class="circle-container"
     >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(100% 0 0 0);"
+      />
+      <span
+        class="circle-outline"
+      />
+    </span>
+  </span>
+</DocumentFragment>
+`;
+
+exports[`Rating component matches snapshot for 4.051 1`] = `
+<DocumentFragment>
+  <span
+    aria-label="Rating: 4.051 out of 5"
+    class="rating"
+    title="Rating: 4.051 out of 5"
+  >
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
+      />
+    </span>
+    <span
+      aria-hidden="true"
+      class="circle-container"
+    >
+      <span
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(94.89999999999998% 0 0 0);"
+      />
       <span
         class="circle-outline"
       />
@@ -378,6 +556,7 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
   <span
     aria-label="Rating: 4.75 out of 5"
     class="rating"
+    title="Rating: 4.75 out of 5"
   >
     <span
       aria-hidden="true"
@@ -385,7 +564,8 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -394,7 +574,8 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -403,7 +584,8 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -412,7 +594,8 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -420,8 +603,9 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
       class="circle-container"
     >
       <span
-        class="circle three-quarter-circle"
-        data-testid="three-quarter-circle"
+        class="circle"
+        data-testid="circle"
+        style="clip-path: inset(25% 0 0 0);"
       />
       <span
         class="circle-outline"
@@ -436,6 +620,7 @@ exports[`Rating component matches snapshot for 5 1`] = `
   <span
     aria-label="Rating: 5 out of 5"
     class="rating"
+    title="Rating: 5 out of 5"
   >
     <span
       aria-hidden="true"
@@ -443,7 +628,8 @@ exports[`Rating component matches snapshot for 5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -452,7 +638,8 @@ exports[`Rating component matches snapshot for 5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -461,7 +648,8 @@ exports[`Rating component matches snapshot for 5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -470,7 +658,8 @@ exports[`Rating component matches snapshot for 5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
@@ -479,7 +668,8 @@ exports[`Rating component matches snapshot for 5 1`] = `
     >
       <span
         class="circle"
-        data-testid="full-circle"
+        data-testid="circle"
+        style="clip-path: inset(0% 0 0 0);"
       />
     </span>
   </span>

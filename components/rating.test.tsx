@@ -38,49 +38,7 @@ describe('Rating component', () => {
     expect(render(<Rating score={4.75} />).asFragment()).toMatchSnapshot()
   })
 
-  it('renders correct number of full circles for score 0', async () => {
-    const { queryAllByTestId } = render(<Rating score={0} />)
-
-    expect(queryAllByTestId('full-circle')).toHaveLength(0)
-  })
-
-  it('renders correct number of full circles for score 3', async () => {
-    const { queryAllByTestId } = render(<Rating score={3} />)
-
-    expect(queryAllByTestId('full-circle')).toHaveLength(3)
-  })
-
-  it('renders no quarter circles for score which is a whole number', async () => {
-    const { queryAllByTestId } = render(<Rating score={3} />)
-
-    expect(queryAllByTestId('quarter-circle')).toHaveLength(0)
-  })
-
-  it('renders no half circles for score which is a whole number', async () => {
-    const { queryAllByTestId } = render(<Rating score={3} />)
-
-    expect(queryAllByTestId('half-circle')).toHaveLength(0)
-  })
-
-  it('renders a quarter circle for a score which contains 0.25', async () => {
-    const { queryAllByTestId } = render(<Rating score={3.25} />)
-
-    expect(queryAllByTestId('quarter-circle')).toHaveLength(1)
-  })
-
-  it('renders a half circle for a score which contains 0.5', async () => {
-    const { queryAllByTestId } = render(<Rating score={3.5} />)
-
-    expect(queryAllByTestId('half-circle')).toHaveLength(1)
-  })
-
-  it('renders a three-quarter circle and a half circle for a score which contains 0.75', async () => {
-    const { queryAllByTestId } = render(<Rating score={4.75} />)
-
-    const fullCircles = queryAllByTestId('full-circle')
-    const threeQuarterCircles = queryAllByTestId('three-quarter-circle')
-
-    expect(fullCircles).toHaveLength(4)
-    expect(threeQuarterCircles).toHaveLength(1)
+  it('matches snapshot for 4.051', async () => {
+    expect(render(<Rating score={4.051} />).asFragment()).toMatchSnapshot()
   })
 })

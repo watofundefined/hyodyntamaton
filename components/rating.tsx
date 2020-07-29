@@ -1,6 +1,6 @@
 export interface RatingProps {
   /*
-   * Number between 0 and 5 and divisible by 0.25
+   * Floating number between 0.0 and 5.0
    */
   score: number
 }
@@ -13,7 +13,11 @@ export default function Rating({ score }: RatingProps) {
   })
 
   return (
-    <span className="rating" aria-label={`Rating: ${score} out of 5`}>
+    <span
+      className="rating"
+      title={`Rating: ${score} out of 5`}
+      aria-label={`Rating: ${score} out of 5`}
+    >
       {scoreParts.map((d, i) => Circle(d, i))}
     </span>
   )
@@ -22,19 +26,11 @@ export default function Rating({ score }: RatingProps) {
 function Circle(value: number, index: number) {
   return (
     <span className="circle-container" aria-hidden="true" key={index}>
-      {value == 1 && <span data-testid="full-circle" className="circle"></span>}
-      {value == 0.75 && (
-        <span
-          data-testid="three-quarter-circle"
-          className="circle three-quarter-circle"
-        ></span>
-      )}
-      {value == 0.5 && (
-        <span data-testid="half-circle" className="circle half-circle"></span>
-      )}
-      {value == 0.25 && (
-        <span data-testid="quarter-circle" className="circle quarter-circle"></span>
-      )}
+      <span
+        data-testid="circle"
+        className="circle"
+        style={{ clipPath: `inset(${(1 - value) * 100}% 0 0 0)` }}
+      ></span>
       {value != 1 && <span className="circle-outline"></span>}
     </span>
   )

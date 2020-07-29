@@ -32,16 +32,4 @@ $radius: 12px;
     background: $black;
     display: inline-block;
   }
-
-  .three-quarter-circle {
-    clip-path: inset(25% 0 0 0);
-  }
-
-  .half-circle {
-    clip-path: inset(50% 0 0 0);
-  }
-
-  .quarter-circle {
-    clip-path: inset(75% 0 0 0);
-  }
 }
