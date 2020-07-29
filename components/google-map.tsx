@@ -43,37 +43,24 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
 
   useEffect(() => {
     function updateModalStyles() {
-      const mapRect = document
-        .getElementsByClassName('gmap-container')[0]
+      const { top, left, width, height } = document
+        .querySelector('.gmap-container')
         .getBoundingClientRect()
 
       document.documentElement.style.setProperty(
         '--pub-details-modal-width',
-        mapRect.width + 'px'
+        width + 'px'
       )
 
-      setModalStyles((oldStyles) => {
-        return {
-          ...oldStyles,
-          content: {
-            pointerEvents: 'initial',
-            overflowX: 'hidden',
-            backgroundColor: 'transparent',
-            position: 'absolute',
-            padding: 0,
-            top: mapRect.top,
-            left: mapRect.left,
-            width: mapRect.width,
-            height: mapRect.height,
-          },
-        }
-      })
+      setModalStyles(({ content, overlay }) => ({
+        overlay,
+        content: { ...content, top, left, width, height },
+      }))
     }
-
-    window.addEventListener('resize', updateModalStyles)
 
     if (scriptLoaded) updateModalStyles()
 
+    window.addEventListener('resize', updateModalStyles)
     return () => window.removeEventListener('resize', updateModalStyles)
   }, [scriptLoaded])
 
@@ -150,7 +137,7 @@ function initMap(
   mapRef: MutableRefObject<GoogleMapInstance>,
   location: GeoLocation
 ): void {
-  const container = document.getElementsByClassName('gmap-container')[0] as HTMLElement
+  const container = document.querySelector('.gmap-container') as HTMLElement
 
   map = new window.google.maps.Map(container, {
     center: location,
@@ -212,6 +199,13 @@ function getInitialModalStyles(): Styles {
       left: 0,
       backgroundColor: 'transparent',
       pointerEvents: 'none',
+    },
+    content: {
+      pointerEvents: 'initial',
+      overflowX: 'hidden',
+      backgroundColor: 'transparent',
+      position: 'absolute',
+      padding: 0,
     },
   }
 }

@@ -1,9 +1,5 @@
-import api from 'lib/api'
 import { UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
 import { Dictionary } from 'lib/types'
-import { useCallback } from 'react'
-import { useSelector } from 'react-redux'
-import { AppState, UserState } from 'state'
 import Checkin from './checkin'
 
 export interface CheckinsProps {
@@ -11,6 +7,7 @@ export interface CheckinsProps {
   checkins: UtVenueInfoCheckin[]
   onFetchMoreClicked: () => void
   maxHeight: number
+  onShowBeerDetails: (id: number) => void
 }
 
 const dateFormatter = new Intl.DateTimeFormat('en-GB', {
@@ -24,16 +21,8 @@ export default function Checkins({
   checkins,
   onFetchMoreClicked,
   maxHeight,
+  onShowBeerDetails,
 }: CheckinsProps) {
-  function onShowBeerDetailsClicked(id: number): void {
-    // eslint-disable-next-line no-console
-    api.beer.info(id, token).then((res) => console.log(res))
-  }
-
-  const { token } = useSelector<AppState, UserState>((state) => state.user)
-
-  const memoizedFetchBeerDetails = useCallback(onShowBeerDetailsClicked, [token])
-
   if (loading && !checkins.length) return <section className="checkins">Loading</section>
 
   const grouped = groupCheckinsByDate(checkins)
@@ -42,7 +31,7 @@ export default function Checkins({
     <section className="checkins" style={{ maxHeight: maxHeight.toString() + 'px' }}>
       <header>Latest feed:</header>
       {Object.keys(grouped).map((day) =>
-        markupForEachDay(day, grouped[day], memoizedFetchBeerDetails)
+        markupForEachDay(day, grouped[day], onShowBeerDetails)
       )}
       {!loading && checkins.length && (
         <button className="btn" onClick={onFetchMoreClicked}>

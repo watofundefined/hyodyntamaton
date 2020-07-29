@@ -1,9 +1,11 @@
 import api from 'lib/api'
+import Modal, { Styles } from 'react-modal'
 import { Venue } from 'lib/types'
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState, UserState, VenuesActions } from 'state'
 import Checkins from './venue-details-checkins'
+import BeerDetails from './beer-details'
 
 export interface VenueDetailsProps {
   venueFsId: string
@@ -18,6 +20,10 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
   const [apiError, setApiError] = useState<string>(null)
   const [isFetchingCheckins, setIsFetchingCheckins] = useState(false)
   const [checkinsMaxHeight, setCheckinsMaxHeight] = useState(400)
+  const [isModalOpened, setIsModalOpened] = useState(false)
+  const [modalStyles, setModalStyles] = useState(getInitialModalStyles())
+  const [selectedBeerId, setSelectedBeerId] = useState<number>()
+
   const dispatch = useDispatch()
 
   const { ids, checkins, name, categories } = venue
@@ -79,6 +85,37 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
       })
   }, [untappedId, dispatch, token, checkins])
 
+  useEffect(() => {
+    function updateModalStyles() {
+      const { top, left, width, height } = document
+        .querySelector('.gmap-container')
+        .getBoundingClientRect()
+
+      document.documentElement.style.setProperty(
+        '--beer-details-modal-width',
+        width + 'px'
+      )
+
+      setModalStyles(({ content, overlay }) => ({
+        overlay,
+        content: { ...content, top, left, width, height },
+      }))
+    }
+
+    updateModalStyles()
+    window.addEventListener('resize', updateModalStyles)
+    return () => window.removeEventListener('resize', updateModalStyles)
+  }, [])
+
+  function closeModal() {
+    setIsModalOpened(false)
+  }
+
+  function showBeerDetails(id: number) {
+    setSelectedBeerId(id)
+    setIsModalOpened(true)
+  }
+
   return (
     <div className="venue-details">
       <h2 className="venue-name">
@@ -92,8 +129,26 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
           checkins={checkins}
           onFetchMoreClicked={memoizedFetchMoreCheckins}
           maxHeight={checkinsMaxHeight}
+          onShowBeerDetails={showBeerDetails}
         />
       )}
+      <Modal
+        isOpen={isModalOpened}
+        closeTimeoutMS={500}
+        style={modalStyles}
+        contentLabel="Beer details"
+        onRequestClose={closeModal}
+        ariaHideApp={false}
+      >
+        <div className="beer-details-modal">
+          <BeerDetails id={selectedBeerId} />
+          <div className="beer-details-close-button-container">
+            <button className="btn close-modal" onClick={closeModal}>
+              X
+            </button>
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }
@@ -105,4 +160,23 @@ function calculateVenueCheckinsHeight(): number {
 
   // FIXME - replace 100 with <heading + 2 * padding + errorIfThereIsAny>
   return height - 100
+}
+
+function getInitialModalStyles(): Styles {
+  return {
+    overlay: {
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      backgroundColor: 'transparent',
+      pointerEvents: 'none',
+    },
+    content: {
+      pointerEvents: 'initial',
+      overflowX: 'hidden',
+      backgroundColor: 'transparent',
+      position: 'absolute',
+      padding: 0,
+    },
+  }
 }
