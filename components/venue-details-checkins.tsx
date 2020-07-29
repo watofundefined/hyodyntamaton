@@ -1,9 +1,10 @@
 import api from 'lib/api'
 import { UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
+import { Dictionary } from 'lib/types'
+import { useCallback } from 'react'
 import { useSelector } from 'react-redux'
 import { AppState, UserState } from 'state'
 import Checkin from './checkin'
-import { useCallback } from 'react'
 
 export interface CheckinsProps {
   loading: boolean
@@ -11,8 +12,6 @@ export interface CheckinsProps {
   onFetchMoreClicked: () => void
   maxHeight: number
 }
-
-export type Dictionary<T> = { [key: string]: T } | { [key: number]: T }
 
 const dateFormatter = new Intl.DateTimeFormat('en-GB', {
   day: 'numeric',
