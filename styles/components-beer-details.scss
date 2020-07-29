@@ -1,3 +1,45 @@
 .beer-details {
   height: 100%;
+  padding: 1em;
+  overflow: auto;
+
+  .beer-name {
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    margin: 0;
+  }
+
+  .meta {
+    display: flex;
+    flex-direction: column;
+    padding: 1em 0;
+  }
+
+  .description {
+    font-style: italic;
+  }
+
+  .weighted-score {
+    display: flex;
+
+    .rating {
+      margin: 0 0.5em;
+    }
+  }
+
+  .beer-checkin {
+    margin-top: 1em;
+    display: flex;
+  }
+
+  .checkin-meta {
+    margin-left: 1em;
+  }
+
+  .comment {
+    font-style: italic;
+    display: block;
+    padding-top: 0.5em;
+  }
 }

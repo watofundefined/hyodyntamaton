@@ -1,11 +1,10 @@
 .beer-details-modal {
-  padding: 1rem;
   background-color: $white;
   overflow-x: hidden;
   transition: all 500ms $ease-in-quint;
   transform: translateX(var(--beer-details-modal-width));
   height: 100%;
-  width: 100%;
+  overflow: hidden;
 }
 
 .ReactModal__Content--after-open .beer-details-modal {
@@ -20,5 +19,5 @@
 .beer-details-modal .beer-details-close-button-container {
   position: absolute;
   bottom: 1rem;
-  right: 1rem;
+  right: 2rem;
 }

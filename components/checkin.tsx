@@ -37,7 +37,7 @@ export default function Checkin({ data, onShowBeerDetailsClicked }: CheckinProps
         <span>{breweryLine(brewery_name, country_name, brewery_city)}</span>
         <span className="score">
           <Rating score={rating_score} />
-          <span className="username">— {user_name}</span>
+          <span className="username">- {user_name}</span>
         </span>
         {checkin_comment && <q className="comment">{checkin_comment}</q>}
       </span>

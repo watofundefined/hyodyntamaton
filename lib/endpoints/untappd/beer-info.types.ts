@@ -10,82 +10,84 @@ export interface UtBeerInfoResponse {
   meta: UtResMeta
   notifications?: UtNotifications
   response: {
-    beer: {
-      bid: number
-      beer_name: string
-      beer_label: string
-      beer_label_hd: string
-      beer_abv: number
-      beer_ibu: number
-      beer_description: string
-      beer_style: string
-      is_in_production: BinaryBoolean
-      beer_slug: string
-      is_homebrew: BinaryBoolean
-      created_at: string
-      rating_count: number
-      rating_score: number
-      stats: {
-        total_count: number
-        monthly_count: number
-        total_user_count: number
-        user_count: number
-      }
-      brewery: {
-        brewery_id: number
-        brewery_name: string
-        brewery_slug: string
-        brewery_type: string
-        brewery_page_url: string
-        brewery_label: string
-        country_name: string
-        contact: {
-          twitter: string
-          facebook: string
-          url: string
-        }
-        location: {
-          brewery_city: string
-          brewery_state: string
-          lat: number
-          lng: number
-        }
-      }
-      auth_rating: number
-      wish_list: boolean
-      media: {
-        count: number
-        items: UtBeerInfoMedia[]
-      }
-      checkins: {
-        count: number
-        items: UtBeerInfoCheckins[]
-        pagination: {
-          since_url: string
-          next_url: string
-          max_id: number
-        }
-      }
-      similar: {
-        method: string
-        count: number
-        items: UtBeerInfoSimilar[]
-      }
-      friends: {
-        count: number
-        items: any[]
-      }
-      weighted_rating_score: number
-      beer_active: BinaryBoolean
-      vintages: {
-        count: number
-        items: any[]
-      }
-      brewed_by: {
-        count: number
-        items: any[]
-      }
+    beer: UtBeerInfo
+  }
+}
+
+export interface UtBeerInfo {
+  bid: number
+  beer_name: string
+  beer_label: string
+  beer_label_hd: string
+  beer_abv: number
+  beer_ibu: number | string
+  beer_description: string
+  beer_style: string
+  is_in_production: BinaryBoolean
+  beer_slug: string
+  is_homebrew: BinaryBoolean
+  created_at: string
+  rating_count: number
+  rating_score: number
+  stats: {
+    total_count: number
+    monthly_count: number
+    total_user_count: number
+    user_count: number
+  }
+  brewery: {
+    brewery_id: number
+    brewery_name: string
+    brewery_slug: string
+    brewery_type: string
+    brewery_page_url: string
+    brewery_label: string
+    country_name: string
+    contact: {
+      twitter: string
+      facebook: string
+      url: string
     }
+    location: {
+      brewery_city: string
+      brewery_state: string
+      lat: number
+      lng: number
+    }
+  }
+  auth_rating: number
+  wish_list: boolean
+  media: {
+    count: number
+    items: UtBeerInfoMedia[]
+  }
+  checkins: {
+    count: number
+    items: UtBeerInfoCheckins[]
+    pagination: {
+      since_url: string
+      next_url: string
+      max_id: number
+    }
+  }
+  similar: {
+    method: string
+    count: number
+    items: UtBeerInfoSimilar[]
+  }
+  friends: {
+    count: number
+    items: any[]
+  }
+  weighted_rating_score: number
+  beer_active: BinaryBoolean
+  vintages: {
+    count: number
+    items: any[]
+  }
+  brewed_by: {
+    count: number
+    items: any[]
   }
 }
 
