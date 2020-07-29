@@ -3,26 +3,39 @@
 exports[`VenueDetails component matches snapshot 1`] = `
 <DocumentFragment>
   <div
+    __self="[object Object]"
+    __source="[object Object]"
     class="gmap-container"
   />
   <div
+    __self="[object Object]"
+    __source="[object Object]"
     class="venue-details"
   >
     <h2
+      __self="[object Object]"
+      __source="[object Object]"
       class="venue-name"
     >
       Dummy Name
       <span
+        __self="[object Object]"
+        __source="[object Object]"
         class="venue-category"
       >
         Beer Bar
       </span>
     </h2>
     <section
+      __self="[object Object]"
+      __source="[object Object]"
       class="checkins"
       style="max-height: -100px;"
     >
-      <header>
+      <header
+        __self="[object Object]"
+        __source="[object Object]"
+      >
         Latest feed:
       </header>
       0

@@ -2,16 +2,26 @@
 
 exports[`Anonymous component matches snapshot 1`] = `
 <DocumentFragment>
-  <header>
+  <header
+    __self="[object Object]"
+    __source="[object Object]"
+  >
     <span
+      __self="[object Object]"
+      __source="[object Object]"
       class="logo"
     >
       Hyödyntämätön
     </span>
   </header>
-  <main>
+  <main
+    __self="[object Object]"
+    __source="[object Object]"
+  >
     App which translates beer reviews to your language.
     <button
+      __self="[object Object]"
+      __source="[object Object]"
       class="btn"
     >
       Log in with your Untappd account

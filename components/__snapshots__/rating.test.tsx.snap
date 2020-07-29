@@ -3,72 +3,89 @@
 exports[`Rating component matches snapshot for 0 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 0 out of 5"
     class="rating"
     title="Rating: 0 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(100% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(200% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(300% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(400% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(500% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -79,69 +96,85 @@ exports[`Rating component matches snapshot for 0 1`] = `
 exports[`Rating component matches snapshot for 1 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 1 out of 5"
     class="rating"
     title="Rating: 1 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(100% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(200% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(300% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(400% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -152,66 +185,81 @@ exports[`Rating component matches snapshot for 1 1`] = `
 exports[`Rating component matches snapshot for 2 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 2 out of 5"
     class="rating"
     title="Rating: 2 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(100% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(200% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(300% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -222,66 +270,81 @@ exports[`Rating component matches snapshot for 2 1`] = `
 exports[`Rating component matches snapshot for 2.25 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 2.25 out of 5"
     class="rating"
     title="Rating: 2.25 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(75% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(175% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(275% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -292,63 +355,77 @@ exports[`Rating component matches snapshot for 2.25 1`] = `
 exports[`Rating component matches snapshot for 3 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 3 out of 5"
     class="rating"
     title="Rating: 3 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(100% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(200% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -359,63 +436,77 @@ exports[`Rating component matches snapshot for 3 1`] = `
 exports[`Rating component matches snapshot for 3.5 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 3.5 out of 5"
     class="rating"
     title="Rating: 3.5 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(50% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(150% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -426,60 +517,73 @@ exports[`Rating component matches snapshot for 3.5 1`] = `
 exports[`Rating component matches snapshot for 4 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 4 out of 5"
     class="rating"
     title="Rating: 4 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(100% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -490,60 +594,73 @@ exports[`Rating component matches snapshot for 4 1`] = `
 exports[`Rating component matches snapshot for 4.051 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 4.051 out of 5"
     class="rating"
     title="Rating: 4.051 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(94.89999999999998% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -554,60 +671,73 @@ exports[`Rating component matches snapshot for 4.051 1`] = `
 exports[`Rating component matches snapshot for 4.75 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 4.75 out of 5"
     class="rating"
     title="Rating: 4.75 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(25% 0 0 0);"
       />
       <span
+        __source="[object Object]"
         class="circle-outline"
       />
     </span>
@@ -618,55 +748,67 @@ exports[`Rating component matches snapshot for 4.75 1`] = `
 exports[`Rating component matches snapshot for 5 1`] = `
 <DocumentFragment>
   <span
+    __self="[object Object]"
+    __source="[object Object]"
     aria-label="Rating: 5 out of 5"
     class="rating"
     title="Rating: 5 out of 5"
   >
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
       />
     </span>
     <span
+      __source="[object Object]"
       aria-hidden="true"
       class="circle-container"
     >
       <span
+        __source="[object Object]"
         class="circle"
         data-testid="circle"
         style="clip-path: inset(0% 0 0 0);"
