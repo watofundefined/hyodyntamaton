@@ -36,8 +36,8 @@ function auth(router: NextRouter): void {
 }
 
 function untappdUrl(): string {
+  const url = 'https://untappd.com/oauth/authenticate'
   const cid = process.env.NEXT_PUBLIC_UNTAPPD_CLIENT_ID
-  const url = process.env.NEXT_PUBLIC_UNTAPPD_AUTHENTICATE_URL
   const redirectUrl = window.location.origin + '/auth'
 
   return `${url}?client_id=${cid}&redirect_url=${redirectUrl}&response_type=code`

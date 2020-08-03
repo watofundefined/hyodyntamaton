@@ -2,9 +2,9 @@ import { ApiResult, rawClient, AxiosError } from 'lib/http'
 import { VenueIds } from 'lib/types'
 import { UtReq } from './shared.types'
 import { UtFoursquareLookupResponse } from './foursquare-lookup.types'
+import baseUrl from './base-url'
 
-export const url =
-  process.env.NEXT_PUBLIC_UNTAPPD_API_URL + '/v4/venue/foursquare_lookup/'
+export const url = baseUrl + '/v4/venue/foursquare_lookup/'
 
 /*
  * Foursquare Id --> Untappd Id
