@@ -15,7 +15,7 @@ function reducer(state = defaultState(), action: VenuesAction): VenuesState {
       return {
         items: action.payload,
       }
-    case 'UPDATE_VENUE':
+    case 'ADD_UNTAPPD_ID':
       return {
         items: state.items.map((v) => {
           if (v.ids.foursquareId != action.payload.foursquareId) return v
@@ -26,6 +26,29 @@ function reducer(state = defaultState(), action: VenuesAction): VenuesState {
           }
         }),
       }
+    case 'ADD_VENUE_INFO':
+      return {
+        items: state.items.map((v) => {
+          if (v.ids.untappedId != action.payload.venue_id) return v
+
+          return {
+            ...v,
+            checkins: action.payload.checkins.items,
+          }
+        }),
+      }
+    case 'ADD_VENUE_CHECKINS':
+      return {
+        items: state.items.map((v) => {
+          if (v.ids.untappedId != action.payload.utId) return v
+
+          return {
+            ...v,
+            checkins: [...v.checkins, ...action.payload.checkins],
+          }
+        }),
+      }
+
     default:
       return state
   }

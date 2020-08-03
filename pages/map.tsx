@@ -28,7 +28,6 @@ function Map(): JSX.Element {
         lat: location.lat,
         lng: location.lng,
         radius: 2000,
-        categories: ['beer-bar', 'beer-garden', 'brewery'],
       })
       .then((res) => {
         if (res.data) {
@@ -45,9 +44,7 @@ function Map(): JSX.Element {
       <header className="header">
         <h1>Map</h1>
       </header>
-      <div className="container stack">
-        {location && <GoogleMap location={location} />}
-      </div>
+      <div className="stack">{location && <GoogleMap location={location} />}</div>
       <footer className="footer">
         <button className="btn" onClick={() => router.push('/')}>
           Back to menu

@@ -1,4 +1,5 @@
 import api from 'lib/api'
+import { FsVenueCategoryId } from 'lib/endpoints'
 import { Result } from 'lib/http'
 import { VenueIds } from 'lib/types'
 import { AppState } from 'state'
@@ -30,12 +31,21 @@ jest.mock('lib/api', () => {
 
 beforeEach(() => jest.clearAllMocks())
 
+function VenueDetailsWithMapContainer(props: { id: string }) {
+  return (
+    <>
+      <div className="gmap-container"></div>
+      <VenueDetails venueFsId={props.id} />
+    </>
+  )
+}
+
 describe('VenueDetails component', () => {
   const fsId = 'abcd1234'
   const userToken = 'token'
 
   it('matches snapshot', async () => {
-    const { asFragment } = render(<VenueDetails venueFsId={fsId} />, {
+    const { asFragment } = render(<VenueDetailsWithMapContainer id={fsId} />, {
       state: makeState(userToken, fsId),
     })
 
@@ -43,14 +53,18 @@ describe('VenueDetails component', () => {
   })
 
   it("fetches the Untappd Id if it's missing", async () => {
-    render(<VenueDetails venueFsId={fsId} />, { state: makeState(userToken, fsId) })
+    render(<VenueDetailsWithMapContainer id={fsId} />, {
+      state: makeState(userToken, fsId),
+    })
 
     expect(api.venues.foursquareIdToUntappdId).toHaveBeenCalledTimes(1)
     expect(api.venues.foursquareIdToUntappdId).toHaveBeenCalledWith(fsId, userToken)
   })
 
   it("doesn't fetch the Untappd Id if it's already populated", async () => {
-    render(<VenueDetails venueFsId={fsId} />, { state: makeState(userToken, fsId, 1234) })
+    render(<VenueDetailsWithMapContainer id={fsId} />, {
+      state: makeState(userToken, fsId, 1234),
+    })
 
     expect(api.venues.foursquareIdToUntappdId).not.toHaveBeenCalled()
   })
@@ -67,9 +81,22 @@ function makeState(token: string, fsId: string, utId?: number): Partial<AppState
             untappedId: utId,
           },
           name: 'Dummy Name',
-          categories: ['beer-bar'],
+          categories: [
+            {
+              name: 'Beer Bar',
+              id: FsVenueCategoryId.BeerBar,
+              icon: {
+                prefix: 'prefix-icon',
+                suffix: 'suffix-icon',
+              },
+              primary: true,
+              shortName: 'short name of the category',
+              pluralName: 'Beer Bars',
+            },
+          ],
           location: { lat: 123, lng: 123 },
           url: 'http://example.com',
+          checkins: [],
         },
       ],
     },

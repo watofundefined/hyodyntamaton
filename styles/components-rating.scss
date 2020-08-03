@@ -1,0 +1,35 @@
+$radius: 12px;
+
+.rating {
+  display: flex;
+  flex-direction: row;
+
+  .circle-container {
+    height: 2 * $radius;
+    width: 2 * $radius;
+    position: relative;
+  }
+
+  .circle-container + .circle-container {
+    margin-left: $radius / 3;
+  }
+
+  .circle-outline {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: transparent;
+    border: 1px solid $black;
+    width: 2 * $radius;
+    height: 2 * $radius;
+    border-radius: $radius;
+  }
+
+  .circle {
+    height: 2 * $radius;
+    width: 2 * $radius;
+    border-radius: $radius;
+    background: $black;
+    display: inline-block;
+  }
+}

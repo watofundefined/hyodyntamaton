@@ -2,7 +2,7 @@ import {
   render as _render,
   RenderOptions as _RenderOptions,
   RenderResult,
-} from '@testing-library/react'
+} from '@testing-library/preact'
 import { RouterContext } from 'next/dist/next-server/lib/router-context'
 import { NextRouter } from 'next/router'
 import { Provider } from 'react-redux'
@@ -59,5 +59,5 @@ function createRouter(overrides: Partial<NextRouter> = {}): NextRouter {
 }
 
 // Re-export all, and override the default render
-export * from '@testing-library/react'
+export * from '@testing-library/preact'
 export { render }

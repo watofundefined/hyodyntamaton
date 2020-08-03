@@ -1,9 +1,17 @@
 import { VenueIds, Venue } from 'lib/types'
 import { Action } from '../types'
+import { UtVenueInfo, UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
+
+export interface AddVenueCheckinsPayload {
+  utId: number
+  checkins: UtVenueInfoCheckin[]
+}
 
 export type VenuesAction =
   | Action<'ADD_VENUES', Venue[]>
-  | Action<'UPDATE_VENUE', VenueIds>
+  | Action<'ADD_UNTAPPD_ID', VenueIds>
+  | Action<'ADD_VENUE_INFO', UtVenueInfo>
+  | Action<'ADD_VENUE_CHECKINS', AddVenueCheckinsPayload>
 
 function addVenues(venues: Venue[]): VenuesAction {
   return {
@@ -14,9 +22,23 @@ function addVenues(venues: Venue[]): VenuesAction {
 
 function addUntappdId(ids: VenueIds): VenuesAction {
   return {
-    type: 'UPDATE_VENUE',
+    type: 'ADD_UNTAPPD_ID',
     payload: ids,
   }
 }
 
-export default { addUntappdId, addVenues }
+function addVenueInfo(venueInfo: UtVenueInfo): VenuesAction {
+  return {
+    type: 'ADD_VENUE_INFO',
+    payload: venueInfo,
+  }
+}
+
+function addCheckins(payload: AddVenueCheckinsPayload): VenuesAction {
+  return {
+    type: 'ADD_VENUE_CHECKINS',
+    payload,
+  }
+}
+
+export default { addUntappdId, addVenues, addVenueInfo, addCheckins }

@@ -2,16 +2,38 @@
 
 exports[`Anonymous component matches snapshot 1`] = `
 <DocumentFragment>
-  <header>
-    <span
-      class="logo"
+  <main
+    __self="[object Object]"
+    __source="[object Object]"
+    class="stack anonymous-container"
+  >
+    <header
+      __self="[object Object]"
+      __source="[object Object]"
     >
-      Hyödyntämätön
+      <span
+        __self="[object Object]"
+        __source="[object Object]"
+        class="logo"
+      >
+        Hyödyntämätön
+      </span>
+    </header>
+    <span
+      __self="[object Object]"
+      __source="[object Object]"
+    >
+      Simple beer app built on top of Untappd and Foursquare APIs.
     </span>
-  </header>
-  <main>
-    App which translates beer reviews to your language.
+    <span
+      __self="[object Object]"
+      __source="[object Object]"
+    >
+      Work in progress.
+    </span>
     <button
+      __self="[object Object]"
+      __source="[object Object]"
       class="btn"
     >
       Log in with your Untappd account

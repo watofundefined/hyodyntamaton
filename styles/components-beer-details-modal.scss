@@ -1,0 +1,23 @@
+.beer-details-modal {
+  background-color: $white;
+  overflow-x: hidden;
+  transition: all 500ms $ease-in-quint;
+  transform: translateX(var(--beer-details-modal-width));
+  height: 100%;
+  overflow: hidden;
+}
+
+.ReactModal__Content--after-open .beer-details-modal {
+  transform: translateX(0);
+}
+
+.ReactModal__Content--before-close .beer-details-modal {
+  transition: all 500ms $ease-out-quint;
+  transform: translateX(var(--beer-details-modal-width));
+}
+
+.beer-details-modal .beer-details-close-button-container {
+  position: absolute;
+  bottom: 1rem;
+  right: 2rem;
+}

@@ -42,33 +42,26 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   ])
 
   useEffect(() => {
-    if (!scriptLoaded) return
+    function updateModalStyles() {
+      const { top, left, width, height } = document
+        .querySelector('.gmap-container')
+        .getBoundingClientRect()
 
-    const mapRect = document
-      .getElementsByClassName('gmap-container')[0]
-      .getBoundingClientRect()
+      document.documentElement.style.setProperty(
+        '--pub-details-modal-width',
+        width + 'px'
+      )
 
-    document.documentElement.style.setProperty(
-      '--pub-details-modal-width',
-      mapRect.width + 'px'
-    )
+      setModalStyles(({ content, overlay }) => ({
+        overlay,
+        content: { ...content, top, left, width, height },
+      }))
+    }
 
-    setModalStyles((oldStyles) => {
-      return {
-        ...oldStyles,
-        content: {
-          pointerEvents: 'initial',
-          overflowX: 'hidden',
-          backgroundColor: 'transparent',
-          position: 'absolute',
-          padding: 0,
-          top: mapRect.top,
-          left: mapRect.left,
-          width: mapRect.width,
-          height: mapRect.height,
-        },
-      }
-    })
+    if (scriptLoaded) updateModalStyles()
+
+    window.addEventListener('resize', updateModalStyles)
+    return () => window.removeEventListener('resize', updateModalStyles)
   }, [scriptLoaded])
 
   function onMarkerClicked(v: Venue) {
@@ -144,7 +137,7 @@ function initMap(
   mapRef: MutableRefObject<GoogleMapInstance>,
   location: GeoLocation
 ): void {
-  const container = document.getElementsByClassName('gmap-container')[0] as HTMLElement
+  const container = document.querySelector('.gmap-container') as HTMLElement
 
   map = new window.google.maps.Map(container, {
     center: location,
@@ -206,6 +199,13 @@ function getInitialModalStyles(): Styles {
       left: 0,
       backgroundColor: 'transparent',
       pointerEvents: 'none',
+    },
+    content: {
+      pointerEvents: 'initial',
+      overflowX: 'hidden',
+      backgroundColor: 'transparent',
+      position: 'absolute',
+      padding: 0,
     },
   }
 }

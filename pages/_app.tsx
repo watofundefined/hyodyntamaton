@@ -1,7 +1,7 @@
 import { AppProps } from 'next/app'
 import Modal from 'react-modal'
 import { Provider } from 'react-redux'
-import { createStore } from 'redux'
+import { createStore, applyMiddleware, Store, Action, Dispatch, compose } from 'redux'
 import AuthValidator from '../components/auth-validator'
 import StaticHead from '../components/static-head'
 import { getInitialState, reducer } from '../state'
@@ -15,6 +15,7 @@ import '../styles/index.scss'
 // Ignoring for now.
 const isBrowser = typeof document != 'undefined'
 const token = isBrowser ? localStorage.getItem('token') : null
+const isDev = process.env.NODE_ENV === 'development'
 
 const store = createStore(
   reducer,
@@ -23,18 +24,15 @@ const store = createStore(
       loggedIn: token != null,
       token,
     },
-  })
+  }),
+  isDev ? applyMiddleware(logger) : compose()
 )
 
 const publicRoutes = ['/', '/auth', '/about']
 
 Modal.setAppElement('#__next')
 
-if (
-  isBrowser &&
-  process.env.NODE_ENV === 'development' &&
-  process.env.NEXT_PUBLIC_MOCKING_ENABLED === 'true'
-) {
+if (isBrowser && isDev && process.env.API_MOCKING_ENABLED === 'true') {
   require('../mocks/browser').default.start()
 }
 
@@ -47,6 +45,19 @@ function App({ Component: Page, pageProps }: AppProps) {
       </AuthValidator>
     </Provider>
   )
+}
+
+function logger(store: Store) {
+  return (next: Dispatch) => {
+    return (action: Action) => {
+      // eslint-disable-next-line no-console
+      console.log('dispatching', action)
+      const result = next(action)
+      // eslint-disable-next-line no-console
+      console.log('next state', store.getState())
+      return result
+    }
+  }
 }
 
 export default App
