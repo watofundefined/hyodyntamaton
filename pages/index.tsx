@@ -17,7 +17,7 @@ function Home(): JSX.Element {
   const onLoginClicked = useCallback(() => auth(router), [router])
 
   return (
-    <div className="page-container stack">
+    <div className="stack">
       {!loggedIn && <Anonymous onLoginClicked={onLoginClicked} />}
       {loggedIn && <MainMenu nav={menuNavigation} />}
     </div>

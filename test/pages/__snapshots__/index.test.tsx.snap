@@ -5,25 +5,37 @@ exports[`Home page matches snapshot 1`] = `
   <div
     __self="[object Object]"
     __source="[object Object]"
-    class="page-container stack"
+    class="stack"
   >
-    <header
-      __self="[object Object]"
-      __source="[object Object]"
-    >
-      <span
-        __self="[object Object]"
-        __source="[object Object]"
-        class="logo"
-      >
-        Hyödyntämätön
-      </span>
-    </header>
     <main
       __self="[object Object]"
       __source="[object Object]"
+      class="stack anonymous-container"
     >
-      App which translates beer reviews to your language.
+      <header
+        __self="[object Object]"
+        __source="[object Object]"
+      >
+        <span
+          __self="[object Object]"
+          __source="[object Object]"
+          class="logo"
+        >
+          Hyödyntämätön
+        </span>
+      </header>
+      <span
+        __self="[object Object]"
+        __source="[object Object]"
+      >
+        Simple app built on top of Untappd and Foursquare APIs.
+      </span>
+      <span
+        __self="[object Object]"
+        __source="[object Object]"
+      >
+        Work in progress.
+      </span>
       <button
         __self="[object Object]"
         __source="[object Object]"
@@ -41,7 +53,7 @@ exports[`Home page matches snapshot when user is logged in 1`] = `
   <div
     __self="[object Object]"
     __source="[object Object]"
-    class="page-container stack"
+    class="stack"
   >
     <button
       __self="[object Object]"
