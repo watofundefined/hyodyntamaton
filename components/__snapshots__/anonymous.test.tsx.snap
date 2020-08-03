@@ -23,7 +23,7 @@ exports[`Anonymous component matches snapshot 1`] = `
       __self="[object Object]"
       __source="[object Object]"
     >
-      Simple app built on top of Untappd and Foursquare APIs.
+      Simple beer app built on top of Untappd and Foursquare APIs.
     </span>
     <span
       __self="[object Object]"
