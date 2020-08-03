@@ -4,7 +4,10 @@
 import { client } from 'lib/http'
 import mockServer from 'mocks/server'
 import testServer, { TestServer } from 'test/server'
-import handler, { AuthorizeRequest, AuthorizeResponse } from './untappd-authorize'
+import handler, {
+  AuthorizeRequest,
+  AuthorizeResponse,
+} from '../../pages/api/untappd-authorize'
 
 beforeAll(() => mockServer.listen())
 afterEach(() => mockServer.resetHandlers())
