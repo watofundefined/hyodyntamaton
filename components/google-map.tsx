@@ -140,10 +140,11 @@ function initMap(
     styles: getMapStyles(),
     disableDefaultUI: true,
     zoomControl: true,
+    gestureHandling: 'greedy',
   })
 
   container.style.height = '' + mainHeight() + 'px'
-  container.style.width = '' + Math.min(bodyWidth(), 800) + 'px'
+  container.style.width = '' + Math.min(bodyWidth() - 50, 800) + 'px'
 
   mapRef.current = map
 }
