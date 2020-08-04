@@ -1,10 +1,10 @@
 import { bodyWidth, mainHeight } from 'lib/client/dimensions'
 import { GeoLocation, Venue } from 'lib/types'
 import Head from 'next/head'
-import { MutableRefObject, useEffect, useRef, useState } from 'react'
+import { MutableRefObject, useEffect, useRef, useState, useCallback } from 'react'
 import Modal, { Styles } from 'react-modal'
 import { useSelector } from 'react-redux'
-import { AppState, VenuesState } from 'state'
+import { AppState } from 'state'
 import {
   GoogleMapInstance,
   GoogleMapProps,
@@ -17,60 +17,83 @@ let map: GoogleMapInstance
 
 declare let window: WindowWithGoogleStuff
 
+// https://developers.google.com/maps/documentation/javascript/
+
 export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   const [scriptLoaded, setScriptLoaded] = useState(isScriptAdded())
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [modalStyles, setModalStyles] = useState(getInitialModalStyles())
   const [venue, setVenue] = useState<Venue>(null)
-  const { items: venues } = useSelector<AppState, VenuesState>((state) => state.venues)
+  const venues = useSelector<AppState, Venue[]>((state) => state.venues.items)
 
   const mapRef = useRef<GoogleMapInstance>(null)
   const venueMarkers = useRef<MarkerInstance[]>([])
 
-  useEffect(() => {
-    function onScriptLoaded() {
-      initMap(mapRef, location)
-      setScriptLoaded(true)
-    }
+  const addMarkers = useCallback((venues: Venue[]) => {
+    return venues.map((v) => addMarker(mapRef.current, v, onMarkerClicked))
+  }, [])
 
+  const updateMarkers = useCallback(
+    (venues: Venue[]) => {
+      const markersToRemain: MarkerInstance[] = []
+
+      for (const vm of venueMarkers.current) {
+        const removeMarker =
+          !venues.length || !venues.some((v) => v.ids.foursquareId == vm.id)
+
+        if (removeMarker) vm.setMap(null)
+        else markersToRemain.push(vm)
+      }
+
+      venueMarkers.current = markersToRemain
+
+      const markerIds = markersToRemain.map((m) => m.id)
+      const newVenues = venues.filter((v) => !markerIds.includes(v.ids.foursquareId))
+
+      if (newVenues.length) {
+        const newMarkers = addMarkers(newVenues)
+        venueMarkers.current = [...venueMarkers.current, ...newMarkers]
+      }
+    },
+    [addMarkers]
+  )
+
+  useEffect(() => {
     if (scriptLoaded) initMap(mapRef, location)
-    else window.onMapInit = onScriptLoaded
-  }, [location, scriptLoaded])
+    else {
+      window.onMapInit = () => {
+        initMap(mapRef, location)
+        setScriptLoaded(true)
+        updateModalStyles()
+        if (venues) addMarkers(venues)
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
-  useEffect(() => onVenuesChanged(venueMarkers, mapRef, venues, onMarkerClicked), [
-    venues,
-  ])
+  useEffect(() => mapRef.current && updateMarkers(venues), [updateMarkers, venues])
 
   useEffect(() => {
-    function updateModalStyles() {
-      const { top, left, width, height } = document
-        .querySelector('.gmap-container')
-        .getBoundingClientRect()
-
-      document.documentElement.style.setProperty(
-        '--pub-details-modal-width',
-        width + 'px'
-      )
-
-      setModalStyles(({ content, overlay }) => ({
-        overlay,
-        content: { ...content, top, left, width, height },
-      }))
-    }
-
-    if (scriptLoaded) updateModalStyles()
-
     window.addEventListener('resize', updateModalStyles)
     return () => window.removeEventListener('resize', updateModalStyles)
-  }, [scriptLoaded])
+  }, [])
 
-  function onMarkerClicked(v: Venue) {
-    setIsModalOpened(true)
-    setVenue(v)
+  function updateModalStyles() {
+    const { top, left, width, height } = document
+      .querySelector('.gmap-container')
+      .getBoundingClientRect()
+
+    document.documentElement.style.setProperty('--pub-details-modal-width', width + 'px')
+
+    setModalStyles(({ content, overlay }) => ({
+      overlay,
+      content: { ...content, top, left, width, height },
+    }))
   }
 
-  function closeModal() {
-    setIsModalOpened(false)
+  function onMarkerClicked(venue: Venue) {
+    setIsModalOpened(true)
+    setVenue(venue)
   }
 
   return (
@@ -87,14 +110,14 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
         closeTimeoutMS={500}
         style={modalStyles}
         contentLabel="Pub deatails"
-        onRequestClose={closeModal}
+        onRequestClose={() => setIsModalOpened(false)}
         ariaHideApp={false}
       >
-        {/* Wrapper needs to be in the DOM so that the first slide-in works */}
+        {/* Wrapper needs to be in the DOM so that the first slide-in animation works */}
         <div className="pub-details-modal">
           {venue && <VenueDetails venueFsId={venue.ids.foursquareId} />}
           <div className="pub-details-close-button-container">
-            <button className="btn close-modal" onClick={closeModal}>
+            <button className="btn close-modal" onClick={() => setIsModalOpened(false)}>
               X
             </button>
           </div>
@@ -102,35 +125,6 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
       </Modal>
     </>
   )
-}
-
-function onVenuesChanged(
-  markers: MutableRefObject<MarkerInstance[]>,
-  map: MutableRefObject<GoogleMapInstance>,
-  venues: Venue[],
-  onMarkerClicked: (v: Venue) => void
-): void {
-  const anyNewVenues = venues && venues.length
-  const markersToRemain = []
-
-  for (const vm of markers.current) {
-    if (!anyNewVenues || !venues.some((v) => v.ids.foursquareId == vm.id)) {
-      vm.setMap(null)
-    } else {
-      markersToRemain.push(vm)
-    }
-  }
-
-  markers.current = markersToRemain
-
-  if (map.current && anyNewVenues) {
-    venues.forEach((v) => {
-      const marker = addMarker(map.current, v)
-      marker.id = v.ids.foursquareId
-      markers.current.push(marker)
-      marker.addListener('click', () => onMarkerClicked(v))
-    })
-  }
 }
 
 function initMap(
@@ -154,20 +148,24 @@ function initMap(
   mapRef.current = map
 }
 
-function addMarker(map: GoogleMapInstance, venue: Venue): MarkerInstance {
-  // https://developers.google.com/maps/documentation/javascript/markers
+function addMarker(
+  map: GoogleMapInstance,
+  venue: Venue,
+  onClick: (v: Venue) => void
+): MarkerInstance {
   const marker = new window.google.maps.Marker({
     map: map,
     position: venue.location,
     label: venue.name,
     animation: window.google.maps.Animation.DROP,
   })
+  marker.id = venue.ids.foursquareId
+  marker.addListener('click', () => onClick(venue))
 
   return marker
 }
 
 function getMapStyles() {
-  // https://developers.google.com/maps/documentation/javascript/style-reference
   return [
     { elementType: 'labels.text', stylers: [{ visibility: 'off' }] },
     {
