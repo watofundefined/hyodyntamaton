@@ -3,7 +3,7 @@
  */
 import { client } from 'lib/http'
 import mockServer from 'mocks/server'
-import testServer, { TestServer } from 'test/server'
+import testServer, { TestServer } from '../server'
 import handler, {
   AuthorizeRequest,
   AuthorizeResponse,
