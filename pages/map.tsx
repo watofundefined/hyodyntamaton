@@ -49,7 +49,6 @@ function Map(): JSX.Element {
         <button className="btn" onClick={() => router.push('/')}>
           Back to menu
         </button>
-        <button className="btn">Load more</button>
       </footer>
     </>
   )
