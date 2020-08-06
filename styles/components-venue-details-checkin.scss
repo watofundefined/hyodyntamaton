@@ -24,6 +24,7 @@
   .checkin-score {
     margin-top: 0.8em;
     display: flex;
+    flex-wrap: wrap;
   }
 
   .checkin-username {
@@ -38,5 +39,6 @@
   .checkin-see-more-button {
     margin-top: 1em;
     width: max-content;
+    letter-spacing: 0;
   }
 }

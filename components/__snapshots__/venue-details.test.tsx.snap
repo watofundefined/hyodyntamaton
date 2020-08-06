@@ -35,7 +35,7 @@ exports[`VenueDetails component matches snapshot 1`] = `
         __self="[object Object]"
         __source="[object Object]"
         class="venue-details-checkins"
-        style="max-height: -95px;"
+        style="max-height: -115px;"
       >
         <header
           __self="[object Object]"

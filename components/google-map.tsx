@@ -59,8 +59,10 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   )
 
   useEffect(() => {
-    if (scriptLoaded) initMap(mapRef, location)
-    else {
+    if (scriptLoaded) {
+      initMap(mapRef, location)
+      updateModalStyles()
+    } else {
       window.onMapInit = () => {
         initMap(mapRef, location)
         setScriptLoaded(true)
@@ -146,7 +148,7 @@ function initMap(
   })
 
   container.style.height = '' + mainHeight() + 'px'
-  container.style.width = '' + Math.min(bodyWidth() - 50, 800) + 'px'
+  container.style.width = '' + Math.min(bodyWidth(), 800) + 'px'
 
   mapRef.current = map
 }

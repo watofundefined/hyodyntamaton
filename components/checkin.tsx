@@ -48,7 +48,7 @@ export default function Checkin({ data, onShowBeerDetailsClicked }: CheckinProps
           className="btn btn-secondary checkin-see-more-button"
           onClick={() => onShowBeerDetailsClicked(bid)}
         >
-          See more reviews of this beer
+          See more reviews
         </button>
       </section>
     </li>

@@ -163,7 +163,7 @@ function calculateVenueCheckinsHeight(): number {
   const { height } = document.querySelector('.venue-details').getBoundingClientRect()
 
   // FIXME - calculate based on paddings and close button height
-  return height - 95
+  return height - 115
 }
 
 function getInitialModalStyles(): Styles {
