@@ -26,22 +26,32 @@ export default function Checkin({ data, onShowBeerDetailsClicked }: CheckinProps
     rating_score,
   } = data
 
+  const time = timeFormatter.format(new Date(created_at))
+
   return (
-    <div key={checkin_id} className="checkin">
-      <span className="time">{timeFormatter.format(new Date(created_at))}</span>
-      <span className="checkin-details">
-        <span className="beer-name" onClick={() => onShowBeerDetailsClicked(bid)}>
+    <li key={checkin_id} className="venue-details-checkin">
+      <time className="checkin-time" dateTime={time}>
+        {time}
+      </time>
+      <section className="checkin-details">
+        <span className="checkin-beer-name">
           {beer_name} {beer_abv}%
         </span>
         <span>{beer_style}</span>
         <span>{breweryLine(brewery_name, country_name, brewery_city)}</span>
-        <span className="score">
+        <span className="checkin-score">
           <Rating score={rating_score} />
-          <span className="username">- {user_name}</span>
+          <span className="checkin-username">- {user_name}</span>
         </span>
-        {checkin_comment && <q className="comment">{checkin_comment}</q>}
-      </span>
-    </div>
+        {checkin_comment && <q className="checkin-comment">{checkin_comment}</q>}
+        <button
+          className="btn btn-secondary checkin-see-more-button"
+          onClick={() => onShowBeerDetailsClicked(bid)}
+        >
+          See more reviews of this beer
+        </button>
+      </section>
+    </li>
   )
 }
 

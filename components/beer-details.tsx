@@ -46,28 +46,32 @@ export default function BeerDetails({ id }: BeerDetailsProps) {
       <h2 className="beer-name">
         {beer_name} {beer_abv}%
       </h2>
-      <section className="meta">
-        <span className="style">{beer_style}</span>
-        {beerIbu > 0 && <span className="ibu">IBU {beerIbu}</span>}
-        {beer_description && <q className="description">{beer_description}</q>}
-        <span className="brewery">
+      <section className="beer-meta stack stack-xs">
+        <span>{beer_style}</span>
+        {beerIbu > 0 && <span>IBU {beerIbu}</span>}
+        {beer_description && <q className="beer-description">{beer_description}</q>}
+        <span className="beer-brewery">
           {breweryLine(brewery_name, country_name, brewery_city)}
         </span>
-        <span className="weighted-score">
-          Weighted rating: <Rating score={weighted_rating_score} /> ({rating_count})
+        <span className="beer-weighted-score">
+          Weighted rating ({rating_count}): <Rating score={weighted_rating_score} />
         </span>
       </section>
       <section className="beer-checkins">
-        <header>Latest reviews</header>
-        {beer.checkins.items.map((c) => (
-          <span key={c.checkin_id} className="beer-checkin">
-            <Rating score={c.rating_score} />
-            <span className="checkin-meta">
-              <div className="username">{whoWhere(c.user.user_name, c.venue)}</div>
-              {c.checkin_comment && <q className="comment">{c.checkin_comment}</q>}
-            </span>
-          </span>
-        ))}
+        <header>Latest reviews:</header>
+        <ol>
+          {beer.checkins.items.map((c) => (
+            <li key={c.checkin_id} className="beer-checkin">
+              <Rating score={c.rating_score} />
+              <span className="beer-checkin-meta">
+                <div>{whoWhere(c.user.user_name, c.venue)}</div>
+                {c.checkin_comment && (
+                  <q className="beer-checkin-meta-comment">{c.checkin_comment}</q>
+                )}
+              </span>
+            </li>
+          ))}
+        </ol>
       </section>
     </div>
   )

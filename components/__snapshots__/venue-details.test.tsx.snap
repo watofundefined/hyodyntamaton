@@ -34,8 +34,8 @@ exports[`VenueDetails component matches snapshot 1`] = `
       <section
         __self="[object Object]"
         __source="[object Object]"
-        class="checkins"
-        style="max-height: -100px;"
+        class="venue-details-checkins"
+        style="max-height: -95px;"
       >
         <header
           __self="[object Object]"
@@ -43,7 +43,17 @@ exports[`VenueDetails component matches snapshot 1`] = `
         >
           Latest feed:
         </header>
-        0
+        <ol
+          __self="[object Object]"
+          __source="[object Object]"
+        />
+        <div
+          __self="[object Object]"
+          __source="[object Object]"
+          class="checkins-bottom-drawer"
+        >
+          0
+        </div>
       </section>
     </div>
   </div>

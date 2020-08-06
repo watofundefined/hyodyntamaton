@@ -1,0 +1,19 @@
+.venue-details-checkins {
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 1em 0;
+
+  .checkins-day {
+    border-bottom: 1px solid black;
+    margin-right: 1em;
+  }
+
+  .checkins-day-list {
+    padding: 0.8em 0;
+  }
+
+  .checkins-bottom-drawer {
+    display: flex;
+    justify-content: center;
+  }
+}

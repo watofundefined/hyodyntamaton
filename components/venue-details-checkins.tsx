@@ -6,7 +6,7 @@ export interface CheckinsProps {
   loading: boolean
   checkins: UtVenueInfoCheckin[]
   onFetchMoreClicked: () => void
-  maxHeight: number
+  maxHeight: string
   onShowBeerDetails: (id: number) => void
 }
 
@@ -28,17 +28,21 @@ export default function Checkins({
   const grouped = groupCheckinsByDate(checkins)
 
   return (
-    <section className="checkins" style={{ maxHeight: maxHeight.toString() + 'px' }}>
+    <section className="venue-details-checkins" style={{ maxHeight }}>
       <header>Latest feed:</header>
-      {Object.keys(grouped).map((day) =>
-        markupForEachDay(day, grouped[day], onShowBeerDetails)
-      )}
-      {!loading && checkins.length && (
-        <button className="btn" onClick={onFetchMoreClicked}>
-          Load more
-        </button>
-      )}
-      {loading && <div>Loading</div>}
+      <ol>
+        {Object.keys(grouped).map((day) =>
+          markupForEachDay(day, grouped[day], onShowBeerDetails)
+        )}
+      </ol>
+      <div className="checkins-bottom-drawer">
+        {!loading && checkins.length && (
+          <button className="btn" onClick={onFetchMoreClicked}>
+            Load more
+          </button>
+        )}
+        {loading && <div>Loading</div>}
+      </div>
     </section>
   )
 }
@@ -49,16 +53,23 @@ function markupForEachDay(
   onShowBeerDetailsClicked: (id: number) => void
 ) {
   return (
-    <div key={day} className="day-checkins">
-      <div className="day">{day}</div>
-      {checkins.map((c) => (
-        <Checkin
-          key={c.checkin_id}
-          data={c}
-          onShowBeerDetailsClicked={onShowBeerDetailsClicked}
-        />
-      ))}
-    </div>
+    <li key={day}>
+      <time
+        className="checkins-day"
+        dateTime={formatDayForDateTime(checkins[0].created_at)}
+      >
+        {day}
+      </time>
+      <ol className="checkins-day-list">
+        {checkins.map((c) => (
+          <Checkin
+            key={c.checkin_id}
+            data={c}
+            onShowBeerDetailsClicked={onShowBeerDetailsClicked}
+          />
+        ))}
+      </ol>
+    </li>
   )
 }
 
@@ -74,4 +85,10 @@ function groupCheckinsByDate(
 
     return result
   }, {})
+}
+
+function formatDayForDateTime(date: string): string {
+  const d = new Date(date)
+  const pad = (n: number) => n.toString().padStart(2, '0')
+  return `${d.getFullYear()}-${pad(d.getMonth())}-${pad(d.getDate())}`
 }

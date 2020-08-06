@@ -20,7 +20,7 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
 
   const [apiError, setApiError] = useState<string>(null)
   const [isFetchingCheckins, setIsFetchingCheckins] = useState(false)
-  const [checkinsMaxHeight, setCheckinsMaxHeight] = useState(400)
+  const [checkinsMaxHeight, setCheckinsMaxHeight] = useState('400px')
   const [isModalOpened, setIsModalOpened] = useState(false)
   const [modalStyles, setModalStyles] = useState(getInitialModalStyles())
   const [selectedBeerId, setSelectedBeerId] = useState<number>()
@@ -58,7 +58,8 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
   }, [untappedId, checkins, token, dispatch])
 
   useEffect(() => {
-    const update = () => setCheckinsMaxHeight(calculateVenueCheckinsHeight())
+    const update = () =>
+      setCheckinsMaxHeight(calculateVenueCheckinsHeight().toString() + 'px')
     update()
     window.addEventListener('resize', update)
     return () => window.removeEventListener('resize', update)
@@ -161,8 +162,8 @@ function calculateVenueCheckinsHeight(): number {
 
   const { height } = document.querySelector('.venue-details').getBoundingClientRect()
 
-  // FIXME - replace 100 with <heading + 2 * padding + errorIfThereIsAny>
-  return height - 100
+  // FIXME - calculate based on paddings and close button height
+  return height - 95
 }
 
 function getInitialModalStyles(): Styles {

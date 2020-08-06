@@ -10,21 +10,22 @@
     margin: 0;
   }
 
-  .meta {
+  .beer-meta {
     display: flex;
     flex-direction: column;
     padding: 1em 0;
   }
 
-  .description {
+  .beer-description {
     font-style: italic;
   }
 
-  .weighted-score {
+  .beer-weighted-score {
     display: flex;
 
+    // FIXME - don't rely on other component's class
     .rating {
-      margin: 0 0.5em;
+      margin-left: 0.5em;
     }
   }
 
@@ -33,11 +34,11 @@
     display: flex;
   }
 
-  .checkin-meta {
+  .beer-checkin-meta {
     margin-left: 1em;
   }
 
-  .comment {
+  .beer-checkin-meta-comment {
     font-style: italic;
     display: block;
     padding-top: 0.5em;

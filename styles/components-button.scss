@@ -2,18 +2,15 @@
   cursor: pointer;
   user-select: none;
   background-color: $yellow;
-  font-family: "Open Sans", sans-serif;
+  font-family: 'Open Sans', sans-serif;
   letter-spacing: 2px;
   text-decoration: none;
   text-transform: uppercase;
   color: $black;
   border: 3px solid;
   padding: 0.5em 0.75em;
-  box-shadow: 1px 1px 0px 0px,
-              2px 2px 0px 0px,
-              3px 3px 0px 0px,
-              4px 4px 0px 0px,
-              5px 5px 0px 0px;
+  box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px,
+    5px 5px 0px 0px;
   position: relative;
 }
 
@@ -29,7 +26,9 @@
   left: 5px;
 }
 
-.btn:focus, .btn:hover, .btn:active {
+.btn:focus,
+.btn:hover,
+.btn:active {
   outline: none;
   background-color: $yellow-darker;
 }
@@ -38,6 +37,18 @@
   background-color: $warning;
 }
 
-.btn-warning:focus, .btn-warning:hover, .btn-warning:active {
+.btn-warning:focus,
+.btn-warning:hover,
+.btn-warning:active {
   background-color: $warning-darker;
+}
+
+.btn-secondary {
+  background-color: $white;
+}
+
+.btn-secondary:focus,
+.btn-secondary:hover,
+.btn-secondary:active {
+  background-color: $gray;
 }
