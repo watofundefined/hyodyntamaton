@@ -79,8 +79,11 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   }, [])
 
   function updateModalStyles() {
-    const { top, left, width, height } = rootDimensions()
+    const { top, height } = rootDimensions()
     const { footer } = pageHeights()
+    const { width, left } = document
+      .querySelector('.gmap-container')
+      .getBoundingClientRect()
 
     document.documentElement.style.setProperty('--pub-details-modal-width', width + 'px')
 

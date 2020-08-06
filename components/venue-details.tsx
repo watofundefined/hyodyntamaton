@@ -88,8 +88,11 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
 
   useEffect(() => {
     function updateModalStyles() {
-      const { top, left, width, height } = rootDimensions()
+      const { top, height } = rootDimensions()
       const { footer } = pageHeights()
+      const { width, left } = document
+        .querySelector('.gmap-container')
+        .getBoundingClientRect()
 
       document.documentElement.style.setProperty(
         '--beer-details-modal-width',
