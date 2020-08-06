@@ -1,7 +1,8 @@
 import { AppProps } from 'next/app'
+import { useEffect } from 'react'
 import Modal from 'react-modal'
 import { Provider } from 'react-redux'
-import { createStore, applyMiddleware, Store, Action, Dispatch, compose } from 'redux'
+import { Action, applyMiddleware, compose, createStore, Dispatch, Store } from 'redux'
 import AuthValidator from '../components/auth-validator'
 import StaticHead from '../components/static-head'
 import { getInitialState, reducer } from '../state'
@@ -37,6 +38,13 @@ if (isBrowser && isDev && process.env.API_MOCKING_ENABLED === 'true') {
 }
 
 function App({ Component: Page, pageProps }: AppProps) {
+  useEffect(() => {
+    if (typeof document != 'undefined') {
+      // Fix for 100vh overflowing on mobiles
+      document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`)
+    }
+  }, [])
+
   return (
     <Provider store={store}>
       <StaticHead />
