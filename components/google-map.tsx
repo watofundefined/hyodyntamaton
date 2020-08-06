@@ -1,7 +1,7 @@
-import { bodyWidth, mainHeight } from 'lib/client/dimensions'
+import { bodyWidth, mainHeight, pageHeights, rootDimensions } from 'lib/client/dimensions'
 import { GeoLocation, Venue } from 'lib/types'
 import Head from 'next/head'
-import { MutableRefObject, useEffect, useRef, useState, useCallback } from 'react'
+import { MutableRefObject, useCallback, useEffect, useRef, useState } from 'react'
 import Modal, { Styles } from 'react-modal'
 import { useSelector } from 'react-redux'
 import { AppState } from 'state'
@@ -79,15 +79,14 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   }, [])
 
   function updateModalStyles() {
-    const { top, left, width, height } = document
-      .querySelector('.gmap-container')
-      .getBoundingClientRect()
+    const { top, left, width, height } = rootDimensions()
+    const { footer } = pageHeights()
 
     document.documentElement.style.setProperty('--pub-details-modal-width', width + 'px')
 
     setModalStyles(({ content, overlay }) => ({
       overlay,
-      content: { ...content, top, left, width, height },
+      content: { ...content, top, left, width, height: height - footer },
     }))
   }
 

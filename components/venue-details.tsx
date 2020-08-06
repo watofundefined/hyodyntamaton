@@ -1,11 +1,12 @@
 import api from 'lib/api'
-import Modal, { Styles } from 'react-modal'
+import { pageHeights, rootDimensions } from 'lib/client/dimensions'
 import { Venue } from 'lib/types'
 import { useCallback, useEffect, useState } from 'react'
+import Modal, { Styles } from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState, UserState, VenuesActions } from 'state'
-import Checkins from './venue-details-checkins'
 import BeerDetails from './beer-details'
+import Checkins from './venue-details-checkins'
 
 export interface VenueDetailsProps {
   venueFsId: string
@@ -87,9 +88,8 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
 
   useEffect(() => {
     function updateModalStyles() {
-      const { top, left, width, height } = document
-        .querySelector('.gmap-container')
-        .getBoundingClientRect()
+      const { top, left, width, height } = rootDimensions()
+      const { footer } = pageHeights()
 
       document.documentElement.style.setProperty(
         '--beer-details-modal-width',
@@ -98,7 +98,7 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
 
       setModalStyles(({ content, overlay }) => ({
         overlay,
-        content: { ...content, top, left, width, height },
+        content: { ...content, top, left, width, height: height - footer },
       }))
     }
 

@@ -25,10 +25,27 @@ body {
   margin-top: 1.5rem;
 }
 
+#__next {
+  position: relative;
+  min-height: 100vh;
+  max-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  padding: 1em;
+}
+
+.header {
+  padding: 1em 0;
+}
+
 .footer {
   display: flex;
   flex-direction: row;
-  padding-top: 1rem;
+  padding: 1em 0;
 }
 
 .footer * {
