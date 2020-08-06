@@ -2,26 +2,32 @@
 
 exports[`MainMenu component matches snapshot 1`] = `
 <DocumentFragment>
-  <button
+  <div
     __self="[object Object]"
     __source="[object Object]"
-    class="btn"
+    id="__next"
   >
-    Pubs Nearby
-  </button>
-  <button
-    __self="[object Object]"
-    __source="[object Object]"
-    class="btn"
-  >
-    Account
-  </button>
-  <button
-    __self="[object Object]"
-    __source="[object Object]"
-    class="btn"
-  >
-    About
-  </button>
+    <button
+      __self="[object Object]"
+      __source="[object Object]"
+      class="btn"
+    >
+      Pubs Nearby
+    </button>
+    <button
+      __self="[object Object]"
+      __source="[object Object]"
+      class="btn"
+    >
+      Account
+    </button>
+    <button
+      __self="[object Object]"
+      __source="[object Object]"
+      class="btn"
+    >
+      About
+    </button>
+  </div>
 </DocumentFragment>
 `;

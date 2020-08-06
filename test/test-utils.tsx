@@ -28,9 +28,11 @@ function render(ui: JSX.Element, opts: RenderOpts = {}): RenderResult {
 function createWrapper(store: Store, router: NextRouter) {
   return function Wrapper({ children }) {
     return (
-      <Provider store={store}>
-        <RouterContext.Provider value={router}>{children}</RouterContext.Provider>
-      </Provider>
+      <div id="__next">
+        <Provider store={store}>
+          <RouterContext.Provider value={router}>{children}</RouterContext.Provider>
+        </Provider>
+      </div>
     )
   }
 }
