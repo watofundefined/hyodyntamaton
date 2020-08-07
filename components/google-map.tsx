@@ -59,16 +59,18 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
   )
 
   useEffect(() => {
+    window.onMapInit = () => {
+      initMap(mapRef, location)
+      setScriptLoaded(true)
+      updateModalStyles()
+      if (venues) addMarkers(venues)
+    }
+  }, [])
+
+  useEffect(() => {
     if (scriptLoaded) {
       initMap(mapRef, location)
       updateModalStyles()
-    } else {
-      window.onMapInit = () => {
-        initMap(mapRef, location)
-        setScriptLoaded(true)
-        updateModalStyles()
-        if (venues) addMarkers(venues)
-      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
