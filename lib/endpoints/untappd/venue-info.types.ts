@@ -70,21 +70,23 @@ export interface UtVenueInfo {
   is_closed: boolean
 }
 
+export interface UtVenueInfoCheckinUser {
+  uid: number
+  user_name: string
+  first_name: string
+  last_name: string
+  relationship: string
+  is_supporter: BinaryBoolean
+  user_avatar: string
+  is_private: BinaryBoolean
+}
+
 export interface UtVenueInfoCheckin {
   checkin_id: number
   created_at: string // "Sun, 19 Jul 2020 19:58:51 +0000"
   rating_score: number
   checkin_comment: string
-  user: {
-    uid: number
-    user_name: string
-    first_name: string
-    last_name: string
-    relationship: string
-    is_supporter: BinaryBoolean
-    user_avatar: string
-    is_private: BinaryBoolean
-  }
+  user: UtVenueInfoCheckinUser
   beer: {
     bid: number
     beer_name: string
@@ -116,7 +118,7 @@ export interface UtVenueInfoCheckin {
   comments: {
     total_count: number
     count: number
-    items: any[]
+    items: UtVenueInfoComment[]
   }
   toasts: UtCheckinToasts
   media: UtCheckinMedia
@@ -125,6 +127,30 @@ export interface UtVenueInfoCheckin {
     app_website: string
   }
   badges: UtCheckinBadges
+}
+
+export interface UtVenueInfoComment {
+  user: {
+    uid: number
+    user_name: string
+    first_name: string
+    last_name: string
+    bio: string
+    location: string
+    relationship: string
+    is_supporter: BinaryBoolean
+    user_avatar: string
+    account_type: 'user'
+    venue_details: []
+    brewery_details: []
+  }
+  checkin_id: number
+  comment_id: number
+  comment_owner: boolean
+  comment_editor: boolean
+  comment: string
+  created_at: string
+  comment_source: string
 }
 
 export interface UtVenueInfoTopBeer {

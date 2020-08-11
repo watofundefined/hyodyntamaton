@@ -141,15 +141,17 @@ export interface UtBeerInfoMedia {
     }
     brewery_active: BinaryBoolean
   }
-  user: {
-    uid: number
-    user_name: string
-    first_name: string
-    last_name: string
-    user_avatar: string
-    is_private: BinaryBoolean
-  }
+  user: UtMediaUser
   venue: UtBeerInfoVenue[] | [[]] // ffs Untappd ;)
+}
+
+export interface UtMediaUser {
+  uid: number
+  user_name: string
+  first_name: string
+  last_name: string
+  user_avatar: string
+  is_private: BinaryBoolean
 }
 
 export interface UtBeerInfoSimilar {

@@ -49,14 +49,16 @@ export interface UtMedia {
 
 export interface UtToast {
   uid: number // this uid and the user.uid below are same
-  user: Partial<UtUser> & {
-    account_type: 'user'
-    venue_details: []
-    brewery_details: []
-  }
+  user: UtToastUser
   like_id: number
   like_owner: boolean
   created_at: string
+}
+
+export type UtToastUser = Partial<UtUser> & {
+  account_type: 'user'
+  venue_details: []
+  brewery_details: []
 }
 
 export interface UtUser {
