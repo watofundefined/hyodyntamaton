@@ -65,6 +65,7 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
       updateModalStyles()
       if (venues) addMarkers(venues)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
