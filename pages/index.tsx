@@ -26,7 +26,7 @@ function Home(): JSX.Element {
 
 function auth(router: NextRouter): void {
   const isDev = process.env.NODE_ENV === 'development'
-  const isAuthMocked = process.env.API_MOCKING_ENABLED === 'true'
+  const isAuthMocked = process.env.NEXT_PUBLIC_API_MOCKING_ENABLED === 'true'
 
   if (isDev && isAuthMocked) {
     router.push(`/auth?code=${process.env.NEXT_PUBLIC_MOCKED_UNTAPPD_AUTH_CODE}`)

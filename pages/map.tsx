@@ -15,6 +15,15 @@ function Map(): JSX.Element {
   const dispatch = useDispatch()
 
   useEffect(() => {
+    // Center map around the mocked data
+    if (
+      process.env.NODE_ENV === 'development' &&
+      process.env.NEXT_PUBLIC_API_MOCKING_ENABLED
+    ) {
+      setLocation(defaultLocation())
+      return
+    }
+
     userLocation().then((res) => {
       setLocation(res.status == 'success' ? res.location : defaultLocation())
     })
@@ -55,8 +64,6 @@ function Map(): JSX.Element {
 }
 
 function defaultLocation(): GeoLocation {
-  // Lauttasaari
-  // return { lat: 60.148806, lng: 24.886443 }
   // Helsinki
   return { lat: 60.192059, lng: 24.945831 }
 }

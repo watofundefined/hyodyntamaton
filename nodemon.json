@@ -3,6 +3,6 @@
   "exec": "ts-node --project tsconfig.server.json -r tsconfig-paths/register dev-server.ts",
   "ext": "js ts",
   "env": {
-    "API_MOCKING_ENABLED": "true"
+    "NEXT_PUBLIC_API_MOCKING_ENABLED": "true"
   }
 }

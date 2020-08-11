@@ -33,7 +33,7 @@ const publicRoutes = ['/', '/auth', '/about']
 
 Modal.setAppElement('#__next')
 
-if (isBrowser && isDev && process.env.API_MOCKING_ENABLED === 'true') {
+if (isBrowser && isDev && process.env.NEXT_PUBLIC_API_MOCKING_ENABLED === 'true') {
   require('../mocks/browser').default.start()
 }
 
