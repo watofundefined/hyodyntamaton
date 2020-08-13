@@ -3,9 +3,10 @@ export interface RatingProps {
    * Floating number between 0.0 and 5.0
    */
   score: number
+  className?: string
 }
 
-export default function Rating({ score }: RatingProps) {
+export default function Rating({ score, className }: RatingProps) {
   // 1.5 ~> [1, 0.5, 0, 0, 0]
   //   3 ~> [1,   1, 1, 0, 0]
   const scoreParts = Array.from({ length: 5 }).map((_, i) => {
@@ -14,13 +15,18 @@ export default function Rating({ score }: RatingProps) {
 
   return (
     <span
-      className="rating"
+      className={getFullClassName(className)}
       title={`Rating: ${score} out of 5`}
       aria-label={`Rating: ${score} out of 5`}
     >
       {scoreParts.map((d, i) => Circle(d, i))}
     </span>
   )
+}
+
+function getFullClassName(className: string): string {
+  if (!className) return 'rating'
+  return `rating ${className}`
 }
 
 function Circle(value: number, index: number) {

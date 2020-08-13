@@ -41,4 +41,16 @@ describe('Rating component', () => {
   it('matches snapshot for 4.051', async () => {
     expect(render(<Rating score={4.051} />).asFragment()).toMatchSnapshot()
   })
+
+  it('correct label is used', async () => {
+    const rating = 1
+    const { getByTitle } = render(<Rating score={rating} />)
+    expect(getByTitle(`Rating: ${rating} out of 5`)).toBeDefined()
+  })
+
+  it('extra class gets applied', async () => {
+    const extraClass = 'blah'
+    const { getByTitle } = render(<Rating score={1} className={extraClass} />)
+    expect(getByTitle('Rating: 1 out of 5')).toHaveClass(extraClass)
+  })
 })
