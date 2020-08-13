@@ -51,7 +51,18 @@ function handleSuccess(res): InterceptResult {
 function handleError(err): InterceptResult {
   let parsed: Partial<ApiError> = {}
 
-  // Hyodyntamaton API will always return errors inside the data object
+  // Sometimes err.response is undefined - unfortunately I can't reproduct it
+  if (!err.response) {
+    return {
+      status: 400,
+      error: {
+        message: 'Probably cancelled',
+        code: '400',
+      },
+    }
+  }
+
+  // Internal API will always return errors inside the data object
   // Try to get the details from there, fallback to generic status and statusText
   // FIXME: Find out if data ever comes back as string,
   // when I was using own instance of server it did. Remove if it's not required
