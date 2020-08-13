@@ -1,3 +1,5 @@
+import '@testing-library/jest-dom/extend-expect'
+
 import {
   render as _render,
   RenderOptions as _RenderOptions,
@@ -8,7 +10,6 @@ import { NextRouter } from 'next/router'
 import { Provider } from 'react-redux'
 import { createStore, Store } from 'redux'
 import { AppState, getInitialState, reducer } from '../state'
-
 export interface RenderOpts extends _RenderOptions {
   state?: Partial<AppState>
   router?: Partial<NextRouter>

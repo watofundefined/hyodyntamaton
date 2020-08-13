@@ -38,6 +38,7 @@
   },
   "devDependencies": {
     "@prefresh/next": "^0.3.2",
+    "@testing-library/jest-dom": "^5.11.3",
     "@testing-library/preact": "^2.0.0",
     "@types/jest": "^25.2.3",
     "@types/node": "^13.9.5",
