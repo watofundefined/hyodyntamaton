@@ -47,14 +47,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/camelcase': 0,
-    'no-restricted-syntax': [
-      2,
-      {
-        selector: 'ImportDeclaration > Literal[value="axios"]',
-        message: 'No direct axios import, use lib/http',
-      },
-    ],
-    // ';' comes in useful sometimes: https://prettier.io/docs/en/rationale.html#semicolons
+    // ';' is useful sometimes: https://prettier.io/docs/en/rationale.html#semicolons
     'no-extra-semi': 0,
   },
 }
