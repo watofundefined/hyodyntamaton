@@ -17,9 +17,12 @@ export default function BeerDetails({ id }: BeerDetailsProps) {
   useEffect(() => {
     if (!token || beer) return
 
-    api.beer
-      .info(id, token)
-      .then((res) => dispatch(BeersActions.addBeerInfo(res.data.response.beer)))
+    api.beer.info(id, token).then(({ data }) => {
+      if (data) {
+        dispatch(BeersActions.addBeerInfo(data.response.beer))
+      }
+      // FIXME: handle errors
+    })
   }, [id, token, beer, dispatch])
 
   if (!beer) return <div>Loading</div>
