@@ -8,10 +8,11 @@ body {
   font-size: calc(16px + (20 - 14) * ((100vw - 300px) / (1600 - 300)));
 }
 
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
-
 .stack {
   display: flex;
   flex-direction: column;
