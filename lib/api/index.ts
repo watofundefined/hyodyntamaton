@@ -1,4 +1,4 @@
-import { foursquareLookup, venueInfo, venueCheckins } from 'lib/endpoints'
+import { foursquareLookup, venueInfo, venueCheckins, beerSearch } from 'lib/endpoints'
 import { ApiResult, client } from 'lib/http'
 import { VenueIds } from 'lib/types'
 import { VenuesSearchRequest, VenuesSearchResponse } from './types'
@@ -9,6 +9,10 @@ import {
 } from 'lib/endpoints/untappd/venue-checkins.types'
 import { UtBeerInfoResponse } from 'lib/endpoints/untappd/beer-info.types'
 import { beerInfo } from 'lib/endpoints/untappd/beer-info'
+import {
+  UtBeerSearchResponse,
+  BeerSearchConfig,
+} from 'lib/endpoints/untappd/beer-search.types'
 
 export default {
   venues: {
@@ -33,6 +37,9 @@ export default {
   beer: {
     info: (id: number, token: string): ApiResult<UtBeerInfoResponse> => {
       return beerInfo(id, { access_token: token })
+    },
+    search: (req: BeerSearchConfig): ApiResult<UtBeerSearchResponse> => {
+      return beerSearch(req)
     },
   },
 }
