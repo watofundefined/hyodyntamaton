@@ -6,7 +6,7 @@ import Modal, { Styles } from 'react-modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppState, UserState, VenuesActions } from 'state'
 import BeerDetails from './beer-details'
-import Checkins from './venue-details-checkins'
+import VenueDetailsCheckins from './venue-details-checkins'
 
 export interface VenueDetailsProps {
   venueFsId: string
@@ -128,7 +128,7 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
       </h2>
       {apiError && <span>Error: {apiError}</span>}
       {venue && (
-        <Checkins
+        <VenueDetailsCheckins
           loading={isFetchingCheckins}
           checkins={checkins}
           onFetchMoreClicked={memoizedFetchMoreCheckins}
