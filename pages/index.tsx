@@ -7,6 +7,7 @@ import { AppState, UserState } from '../state'
 
 const menuNavigation: [string, string][] = [
   ['Pubs Nearby', '/map'],
+  ['Beer Search', '/beer-search'],
   ['Account', '/account'],
   ['About', '/about'],
 ]

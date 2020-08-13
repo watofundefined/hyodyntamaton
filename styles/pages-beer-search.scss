@@ -1,0 +1,67 @@
+.cover > * {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.cover > h1 {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.cover > :first-child:not(h1) {
+  margin-top: 0;
+}
+
+.cover > :last-child:not(h1) {
+  margin-bottom: 0;
+}
+
+.beer-search-page {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.beer-search-page__heading {
+  text-align: center;
+}
+
+.beer-search-page__main {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.beer-search-page__header,
+.beer-search-page__footer {
+  display: flex;
+  justify-content: center;
+}
+
+//
+// FIXME move once extracted to a separate file on TS side
+//
+
+.beer-list-item + .beer-list-item {
+  margin-top: 2rem;
+}
+
+.beer-list-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.beer-list-item__name {
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.2em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.beer-list-item__see-more {
+  width: max-content;
+  letter-spacing: 0;
+}

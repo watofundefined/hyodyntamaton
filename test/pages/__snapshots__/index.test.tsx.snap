@@ -78,6 +78,13 @@ exports[`Home page matches snapshot when user is logged in 1`] = `
         __source="[object Object]"
         class="btn"
       >
+        Beer Search
+      </button>
+      <button
+        __self="[object Object]"
+        __source="[object Object]"
+        class="btn"
+      >
         Account
       </button>
       <button
