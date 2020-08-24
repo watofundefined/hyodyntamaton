@@ -3,13 +3,11 @@ import axios, { AxiosRequestConfig } from 'axios'
 import configureInterceptors from './configure-interceptors'
 import { ApiClient } from './types'
 
-const defaultConfig = { headers: { Referer: 'https://hyodyntamaton.site/' } }
-
-const client: ApiClient = axios.create(defaultConfig)
+const client: ApiClient = axios.create()
 configureInterceptors(client)
 
 function customClient(config: AxiosRequestConfig): ApiClient {
-  const res = axios.create({ ...defaultConfig, ...config })
+  const res = axios.create(config)
   configureInterceptors(res)
   return res
 }
