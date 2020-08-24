@@ -30,6 +30,11 @@ body {
   margin-top: 1rem;
 }
 
+.line-break::after {
+  content: '\A';
+  white-space: pre;
+}
+
 #__next {
   position: relative;
   height: 100vh;

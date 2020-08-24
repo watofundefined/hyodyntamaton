@@ -48,6 +48,32 @@ function reducer(state = defaultState(), action: VenuesAction): VenuesState {
           }
         }),
       }
+    case 'UPDATE_VENUE_CHECKINS_TRANSLATIONS':
+      return {
+        items: state.items.map((v) => {
+          if (v.ids.untappedId != action.payload.venueUntappdId) return v
+
+          const idToText = action.payload.translations.reduce(
+            (res, { checkinId, translatedText }) => {
+              res[checkinId] = translatedText
+              return res
+            },
+            {}
+          )
+
+          return {
+            ...v,
+            checkins: v.checkins.map((c) => {
+              if (!idToText[c.checkin_id]) return c
+
+              return {
+                ...c,
+                translatedComment: idToText[c.checkin_id],
+              }
+            }),
+          }
+        }),
+      }
 
     default:
       return state

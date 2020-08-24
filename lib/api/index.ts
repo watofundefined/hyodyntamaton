@@ -13,6 +13,8 @@ import {
   UtBeerSearchResponse,
   BeerSearchConfig,
 } from 'lib/endpoints/untappd/beer-search.types'
+import { SupportedLanguagesResponse } from 'pages/api/supported-languages'
+import { TranslateRequest, TranslateResponse } from 'pages/api/translate'
 
 export default {
   venues: {
@@ -40,6 +42,24 @@ export default {
     },
     search: (req: BeerSearchConfig): ApiResult<UtBeerSearchResponse> => {
       return beerSearch(req)
+    },
+  },
+  translation: {
+    languages: (): ApiResult<SupportedLanguagesResponse> => {
+      return client.get<{}, SupportedLanguagesResponse>('/api/supported-languages', {})
+    },
+    translate: (
+      texts: string[],
+      dontTranslateLanguages: string[],
+      primaryLanguage: string
+    ) => {
+      return client.post<TranslateRequest, TranslateResponse>('/api/translate', {
+        params: {
+          texts,
+          dontTranslateLanguages,
+          primaryLanguage,
+        },
+      })
     },
   },
 }

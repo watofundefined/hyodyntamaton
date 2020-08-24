@@ -1,10 +1,9 @@
-import { UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
-import { Dictionary } from 'lib/types'
+import { Dictionary, VenueInfoCheckin } from 'lib/types'
 import Checkin from './checkin'
 
 export interface CheckinsProps {
   loading: boolean
-  checkins: UtVenueInfoCheckin[]
+  checkins: VenueInfoCheckin[]
   onFetchMoreClicked: () => void
   maxHeight: string
   onShowBeerDetails: (id: number) => void
@@ -49,7 +48,7 @@ export default function Checkins({
 
 function markupForEachDay(
   day: string,
-  checkins: UtVenueInfoCheckin[],
+  checkins: VenueInfoCheckin[],
   onShowBeerDetailsClicked: (id: number) => void
 ) {
   return (
@@ -74,8 +73,8 @@ function markupForEachDay(
 }
 
 function groupCheckinsByDate(
-  checkins: UtVenueInfoCheckin[]
-): Dictionary<UtVenueInfoCheckin[]> {
+  checkins: VenueInfoCheckin[]
+): Dictionary<VenueInfoCheckin[]> {
   return checkins.reduce((result, checkin) => {
     const day = dateFormatter.format(new Date(checkin.created_at))
 

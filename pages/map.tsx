@@ -53,7 +53,7 @@ function Map(): JSX.Element {
       <header className="header">
         <h1>Map</h1>
       </header>
-      <div className="stack">{location && <GoogleMap location={location} />}</div>
+      <main className="stack">{location && <GoogleMap location={location} />}</main>
       <footer className="footer">
         <button className="btn" onClick={() => router.push('/')}>
           Back to menu

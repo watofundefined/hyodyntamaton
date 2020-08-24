@@ -1,8 +1,8 @@
 import Rating from './rating'
-import { UtVenueInfoCheckin } from 'lib/endpoints/untappd/venue-info.types'
+import { VenueInfoCheckin } from 'lib/types'
 
 export interface CheckinProps {
-  data: UtVenueInfoCheckin
+  data: VenueInfoCheckin
   onShowBeerDetailsClicked: (id: number) => void
 }
 
@@ -22,6 +22,7 @@ export default function Checkin({ data, onShowBeerDetailsClicked }: CheckinProps
       location: { brewery_city },
     },
     checkin_comment,
+    translatedComment,
     user: { user_name },
     rating_score,
   } = data
@@ -43,7 +44,14 @@ export default function Checkin({ data, onShowBeerDetailsClicked }: CheckinProps
           <Rating score={rating_score} />
           <span className="checkin-username">- {user_name}</span>
         </span>
-        {checkin_comment && <q className="checkin-comment">{checkin_comment}</q>}
+        {checkin_comment && (
+          <span>
+            <q className="checkin-comment">{translatedComment || checkin_comment}</q>
+            {translatedComment && (
+              <span className="checkin-comment-translated">(translated)</span>
+            )}
+          </span>
+        )}
         <button
           className="btn btn-secondary checkin-see-more-button"
           onClick={() => onShowBeerDetailsClicked(bid)}

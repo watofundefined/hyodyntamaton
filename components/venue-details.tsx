@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppState, UserState, VenuesActions } from 'state'
 import BeerDetails from './beer-details'
 import VenueDetailsCheckins from './venue-details-checkins'
+import storage from 'lib/client/storage'
 
 export interface VenueDetailsProps {
   venueFsId: string
@@ -42,7 +43,7 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
   }, [untappedId, foursquareId, token, dispatch])
 
   useEffect(() => {
-    // run just once before any checkins are loaded, then the let user load more
+    // run just once before any checkins are loaded, then the let the user load more
     if (!untappedId || checkins.length) return
 
     setIsFetchingCheckins(true)
@@ -53,7 +54,37 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
       setIsFetchingCheckins(false)
 
       if (error) setApiError(error.message)
-      else dispatch(VenuesActions.addVenueInfo(data.response.venue))
+      else {
+        dispatch(VenuesActions.addVenueInfo(data.response.venue))
+
+        const checkinsWithComment = data.response.venue.checkins.items.filter(
+          (i) => i.checkin_comment
+        )
+
+        api.translation
+          .translate(
+            checkinsWithComment.map((c) => c.checkin_comment),
+            storage.get('understandsLangs'),
+            storage.get('preferredLang')
+          )
+          .then(({ error: translationError, data: translationData }) => {
+            // FIXME: handle error
+            if (translationError) {
+              console.error(translationError)
+              return
+            }
+
+            dispatch(
+              VenuesActions.updateVenueCheckins({
+                venueUntappdId: data.response.venue.venue_id,
+                translations: translationData.data.map((item, index) => ({
+                  translatedText: item.text,
+                  checkinId: checkinsWithComment[index].checkin_id,
+                })),
+              })
+            )
+          })
+      }
     })
   }, [untappedId, checkins, token, dispatch])
 

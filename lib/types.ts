@@ -10,13 +10,17 @@ export interface GeoLocation {
   lng: number
 }
 
+export interface VenueInfoCheckin extends UtVenueInfoCheckin {
+  translatedComment?: string
+}
+
 export interface Venue {
   ids: VenueIds
   name: string
   url: string
   location: GeoLocation
   categories: FsVenueCategory[]
-  checkins: UtVenueInfoCheckin[]
+  checkins: VenueInfoCheckin[]
 }
 
 export interface VenueIds {

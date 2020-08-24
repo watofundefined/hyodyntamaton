@@ -7,11 +7,17 @@ export interface AddVenueCheckinsPayload {
   checkins: UtVenueInfoCheckin[]
 }
 
+export interface VenueCheckinsTranslations {
+  venueUntappdId: number
+  translations: { checkinId: number; translatedText: string }[]
+}
+
 export type VenuesAction =
   | Action<'ADD_VENUES', Venue[]>
   | Action<'ADD_UNTAPPD_ID', VenueIds>
   | Action<'ADD_VENUE_INFO', UtVenueInfo>
   | Action<'ADD_VENUE_CHECKINS', AddVenueCheckinsPayload>
+  | Action<'UPDATE_VENUE_CHECKINS_TRANSLATIONS', VenueCheckinsTranslations>
 
 function addVenues(venues: Venue[]): VenuesAction {
   return {
@@ -34,6 +40,13 @@ function addVenueInfo(venueInfo: UtVenueInfo): VenuesAction {
   }
 }
 
+function updateVenueCheckins(translationInfo: VenueCheckinsTranslations): VenuesAction {
+  return {
+    type: 'UPDATE_VENUE_CHECKINS_TRANSLATIONS',
+    payload: translationInfo,
+  }
+}
+
 function addCheckins(payload: AddVenueCheckinsPayload): VenuesAction {
   return {
     type: 'ADD_VENUE_CHECKINS',
@@ -41,4 +54,4 @@ function addCheckins(payload: AddVenueCheckinsPayload): VenuesAction {
   }
 }
 
-export default { addUntappdId, addVenues, addVenueInfo, addCheckins }
+export default { addUntappdId, addVenues, addVenueInfo, addCheckins, updateVenueCheckins }

@@ -16,6 +16,7 @@ export type ApiResult<TData> = Promise<Result<TData, ApiError>>
 // Subset of AxiosInstance - expose only what's needed
 export interface ApiClient {
   get<TReq, TData>(url: string, config?: ApiReqConfig<TReq>): ApiResult<TData>
+  post<TReq, TData>(url: string, config?: ApiReqConfig<TReq>): ApiResult<TData>
   interceptors: {
     request: AxiosInterceptorManager<AxiosRequestConfig>
     response: AxiosInterceptorManager<AxiosResponse>
