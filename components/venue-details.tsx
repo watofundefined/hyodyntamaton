@@ -61,6 +61,8 @@ export default function VenueDetails({ venueFsId }: VenueDetailsProps): JSX.Elem
           (i) => i.checkin_comment
         )
 
+        if (!storage.get('preferredLang')) return
+
         api.translation
           .translate(
             checkinsWithComment.map((c) => c.checkin_comment),
