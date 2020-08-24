@@ -6,7 +6,6 @@ import { GoogleDetectRequest, GoogleDetectResult } from './detect.types'
 // Axios defaults to '...?q[]=blah&q[]=blah'
 const httpClient = customClient({
   paramsSerializer: (params) => qs.stringify(params, { arrayFormat: 'repeat' }),
-  headers: process.env.REFERER,
 })
 
 export const url = 'https://translation.googleapis.com/language/translate/v2/detect'
