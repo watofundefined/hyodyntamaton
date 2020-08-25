@@ -64,6 +64,10 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
       setScriptLoaded(true)
       updateModalStyles()
       if (venues) addMarkers(venues)
+      if (location) {
+        const userPositionMarker = addUserPosition(mapRef.current, location)
+        watchUserPosition(userPositionMarker)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -72,6 +76,10 @@ export default function GoogleMap({ location }: GoogleMapProps): JSX.Element {
     if (scriptLoaded) {
       initMap(mapRef, location)
       updateModalStyles()
+      if (location) {
+        const userPositionMarker = addUserPosition(mapRef.current, location)
+        watchUserPosition(userPositionMarker)
+      }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -214,4 +222,30 @@ function getInitialModalStyles(): Styles {
       padding: 0,
     },
   }
+}
+
+function addUserPosition(map: GoogleMapInstance, location: GeoLocation) {
+  return new window.google.maps.Polyline({
+    path: [location, location],
+    icons: [
+      {
+        icon: {
+          path: window.google.maps.SymbolPath.CIRCLE,
+        },
+      },
+    ],
+    map,
+  })
+}
+
+function watchUserPosition(positionMarker: any) {
+  navigator.geolocation.watchPosition(
+    function onSuccess({ coords }) {
+      const lagLng = { lat: coords.latitude, lng: coords.longitude }
+      positionMarker.setPath([lagLng, lagLng])
+    },
+    function onError() {
+      /* no-op */
+    }
+  )
 }
