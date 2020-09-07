@@ -2,7 +2,7 @@ import api from 'lib/api'
 import storage from 'lib/client/storage'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { useEffect, useState, FocusEvent } from 'react'
+import { useEffect, useState, FocusEvent, ChangeEvent } from 'react'
 import { useDispatch } from 'react-redux'
 import { UserActions } from 'state'
 import { Dictionary } from 'lib/types'
@@ -22,6 +22,10 @@ function Account(): JSX.Element {
     languagesMap: storage.get<Dictionary<string>>('languagMap') || {},
     understandsLangs: storage.get<string[]>('understandsLangs') || [],
     preferredLang: storage.get<string>('preferredLang') || '',
+  })
+  const [initialState] = useState({
+    understandsLangs: state.understandsLangs,
+    preferredLang: state.preferredLang,
   })
 
   useEffect(() => {
@@ -43,21 +47,29 @@ function Account(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  function onUnderstandsLangsChanged(event: FocusEvent<HTMLSelectElement>) {
+  function onUnderstandsLangsChanged(event: ChangeEvent<HTMLSelectElement>) {
     const selected = Array.from(event.target.options)
       .filter((o) => o.selected)
       .map((o) => o.value)
 
-    const preferred = selected.find((s) => s === state.preferredLang) || ''
+    const preferred =
+      selected.find((s) => s === state.preferredLang) ||
+      (selected.length == 1 ? selected[0] : '')
 
     setState({ ...state, understandsLangs: selected, preferredLang: preferred })
-    storage.set('understandsLangs', selected)
-    storage.set('preferredLang', preferred)
+    storage.set('preferredLang', state.preferredLang)
+    storage.set('understandsLangs', state.understandsLangs)
   }
 
   function onPrimaryLanguageChanged(event: FocusEvent<HTMLSelectElement>) {
     setState({ ...state, preferredLang: event.target.value })
-    storage.set('preferredLang', event.target.value)
+    storage.set('preferredLang', state.preferredLang)
+  }
+
+  function restore() {
+    setState({ ...state, ...initialState })
+    storage.set('preferredLang', initialState.preferredLang)
+    storage.set('understandsLangs', initialState.understandsLangs)
   }
 
   return (
@@ -72,10 +84,11 @@ function Account(): JSX.Element {
           <label className="line-break" htmlFor="understands-langs">
             I understand these languages:
           </label>
+          {/* eslint-disable-next-line jsx-a11y/no-onchange */}
           <select
             id="understands-langs"
             multiple
-            onBlur={onUnderstandsLangsChanged}
+            onChange={onUnderstandsLangsChanged}
             value={state.understandsLangs}
           >
             {state.languages.map(([code, lang]) => (
@@ -103,14 +116,17 @@ function Account(): JSX.Element {
           </select>
         </div>
 
+        <button className="btn" onClick={restore}>
+          Restore
+        </button>
+        <button className="btn" onClick={() => router.push('/')}>
+          Back to menu
+        </button>
         <button
           className="btn btn-warning"
           onClick={() => dispatch(UserActions.logOut())}
         >
           Log out
-        </button>
-        <button className="btn" onClick={() => router.push('/')}>
-          Back to menu
         </button>
       </div>
     </>
